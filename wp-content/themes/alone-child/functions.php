@@ -1333,6 +1333,22 @@ header,
     height: auto !important;
     object-fit: contain !important;
     object-position: center !important;
+    opacity: 1 !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    -webkit-filter: none !important;
+}
+
+/* Ensure logo stays visible against dark header variants */
+.tg-site-header .custom-logo-link,
+.elementor-location-header .custom-logo-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 4px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22) !important;
 }
 
 @media (max-width: 1024px) {
@@ -1520,3 +1536,109 @@ function mws_newsletter_global_css() {
 <?php
 }
 add_action('wp_head', 'mws_newsletter_global_css', 101);
+
+// ============================================
+// CUSTOM FOOTER FALLBACK (for templates that bypass footer.php)
+// ============================================
+function mws_footer_fallback_css() {
+?>
+<style>
+.mws-footer-fallback {
+    background: linear-gradient(180deg, #232842 0%, #1b2036 100%);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+.mws-footer-fallback .mws-footer-shell { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.mws-footer-fallback .mws-footer-main {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 28px;
+    padding: 34px 0 28px;
+}
+.mws-footer-fallback .mws-footer-title { margin: 0 0 10px; font-size: 15px; font-weight: 700; color: #cda33b; text-transform: uppercase; letter-spacing: .6px; }
+.mws-footer-fallback .mws-footer-brand { margin: 0 0 10px; font-size: 20px; font-weight: 700; line-height: 1.3; }
+.mws-footer-fallback .mws-footer-copy { margin: 0 0 12px; font-size: 14px; color: rgba(255,255,255,.82); }
+.mws-footer-fallback .mws-list { list-style: none; margin: 0; padding: 0; }
+.mws-footer-fallback .mws-list li { margin: 0 0 9px; }
+.mws-footer-fallback .mws-list a { color: rgba(255,255,255,.82); text-decoration: none; font-size: 14px; }
+.mws-footer-fallback .mws-list a:hover { color: #cda33b; }
+.mws-footer-fallback .mws-footer-bottom { border-top: 1px solid rgba(255,255,255,.12); }
+.mws-footer-fallback .mws-footer-bottom-inner { display: flex; justify-content: space-between; gap: 10px; padding: 14px 0 22px; }
+.mws-footer-fallback .mws-footer-bottom p { margin: 0; font-size: 12px; color: rgba(255,255,255,.58); }
+.mws-footer-fallback .mws-newsletter { margin-top: 12px; background: rgba(255,255,255,.06); border: 1px solid rgba(205,163,59,.42); }
+.mws-footer-fallback .mws-newsletter-title { color: #fff; font-size: 18px; }
+.mws-footer-fallback .mws-newsletter-copy { color: rgba(255,255,255,.78); font-size: 13px; }
+.mws-footer-fallback .mws-newsletter-input { background: rgba(255,255,255,.96); }
+.mws-footer-fallback .mws-newsletter-note { color: rgba(255,255,255,.62); }
+@media (max-width: 1024px) {
+    .mws-footer-fallback .mws-footer-main { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 680px) {
+    .mws-footer-fallback .mws-footer-shell { padding: 0 18px; }
+    .mws-footer-fallback .mws-footer-main { grid-template-columns: 1fr; gap: 24px; padding: 28px 0 24px; }
+    .mws-footer-fallback .mws-footer-bottom-inner { flex-direction: column; }
+}
+</style>
+<?php
+}
+add_action('wp_head', 'mws_footer_fallback_css', 102);
+
+function mws_render_custom_footer_fallback_markup() {
+    ?>
+    <footer class="mws-footer mws-footer-fallback" role="contentinfo">
+        <div class="mws-footer-shell mws-footer-main">
+            <div>
+                <p class="mws-footer-brand">The Michael Williams Memorial Scholarship</p>
+                <p class="mws-footer-copy">Honoring Mikey&rsquo;s legacy by supporting the next generation of students through annual scholarship awards.</p>
+            </div>
+            <div>
+                <p class="mws-footer-title">Quick Actions</p>
+                <ul class="mws-list">
+                    <li><a href="<?php echo home_url('/donate/'); ?>">Donate</a></li>
+                    <li><a href="<?php echo home_url('/volleyball/'); ?>">Register for Volleyball</a></li>
+                    <li><a href="<?php echo home_url('/qu-hockey-2026/'); ?>">Get Hockey Tickets</a></li>
+                    <li><a href="<?php echo home_url('/gallery/'); ?>">View Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="mws-footer-title">Learn More</p>
+                <ul class="mws-list">
+                    <li><a href="<?php echo home_url('/about-us/'); ?>">About Mikey</a></li>
+                    <li><a href="<?php echo home_url('/scholarship/'); ?>">Scholarship Details</a></li>
+                    <li><a href="<?php echo home_url('/past-winners/'); ?>">Past Recipients</a></li>
+                    <li><a href="<?php echo home_url('/our-team/'); ?>">Meet the Team</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="mws-footer-title">Connect</p>
+                <p class="mws-footer-copy"><a href="mailto:info@michaelwilliamsscholarship.com" style="color:#fff;text-decoration:none;">info@michaelwilliamsscholarship.com</a></p>
+                <?php
+                if (function_exists('mws_render_newsletter_signup')) {
+                    echo mws_render_newsletter_signup(array(
+                        'title' => 'Newsletter',
+                        'description' => 'Monthly updates, events, and impact stories.',
+                        'button_text' => 'Join',
+                        'source' => 'footer-fallback',
+                        'compact' => true,
+                    ));
+                }
+                ?>
+            </div>
+        </div>
+        <div class="mws-footer-bottom">
+            <div class="mws-footer-shell mws-footer-bottom-inner">
+                <p>&copy; <?php echo date('Y'); ?> The Michael Williams Memorial Scholarship. All rights reserved.</p>
+                <p>100% of net proceeds support scholarship funding.</p>
+            </div>
+        </div>
+    </footer>
+    <?php
+}
+
+function mws_footer_fallback_renderer() {
+    if (is_admin()) return;
+    if (!empty($GLOBALS['mws_custom_footer_rendered'])) return;
+    mws_render_custom_footer_fallback_markup();
+}
+add_action('wp_footer', 'mws_footer_fallback_renderer', 998);

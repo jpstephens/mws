@@ -7,6 +7,7 @@
 ?>
 
 </div><!-- #page -->
+<?php $GLOBALS['mws_custom_footer_rendered'] = true; ?>
 
 <style>
 /* ============================
