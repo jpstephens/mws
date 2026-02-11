@@ -1190,7 +1190,7 @@ header,
 .elementor-location-header .elementor-container,
 .tg-site-header .tg-header,
 .tg-site-header .tg-header-wrap {
-    background-color: #1d2338 !important;
+    background-color: #11192d !important;
 }
 
 /* Keep the nav visually separate from dark hero sections */
@@ -1199,8 +1199,8 @@ header,
 #masthead,
 .tg-site-header,
 .elementor-location-header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
-    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.22) !important;
+    border-bottom: 1px solid rgba(205, 163, 59, 0.35) !important;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.34) !important;
 }
 
 /* Consistent nav contrast */
@@ -1403,11 +1403,33 @@ function mws_register_newsletter_settings() {
         'sanitize_callback' => 'esc_url_raw',
         'default' => ''
     ));
+    register_setting('general', 'mws_mailchimp_api_key', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => ''
+    ));
+    register_setting('general', 'mws_mailchimp_audience_id', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => ''
+    ));
 
     add_settings_field(
         'mws_mailchimp_form_action',
         'Mailchimp Form Action URL',
         'mws_mailchimp_form_action_field',
+        'general'
+    );
+    add_settings_field(
+        'mws_mailchimp_api_key',
+        'Mailchimp API Key',
+        'mws_mailchimp_api_key_field',
+        'general'
+    );
+    add_settings_field(
+        'mws_mailchimp_audience_id',
+        'Mailchimp Audience ID',
+        'mws_mailchimp_audience_id_field',
         'general'
     );
 }
@@ -1416,7 +1438,19 @@ add_action('admin_init', 'mws_register_newsletter_settings');
 function mws_mailchimp_form_action_field() {
     $value = esc_url(get_option('mws_mailchimp_form_action', ''));
     echo '<input type="url" id="mws_mailchimp_form_action" name="mws_mailchimp_form_action" value="' . $value . '" class="regular-text" placeholder="https://...list-manage.com/subscribe/post?...">';
-    echo '<p class="description">Paste the Mailchimp hosted form action URL from your audience signup form. This powers newsletter forms across the site.</p>';
+    echo '<p class="description">Optional: hosted form action URL. If provided, submissions can use this endpoint directly server-side.</p>';
+}
+
+function mws_mailchimp_api_key_field() {
+    $value = esc_attr(get_option('mws_mailchimp_api_key', ''));
+    echo '<input type="password" id="mws_mailchimp_api_key" name="mws_mailchimp_api_key" value="' . $value . '" class="regular-text" placeholder="xxxxxxxxxxxx-us13" autocomplete="off">';
+    echo '<p class="description">Stored server-side only; never exposed in page source.</p>';
+}
+
+function mws_mailchimp_audience_id_field() {
+    $value = esc_attr(get_option('mws_mailchimp_audience_id', ''));
+    echo '<input type="text" id="mws_mailchimp_audience_id" name="mws_mailchimp_audience_id" value="' . $value . '" class="regular-text" placeholder="Audience/List ID">';
+    echo '<p class="description">Required with API key for newsletter subscriptions.</p>';
 }
 
 function mws_render_newsletter_signup($args = array()) {
@@ -1430,30 +1464,102 @@ function mws_render_newsletter_signup($args = array()) {
     );
     $a = wp_parse_args($args, $defaults);
 
-    $action = trim((string) get_option('mws_mailchimp_form_action', ''));
-
-    if (empty($action)) {
-        if (current_user_can('manage_options')) {
-            return '<div class="mws-newsletter mws-newsletter--unconfigured"><p>Newsletter form is not configured. Add the Mailchimp action URL in Settings > General.</p></div>';
-        }
-        return '';
-    }
+    $action_url = admin_url('admin-post.php');
+    $status = isset($_GET['mws_newsletter']) ? sanitize_text_field(wp_unslash($_GET['mws_newsletter'])) : '';
+    $status_src = isset($_GET['src']) ? sanitize_text_field(wp_unslash($_GET['src'])) : '';
 
     $classes = 'mws-newsletter ' . ($a['compact'] ? 'mws-newsletter--compact ' : '') . $a['class'];
 
     $html  = '<section class="' . esc_attr(trim($classes)) . '" aria-label="Newsletter signup">';
     $html .= '<h3 class="mws-newsletter-title">' . esc_html($a['title']) . '</h3>';
     $html .= '<p class="mws-newsletter-copy">' . esc_html($a['description']) . '</p>';
-    $html .= '<form class="mws-newsletter-form" action="' . esc_url($action) . '" method="post" target="_blank" novalidate>';
+    $html .= '<form class="mws-newsletter-form" action="' . esc_url($action_url) . '" method="post" novalidate>';
+    $html .= '<input type="hidden" name="action" value="mws_newsletter_subscribe">';
+    $html .= '<input type="hidden" name="source" value="' . esc_attr($a['source']) . '">';
+    $html .= wp_nonce_field('mws_newsletter_subscribe', 'mws_newsletter_nonce', true, false);
     $html .= '<label class="screen-reader-text" for="mws-newsletter-email-' . esc_attr($a['source']) . '">Email address</label>';
     $html .= '<input id="mws-newsletter-email-' . esc_attr($a['source']) . '" class="mws-newsletter-input" type="email" name="EMAIL" placeholder="Enter your email" required>';
     $html .= '<button class="mws-newsletter-btn" type="submit">' . esc_html($a['button_text']) . '</button>';
     $html .= '</form>';
     $html .= '<p class="mws-newsletter-note">No spam. Unsubscribe anytime.</p>';
+    if ($status && $status_src === $a['source']) {
+        if ($status === 'success') {
+            $html .= '<p class="mws-newsletter-status mws-newsletter-status--ok">Thanks for subscribing.</p>';
+        } elseif ($status === 'exists') {
+            $html .= '<p class="mws-newsletter-status mws-newsletter-status--ok">You are already subscribed.</p>';
+        } else {
+            $html .= '<p class="mws-newsletter-status mws-newsletter-status--err">Could not subscribe right now. Please try again.</p>';
+        }
+    }
     $html .= '</section>';
 
     return $html;
 }
+
+function mws_mailchimp_subscribe_handler() {
+    $source = isset($_POST['source']) ? sanitize_text_field(wp_unslash($_POST['source'])) : 'site';
+    $email = isset($_POST['EMAIL']) ? sanitize_email(wp_unslash($_POST['EMAIL'])) : '';
+    $referer = wp_get_referer();
+    $redirect_url = $referer ? $referer : home_url('/');
+
+    if (!isset($_POST['mws_newsletter_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['mws_newsletter_nonce'])), 'mws_newsletter_subscribe')) {
+        wp_safe_redirect(add_query_arg(array('mws_newsletter' => 'error', 'src' => $source), $redirect_url));
+        exit;
+    }
+    if (empty($email) || !is_email($email)) {
+        wp_safe_redirect(add_query_arg(array('mws_newsletter' => 'error', 'src' => $source), $redirect_url));
+        exit;
+    }
+
+    $form_action = trim((string) get_option('mws_mailchimp_form_action', ''));
+    $api_key = trim((string) get_option('mws_mailchimp_api_key', ''));
+    $audience_id = trim((string) get_option('mws_mailchimp_audience_id', ''));
+
+    $status = 'error';
+
+    if (!empty($form_action)) {
+        $resp = wp_remote_post($form_action, array(
+            'timeout' => 15,
+            'body' => array('EMAIL' => $email),
+        ));
+        if (!is_wp_error($resp)) {
+            $code = (int) wp_remote_retrieve_response_code($resp);
+            if ($code >= 200 && $code < 400) $status = 'success';
+        }
+    } elseif (!empty($api_key) && !empty($audience_id)) {
+        $parts = explode('-', $api_key);
+        $dc = isset($parts[1]) ? $parts[1] : '';
+        if (!empty($dc)) {
+            $endpoint = 'https://' . $dc . '.api.mailchimp.com/3.0/lists/' . rawurlencode($audience_id) . '/members';
+            $resp = wp_remote_post($endpoint, array(
+                'timeout' => 15,
+                'headers' => array(
+                    'Authorization' => 'Basic ' . base64_encode('anystring:' . $api_key),
+                    'Content-Type' => 'application/json',
+                ),
+                'body' => wp_json_encode(array(
+                    'email_address' => $email,
+                    'status_if_new' => 'subscribed',
+                    'status' => 'subscribed',
+                )),
+            ));
+            if (!is_wp_error($resp)) {
+                $code = (int) wp_remote_retrieve_response_code($resp);
+                $body = json_decode((string) wp_remote_retrieve_body($resp), true);
+                if ($code >= 200 && $code < 300) {
+                    $status = 'success';
+                } elseif ($code === 400 && isset($body['title']) && $body['title'] === 'Member Exists') {
+                    $status = 'exists';
+                }
+            }
+        }
+    }
+
+    wp_safe_redirect(add_query_arg(array('mws_newsletter' => $status, 'src' => $source), $redirect_url));
+    exit;
+}
+add_action('admin_post_nopriv_mws_newsletter_subscribe', 'mws_mailchimp_subscribe_handler');
+add_action('admin_post_mws_newsletter_subscribe', 'mws_mailchimp_subscribe_handler');
 
 function mws_newsletter_global_css() {
 ?>
@@ -1513,6 +1619,17 @@ function mws_newsletter_global_css() {
     margin: 10px 0 0;
     font-size: 12px;
     color: #6b7280;
+}
+.mws-newsletter-status {
+    margin: 10px 0 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+.mws-newsletter-status--ok {
+    color: #166534;
+}
+.mws-newsletter-status--err {
+    color: #991b1b;
 }
 .mws-newsletter--compact {
     padding: 16px;

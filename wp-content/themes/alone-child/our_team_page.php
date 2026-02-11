@@ -46,7 +46,7 @@
        ========================================== */
     #mws-team .tm-hero {
         background: linear-gradient(135deg, #1a1f34, #232842 50%, #2a3052);
-        padding: 64px 20px 56px;
+        padding: 110px 20px 56px;
         color: var(--white);
         position: relative;
         overflow: hidden;
@@ -77,6 +77,10 @@
     #mws-team .tm-hero-inner {
         max-width: 1120px;
         margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 44px;
+        align-items: start;
     }
 
     #mws-team .tm-hero h1 {
@@ -133,6 +137,76 @@
         flex-wrap: wrap;
     }
 
+    /* Right-side mission snapshot */
+    #mws-team .tm-hero-right {
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.16);
+        border-radius: 14px;
+        padding: 22px 22px 20px;
+        backdrop-filter: blur(2px);
+    }
+
+    #mws-team .tm-panel-kicker {
+        margin: 0 0 6px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--gold);
+    }
+
+    #mws-team .tm-panel-title {
+        margin: 0 0 12px;
+        font-size: 24px;
+        line-height: 1.25;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    #mws-team .tm-panel-quote {
+        margin: 0 0 16px;
+        font-size: 15px;
+        line-height: 1.7;
+        color: rgba(255,255,255,0.88);
+    }
+
+    #mws-team .tm-panel-quote strong {
+        color: #fff;
+    }
+
+    #mws-team .tm-hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 6px;
+    }
+
+    #mws-team .tm-hero-stat {
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.18);
+        background: rgba(0,0,0,0.12);
+        padding: 12px 10px;
+        text-align: center;
+    }
+
+    #mws-team .tm-hero-stat .value {
+        display: block;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1.1;
+    }
+
+    #mws-team .tm-hero-stat .label {
+        display: block;
+        margin-top: 4px;
+        font-size: 11px;
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.8);
+        line-height: 1.3;
+    }
+
     /* Buttons */
     #mws-team .tm-btn-primary {
         display: inline-flex;
@@ -178,9 +252,12 @@
     }
 
     @media (max-width: 860px) {
-        #mws-team .tm-hero { padding: 48px 16px 48px; }
+        #mws-team .tm-hero { padding: 90px 16px 48px; }
         #mws-team .tm-hero h1 { font-size: 36px; }
         #mws-team .tm-hero-ctas { justify-content: flex-start; }
+        #mws-team .tm-hero-inner { grid-template-columns: 1fr; gap: 22px; }
+        #mws-team .tm-hero-right { padding: 18px 16px; }
+        #mws-team .tm-panel-title { font-size: 21px; }
     }
 
     /* ==========================================
@@ -376,6 +453,25 @@
                     <a href="<?php echo home_url('/donate/'); ?>" class="tm-btn-secondary">Donate</a>
                 </div>
             </div>
+            <aside class="tm-hero-right" aria-label="Board snapshot">
+                <p class="tm-panel-kicker">Board Snapshot</p>
+                <h2 class="tm-panel-title">Turning Community Into Scholarships</h2>
+                <p class="tm-panel-quote"><strong>Our mission:</strong> host meaningful events, grow support each year, and award scholarships that reflect Michael&rsquo;s values.</p>
+                <div class="tm-hero-stats">
+                    <div class="tm-hero-stat">
+                        <span class="value">6</span>
+                        <span class="label">Recipients Since 2020</span>
+                    </div>
+                    <div class="tm-hero-stat">
+                        <span class="value">$30K+</span>
+                        <span class="label">Awarded to Students</span>
+                    </div>
+                    <div class="tm-hero-stat">
+                        <span class="value">100%</span>
+                        <span class="label">Net Proceeds to Scholarships</span>
+                    </div>
+                </div>
+            </aside>
         </div>
     </div>
 
