@@ -156,6 +156,10 @@
             grid-template-columns: 1fr;
             gap: 14px;
         }
+        #mws-scholarship .winner-card img {
+            width: 156px;
+            height: 156px;
+        }
     }
 
     #mws-scholarship .winner-card {
@@ -173,12 +177,12 @@
     }
 
     #mws-scholarship .winner-card img {
-        width: 120px;
-        height: 120px;
+        width: 190px;
+        height: 190px;
         border-radius: 50%;
         object-fit: cover;
         object-position: center 20%;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
         border: 3px solid var(--gold);
     }
 
