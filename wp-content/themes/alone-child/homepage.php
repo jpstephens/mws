@@ -615,6 +615,9 @@
         border-radius: 12px;
         padding: 24px 20px;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         transition: transform 0.15s, box-shadow 0.15s;
     }
 
@@ -648,7 +651,7 @@
     #mws-home .hp-help-card p {
         font-size: 14px;
         color: #666;
-        margin: 0 0 18px;
+        margin: 0;
         line-height: 1.6;
     }
 
@@ -660,6 +663,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        margin-top: auto;
+        align-self: center;
         min-height: 44px;
         padding: 10px 24px;
         border-radius: 8px;
