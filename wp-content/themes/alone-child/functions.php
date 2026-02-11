@@ -1469,6 +1469,24 @@ function mws_fix_header_logo_asset() {
 }
 add_action('wp_head', 'mws_fix_header_logo_asset', 110);
 
+// Hard fallback: normalize known legacy header logo URL in rendered HTML.
+function mws_force_canonical_logo_html($html) {
+    if (is_admin() || empty($html) || stripos($html, 'image834.png') === false) {
+        return $html;
+    }
+    $old_logo = 'https://didactic-query.flywheelstaging.com/wp-content/uploads/2023/02/image834.png';
+    $new_logo = 'https://didactic-query.flywheelstaging.com/wp-content/uploads/2021/06/g852.png';
+    $html = str_replace($old_logo, $new_logo, $html);
+    $html = str_replace('Photo from the 2023 Michael Williams Memorial Golf Outing', 'Michael Williams Memorial Scholarship', $html);
+    return $html;
+}
+
+function mws_start_logo_normalization_buffer() {
+    if (is_admin()) return;
+    ob_start('mws_force_canonical_logo_html');
+}
+add_action('template_redirect', 'mws_start_logo_normalization_buffer', 0);
+
 // Hide fallback/duplicate footer blocks only when custom footer is present.
 function mws_footer_visibility_guard() {
 ?>
