@@ -390,7 +390,7 @@
 
     /* Keep both faces visible in the hockey promo image crop */
     #mws-home .hp-events-grid .hp-event-card:first-child img {
-        object-position: center 18%;
+        object-position: center 40%;
     }
 
     #mws-home .hp-event-body {
