@@ -22,6 +22,9 @@ MWS/
 │   ├── volleyball_event.php         # Volleyball tournament page [mws_volleyball]
 │   ├── hockey_event_2026.php        # Hockey fundraiser page [mws_hockey_2026]
 │   ├── scholarship_page.php         # Scholarship info page [mws_scholarship]
+│   ├── about_us_page.php            # About Us page [mws_about_us]
+│   ├── homepage.php                 # Homepage [mws_homepage]
+│   ├── our_team_page.php            # Our Team page [mws_our_team]
 │   ├── hockey_event.php             # Legacy hockey page
 │   ├── footer.php                   # Custom footer
 │   ├── page-success.php             # Payment success page
@@ -47,7 +50,7 @@ THEME="/www/wp-content/themes/alone-child"
 LOCAL="wp-content/themes/alone-child"
 
 # Deploy all PHP/CSS files
-for f in functions.php style.css volleyball_event.php hockey_event_2026.php scholarship_page.php footer.php page-success.php page-stripe.php register.php spo_register.php hockey_event.php; do
+for f in functions.php style.css volleyball_event.php hockey_event_2026.php scholarship_page.php about_us_page.php homepage.php our_team_page.php footer.php page-success.php page-stripe.php register.php spo_register.php hockey_event.php donate_page.php gallery_page.php past_winners_page.php; do
   cat "$LOCAL/$f" | $SSH "cat > $THEME/$f"
 done
 
@@ -66,7 +69,7 @@ THEME="/www/wp-content/themes/alone-child"
 LOCAL="wp-content/themes/alone-child"
 
 # Deploy all PHP/CSS files
-for f in functions.php style.css volleyball_event.php hockey_event_2026.php scholarship_page.php footer.php page-success.php page-stripe.php register.php spo_register.php hockey_event.php; do
+for f in functions.php style.css volleyball_event.php hockey_event_2026.php scholarship_page.php about_us_page.php homepage.php our_team_page.php footer.php page-success.php page-stripe.php register.php spo_register.php hockey_event.php donate_page.php gallery_page.php past_winners_page.php; do
   cat "$LOCAL/$f" | $SSH "cat > $THEME/$f"
 done
 
@@ -81,14 +84,14 @@ $SSH "cd /www && wp cache flush && wp elementor flush-css 2>/dev/null"
 
 | Page | ID (prod) | Slug | Shortcode |
 |------|-----------|------|-----------|
-| Homepage | 4321 | `home-saltoro` | — (Elementor) |
+| Homepage | 4321 | `home-saltoro` | `[mws_homepage]` |
 | Volleyball | 20452 | `volleyball` | `[mws_volleyball]` |
 | Hockey | — | `qu-hockey-2026` | `[mws_hockey_2026]` |
 | Scholarship | 20457 | `scholarship` | `[mws_scholarship]` |
 | Donate | 17 | `donate` | GiveWP form 20160 |
 | Past Winners | 705 | `past-winners` | — (Elementor) |
-| About | 8923 | `about-us` | — (Elementor) |
-| Our Team | 9100 | `our-team` | WP Team Showcase |
+| About | 8923 | `about-us` | `[mws_about_us]` |
+| Our Team | 9100 | `our-team` | `[mws_our_team]` |
 
 ## Other Services
 

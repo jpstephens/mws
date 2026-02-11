@@ -6,7 +6,7 @@
 ?>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
     /* Hide WordPress page title bar */
@@ -14,7 +14,7 @@
 
     /* Scoped styles for volleyball registration */
     #mws-volleyball {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: 'Poppins', sans-serif;
         line-height: 1.6;
         color: #111827;
         -webkit-font-smoothing: antialiased;
@@ -36,8 +36,9 @@
         --gray-600: #4b5563;
         --gray-800: #1f2937;
         --gray-900: #111827;
-        --gold: #b8860b;
-        --gold-light: #daa520;
+        --navy: #232842;
+        --gold: #cda33b;
+        --gold-light: #b8930e;
         --gold-bg: #fef9e7;
         --red: #dc2626;
         --green: #059669;
@@ -47,101 +48,73 @@
        HERO BANNER
        ========================================== */
     #mws-volleyball .vb-hero {
+        background: linear-gradient(135deg, #1a1f34, var(--navy) 50%, #2a3052);
+        padding: 180px 20px 50px;
+        text-align: center;
         position: relative;
-        background: var(--gray-900);
         overflow: hidden;
-        border-radius: 16px;
-        margin-bottom: 24px;
+        margin-bottom: 0;
+        border-radius: 0;
+    }
+
+    #mws-volleyball .vb-hero::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
     }
 
     #mws-volleyball .vb-hero img {
-        width: 100%;
-        height: 220px;
-        object-fit: cover;
-        display: block;
-        opacity: 0.35;
-    }
-
-    @media (min-width: 768px) {
-        #mws-volleyball .vb-hero img {
-            height: 280px;
-        }
+        display: none;
     }
 
     #mws-volleyball .vb-hero-overlay {
-        position: absolute;
-        inset: 0;
+        position: static;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 20px;
+        padding: 0;
     }
 
     #mws-volleyball .vb-hero h1 {
         color: var(--white);
-        font-size: 22px;
-        font-weight: 800;
-        margin: 0 0 10px;
-        text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+        font-size: 44px;
+        font-weight: 700;
+        margin: 0 0 14px;
+        text-shadow: none;
     }
-
-    #mws-volleyball .vb-hero h1 span { color: var(--gold-light); }
 
     @media (min-width: 768px) {
-        #mws-volleyball .vb-hero h1 { font-size: 32px; }
-    }
-
-    #mws-volleyball .hero-meta {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px 16px;
-        margin-bottom: 14px;
+        #mws-volleyball .vb-hero h1 { font-size: 46px; }
     }
 
     #mws-volleyball .hero-meta span {
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 600;
         color: #fff;
-        background: rgba(0,0,0,0.5);
-        padding: 5px 14px;
+        background: rgba(255,255,255,0.12);
+        padding: 6px 16px;
         border-radius: 20px;
         white-space: nowrap;
     }
 
-    @media (min-width: 768px) {
-        #mws-volleyball .hero-meta span { font-size: 14px; }
-    }
-
-    #mws-volleyball .hero-prices {
-        display: flex;
-        gap: 12px;
-    }
-
     #mws-volleyball .hero-price {
-        background: rgba(0,0,0,0.5);
+        background: rgba(255,255,255,0.10);
         backdrop-filter: blur(8px);
-        border: 1px solid rgba(255,255,255,0.15);
+        border: 1px solid rgba(255,255,255,0.18);
         border-radius: 10px;
-        padding: 8px 20px;
+        padding: 10px 24px;
         text-align: center;
         color: var(--white);
     }
 
-    #mws-volleyball .hero-price .amount {
-        font-size: 22px;
-        font-weight: 800;
-        color: var(--gold-light);
-        display: block;
-    }
-
-    #mws-volleyball .hero-price .label {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        opacity: 0.85;
+    @media (max-width: 768px) {
+        #mws-volleyball .vb-hero { padding: 160px 16px 40px; }
+        #mws-volleyball .vb-hero h1 { font-size: 32px; }
     }
 
     /* ==========================================
@@ -150,7 +123,7 @@
     #mws-volleyball .vb-main {
         max-width: 1100px;
         margin: 0 auto;
-        padding: 0 16px 40px;
+        padding: 24px 16px 40px;
     }
 
     @media (min-width: 768px) {

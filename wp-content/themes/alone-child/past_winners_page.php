@@ -383,56 +383,50 @@
         </div>
     </div>
 
-    <!-- ===== 2022 — Placeholder — photo right ===== -->
-    <!-- TODO: Update with actual recipient data -->
+    <!-- ===== 2022 — Tommy French — photo right ===== -->
     <div class="pw-year-marker"><span>2022</span></div>
     <div class="pw-row pw-row-reverse">
         <div class="pw-row-inner">
             <div class="pw-photo">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/06/68cf1109-5c8e-4f82-8408-6fd3f62c8f0a-modified.jpg" alt="2022 scholarship recipient">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2021/05/image-e1659646573521.jpg" alt="Tommy French, 2022 scholarship recipient">
             </div>
             <div class="pw-text">
-                <h3>2022 Recipient</h3>
-                <p class="pw-details">2022 Recipient &middot; TBD</p>
-                <!-- TODO: Update with actual recipient data -->
-                <p>The 2022 Michael Williams Memorial Scholarship was awarded to a graduating senior at Rumson-Fair Haven Regional High School who demonstrated outstanding character, creativity, and commitment to community &mdash; the qualities that defined Michael&rsquo;s life.</p>
-                <p>Full recipient details coming soon. If you have information about this year&rsquo;s winner, please reach out to us at <a href="mailto:info@michaelwilliamsscholarship.com" style="color: var(--gold); font-weight: 600; text-decoration: none;">info@michaelwilliamsscholarship.com</a>.</p>
+                <h3>Tommy French</h3>
+                <p class="pw-details">2022 Recipient &middot; Babson College &middot; Business</p>
+                <p>Tommy French was selected as the 2022 Michael Williams Memorial Scholarship recipient for his dedication as both a student and athlete at Rumson-Fair Haven. A member of the lacrosse team, Tommy embodied the competitive spirit and camaraderie that Michael valued so deeply.</p>
+                <p>Tommy went on to attend Babson College, where he set his sights on graduating with a 3.8+ GPA while continuing to develop as a student-athlete. His drive and determination reflect the same qualities that made Michael such a beloved member of his community.</p>
             </div>
         </div>
     </div>
 
-    <!-- ===== 2021 — Placeholder — photo left ===== -->
-    <!-- TODO: Update with actual recipient data -->
+    <!-- ===== 2021 — Charlie Eckstein — photo left ===== -->
     <div class="pw-year-marker"><span>2021</span></div>
     <div class="pw-row">
         <div class="pw-row-inner">
             <div class="pw-photo">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/06/68cf1109-5c8e-4f82-8408-6fd3f62c8f0a-modified.jpg" alt="2021 scholarship recipient">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/02/Recruitment-pic-.jpg" alt="Charlie Eckstein, 2021 scholarship recipient">
             </div>
             <div class="pw-text">
-                <h3>2021 Recipient</h3>
-                <p class="pw-details">2021 Recipient &middot; TBD</p>
-                <!-- TODO: Update with actual recipient data -->
-                <p>The 2021 Michael Williams Memorial Scholarship recognized a graduating senior at Rumson-Fair Haven Regional High School whose dedication to academics, the arts, and community service reflected the spirit of Michael Williams.</p>
-                <p>Full recipient details coming soon. If you have information about this year&rsquo;s winner, please reach out to us at <a href="mailto:info@michaelwilliamsscholarship.com" style="color: var(--gold); font-weight: 600; text-decoration: none;">info@michaelwilliamsscholarship.com</a>.</p>
+                <h3>Charlie Eckstein</h3>
+                <p class="pw-details">2021 Recipient &middot; Tulane University &middot; Management, A.B. Freeman School of Business Honors</p>
+                <p>Charlie Eckstein earned the 2021 Michael Williams Memorial Scholarship through his exceptional leadership and commitment to community. At RFH, Charlie distinguished himself as someone who brought people together &mdash; a quality that resonated deeply with Michael&rsquo;s own spirit.</p>
+                <p>At Tulane University, Charlie pursued Management with a concentration in Finance and Accounting at the A.B. Freeman School of Business Honors program. He served as President of the Toastmasters chapter and Treasurer of his fraternity, channeling his passion for leadership and aspiring to a career in wealth management.</p>
             </div>
         </div>
     </div>
 
-    <!-- ===== 2020 — Placeholder — photo right ===== -->
-    <!-- TODO: Update with actual recipient data -->
+    <!-- ===== 2020 — Emily Grossarth — photo right ===== -->
     <div class="pw-year-marker"><span>2020</span></div>
     <div class="pw-row pw-row-reverse">
         <div class="pw-row-inner">
             <div class="pw-photo">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/06/68cf1109-5c8e-4f82-8408-6fd3f62c8f0a-modified.jpg" alt="2020 scholarship recipient">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/02/img_0041-300x300-1-1.png" alt="Emily Grossarth, 2020 scholarship recipient">
             </div>
             <div class="pw-text">
-                <h3>2020 Recipient</h3>
-                <p class="pw-details">2020 Recipient &middot; TBD</p>
-                <!-- TODO: Update with actual recipient data -->
-                <p>The inaugural Michael Williams Memorial Scholarship was awarded in 2020 to a graduating senior at Rumson-Fair Haven Regional High School. This first award marked the beginning of a lasting tradition to honor Michael&rsquo;s memory through community and education.</p>
-                <p>Full recipient details coming soon. If you have information about this year&rsquo;s winner, please reach out to us at <a href="mailto:info@michaelwilliamsscholarship.com" style="color: var(--gold); font-weight: 600; text-decoration: none;">info@michaelwilliamsscholarship.com</a>.</p>
+                <h3>Emily Grossarth</h3>
+                <p class="pw-details">2020 Recipient &middot; University of Pennsylvania &middot; Huntsman Dual-Degree Program, Wharton School</p>
+                <p>Emily Grossarth was the inaugural recipient of the Michael Williams Memorial Scholarship in 2020, setting the standard for the remarkable young people who would follow. Her combination of academic excellence, creativity, and genuine care for others made her the perfect choice to carry Michael&rsquo;s legacy forward.</p>
+                <p>Emily attended the University of Pennsylvania, where she pursued the prestigious Huntsman Dual-Degree Program in International Studies and Business at the Wharton School, with a Finance concentration and Hispanic Studies minor. Her ambition and intellect embody the limitless potential Michael saw in the people around him.</p>
             </div>
         </div>
     </div>

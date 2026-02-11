@@ -28,7 +28,7 @@
 
     #mws-hockey {
         --gold: #cda33b;
-        --gold-hover: #c39931;
+        --gold-hover: #b8930e;
         --gold-text: #8a6d1b;
         --navy: #232842;
         --accent-blue: #002866;
@@ -37,6 +37,50 @@
         --white: #ffffff;
         --light-bg: #f7f7f7;
         --border: #e0e0e0;
+    }
+
+    /* ==========================================
+       HERO BANNER
+       ========================================== */
+    #mws-hockey .hk-hero {
+        background: linear-gradient(135deg, #1a1f34, #232842 50%, #2a3052);
+        padding: 180px 20px 50px;
+        text-align: center;
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+    }
+
+    #mws-hockey .hk-hero::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-hover), var(--gold));
+    }
+
+    #mws-hockey .hk-hero h1 {
+        font-size: 46px;
+        font-weight: 700;
+        margin: 0 0 12px;
+        color: var(--white);
+        line-height: 1.15;
+    }
+
+    #mws-hockey .hk-hero .hk-hero-sub {
+        font-size: 18px;
+        max-width: 620px;
+        margin: 0 auto;
+        opacity: 0.85;
+        line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+        #mws-hockey .hk-hero { padding: 160px 16px 40px; }
+        #mws-hockey .hk-hero h1 { font-size: 32px; }
+        #mws-hockey .hk-hero .hk-hero-sub { font-size: 16px; }
     }
 
     /* ==========================================
@@ -84,7 +128,7 @@
         }
     }
 
-    #mws-hockey .event-info h1 {
+    #mws-hockey .event-info h2 {
         font-size: 34px;
         font-weight: 700;
         color: var(--accent-blue);
@@ -93,7 +137,7 @@
     }
 
     @media (max-width: 768px) {
-        #mws-hockey .event-info h1 {
+        #mws-hockey .event-info h2 {
             font-size: 26px;
         }
     }
@@ -122,6 +166,12 @@
         border-radius: 8px;
         padding: 14px 16px;
         text-align: center;
+        transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    #mws-hockey .meta-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
     }
 
     #mws-hockey .meta-label {
@@ -201,7 +251,7 @@
         font-family: 'Poppins', sans-serif;
         font-size: 14px;
         color: var(--text);
-        transition: border-color 0.2s;
+        transition: border-color 0.15s;
         box-sizing: border-box;
         background: var(--white);
     }
@@ -273,7 +323,7 @@
         font-size: 15px;
         font-weight: 600;
         cursor: pointer;
-        transition: background-color 0.2s, transform 0.1s;
+        transition: background-color 0.15s, transform 0.1s;
         letter-spacing: 0.5px;
     }
 
@@ -328,13 +378,17 @@
 </style>
 
 <div id="mws-hockey">
+    <div class="hk-hero">
+        <h1>MWS Hockey Fundraiser</h1>
+        <p class="hk-hero-sub">Join us as Quinnipiac takes on Colgate in Men's Ice Hockey. All proceeds go to the Michael Williams Memorial Scholarship.</p>
+    </div>
     <main class="hk-main">
         <div class="left-column">
             <div class="hero-image">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hockey-hero.jpeg" alt="Quinnipiac Hockey">
             </div>
             <div class="event-info">
-                <h1>MWS Hockey Fundraiser</h1>
+                <h2>Event Details</h2>
                 <p>
                     The Michael Williams Scholarship teamed up with Quinnipiac University once again to support this great cause.
                     Join us on Saturday, February 21st as Quinnipiac takes on Colgate in Men's Ice Hockey.
