@@ -1376,6 +1376,38 @@ header,
 }
 add_action('wp_head', 'mws_header_footer_render_fixes', 99);
 
+// Force the Our Team page header logo to match the site-standard logo asset.
+function mws_fix_our_team_logo_asset() {
+    if (!(is_page(9100) || is_page('our-team'))) return;
+?>
+<script>
+(function() {
+    var canonicalSrc = 'https://didactic-query.flywheelstaging.com/wp-content/uploads/2021/06/g852.png';
+    var selectors = [
+        '.elementor-location-header img',
+        '.tg-site-header img',
+        '#masthead img'
+    ];
+    selectors.forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(img) {
+            var src = img.getAttribute('src') || '';
+            if (!src) return;
+            if (src.indexOf('/wp-content/uploads/') === -1) return;
+            if (src.indexOf('g852.png') !== -1) return;
+            img.setAttribute('src', canonicalSrc);
+            img.setAttribute('srcset', canonicalSrc + ' 125w');
+            img.setAttribute('sizes', '(max-width: 125px) 100vw, 125px');
+            if (!img.getAttribute('alt') || img.getAttribute('alt').indexOf('Michael Williams') === -1) {
+                img.setAttribute('alt', 'Michael Williams Memorial Scholarship');
+            }
+        });
+    });
+})();
+</script>
+<?php
+}
+add_action('wp_head', 'mws_fix_our_team_logo_asset', 110);
+
 // Hide fallback/duplicate footer blocks only when custom footer is present.
 function mws_footer_visibility_guard() {
 ?>
