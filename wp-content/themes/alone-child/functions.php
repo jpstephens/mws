@@ -962,10 +962,57 @@ function mws_resource_hints($urls, $relation_type) {
     if ($relation_type === 'preconnect') {
         $urls[] = array('href' => 'https://fonts.googleapis.com', 'crossorigin' => true);
         $urls[] = array('href' => 'https://fonts.gstatic.com', 'crossorigin' => true);
+        $urls[] = array('href' => 'https://js.stripe.com', 'crossorigin' => true);
+        $urls[] = array('href' => 'https://checkout.stripe.com', 'crossorigin' => true);
+    }
+    if ($relation_type === 'dns-prefetch') {
+        $urls[] = '//fonts.googleapis.com';
+        $urls[] = '//fonts.gstatic.com';
+        $urls[] = '//js.stripe.com';
+        $urls[] = '//checkout.stripe.com';
     }
     return $urls;
 }
 add_filter('wp_resource_hints', 'mws_resource_hints', 10, 2);
+
+// 11. Smarter image loading defaults in rendered content
+function mws_optimize_content_images($content) {
+    if (is_admin() || empty($content) || stripos($content, '<img') === false) {
+        return $content;
+    }
+
+    $image_index = 0;
+    return preg_replace_callback('/<img\b[^>]*>/i', function($matches) use (&$image_index) {
+        $img = $matches[0];
+        $is_first = ($image_index === 0);
+        $image_index++;
+
+        if (stripos($img, 'decoding=') === false) {
+            $img = preg_replace('/<img\b/i', '<img decoding="async"', $img, 1);
+        }
+
+        if (stripos($img, 'loading=') === false) {
+            $img = preg_replace(
+                '/<img\b/i',
+                $is_first ? '<img loading="eager"' : '<img loading="lazy"',
+                $img,
+                1
+            );
+        }
+
+        if (stripos($img, 'fetchpriority=') === false) {
+            $img = preg_replace(
+                '/<img\b/i',
+                $is_first ? '<img fetchpriority="high"' : '<img fetchpriority="low"',
+                $img,
+                1
+            );
+        }
+
+        return $img;
+    }, $content);
+}
+add_filter('the_content', 'mws_optimize_content_images', 20);
 
 
 // ============================================
