@@ -41,7 +41,7 @@
        ========================================== */
     #mws-home .hp-hero {
         background: var(--navy);
-        padding: 200px 20px;
+        padding: 144px 20px 116px;
         position: relative;
     }
 
@@ -308,7 +308,7 @@
     }
 
     @media (max-width: 860px) {
-        #mws-home .hp-hero { padding: 182px 20px; }
+        #mws-home .hp-hero { padding: 130px 20px 104px; }
         #mws-home .hp-hero-inner {
             grid-template-columns: 1fr;
             gap: 32px;
@@ -329,7 +329,7 @@
     }
 
     @media (max-width: 480px) {
-        #mws-home .hp-hero { padding: 164px 16px; }
+        #mws-home .hp-hero { padding: 118px 16px 92px; }
         #mws-home .hp-hero-left h1 { font-size: 30px; }
         #mws-home .hp-hero-left .hp-subhead { font-size: 15px; }
         #mws-home .hp-pills { grid-template-columns: repeat(2, 1fr); }
