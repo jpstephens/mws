@@ -1383,25 +1383,39 @@ function mws_fix_our_team_logo_asset() {
 <script>
 (function() {
     var canonicalSrc = 'https://didactic-query.flywheelstaging.com/wp-content/uploads/2021/06/g852.png';
-    var selectors = [
-        '.elementor-location-header img',
-        '.tg-site-header img',
-        '#masthead img'
-    ];
-    selectors.forEach(function(sel) {
-        document.querySelectorAll(sel).forEach(function(img) {
-            var src = img.getAttribute('src') || '';
-            if (!src) return;
-            if (src.indexOf('/wp-content/uploads/') === -1) return;
-            if (src.indexOf('g852.png') !== -1) return;
-            img.setAttribute('src', canonicalSrc);
-            img.setAttribute('srcset', canonicalSrc + ' 125w');
-            img.setAttribute('sizes', '(max-width: 125px) 100vw, 125px');
-            if (!img.getAttribute('alt') || img.getAttribute('alt').indexOf('Michael Williams') === -1) {
-                img.setAttribute('alt', 'Michael Williams Memorial Scholarship');
-            }
+    var selectors = ['.elementor-location-header img', '.tg-site-header img', '#masthead img'];
+
+    function fixHeaderLogo() {
+        selectors.forEach(function(sel) {
+            document.querySelectorAll(sel).forEach(function(img) {
+                var src = img.getAttribute('src') || '';
+                if (!src) return;
+                if (src.indexOf('/wp-content/uploads/') === -1) return;
+                if (src.indexOf('g852.png') !== -1) return;
+                img.setAttribute('src', canonicalSrc);
+                img.setAttribute('srcset', canonicalSrc + ' 125w');
+                img.setAttribute('sizes', '(max-width: 125px) 100vw, 125px');
+                if (!img.getAttribute('alt') || img.getAttribute('alt').indexOf('Michael Williams') === -1) {
+                    img.setAttribute('alt', 'Michael Williams Memorial Scholarship');
+                }
+            });
         });
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fixHeaderLogo);
+    } else {
+        fixHeaderLogo();
+    }
+    window.addEventListener('load', fixHeaderLogo);
+    setTimeout(fixHeaderLogo, 250);
+    setTimeout(fixHeaderLogo, 1000);
+
+    var headerRoot = document.querySelector('.elementor-location-header') || document.querySelector('.tg-site-header') || document.querySelector('#masthead');
+    if (headerRoot && window.MutationObserver) {
+        var observer = new MutationObserver(fixHeaderLogo);
+        observer.observe(headerRoot, { childList: true, subtree: true, attributes: true });
+    }
 })();
 </script>
 <?php
