@@ -49,7 +49,7 @@
        ========================================== */
     #mws-volleyball .vb-hero {
         background: linear-gradient(135deg, #1a1f34, var(--navy) 50%, #2a3052);
-        padding: 180px 20px 50px;
+        padding: 64px 20px 50px;
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -113,7 +113,7 @@
     }
 
     @media (max-width: 768px) {
-        #mws-volleyball .vb-hero { padding: 160px 16px 40px; }
+        #mws-volleyball .vb-hero { padding: 48px 16px 40px; }
         #mws-volleyball .vb-hero h1 { font-size: 32px; }
     }
 

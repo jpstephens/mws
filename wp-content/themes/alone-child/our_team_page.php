@@ -46,7 +46,7 @@
        ========================================== */
     #mws-team .tm-hero {
         background: linear-gradient(135deg, #1a1f34, #232842 50%, #2a3052);
-        padding: 180px 20px 56px;
+        padding: 64px 20px 56px;
         color: var(--white);
         position: relative;
         overflow: hidden;
@@ -178,7 +178,7 @@
     }
 
     @media (max-width: 860px) {
-        #mws-team .tm-hero { padding: 160px 16px 48px; }
+        #mws-team .tm-hero { padding: 48px 16px 48px; }
         #mws-team .tm-hero h1 { font-size: 36px; }
         #mws-team .tm-hero-ctas { justify-content: flex-start; }
     }

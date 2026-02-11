@@ -41,7 +41,7 @@
        ========================================== */
     #mws-winners .pw-hero {
         background: linear-gradient(135deg, #1a1f34, #232842 50%, #2a3052);
-        padding: 180px 20px 56px;
+        padding: 64px 20px 56px;
         color: var(--white);
         position: relative;
         overflow: hidden;
@@ -90,7 +90,7 @@
     }
 
     @media (max-width: 860px) {
-        #mws-winners .pw-hero { padding: 160px 16px 48px; }
+        #mws-winners .pw-hero { padding: 48px 16px 48px; }
         #mws-winners .pw-hero h1 { font-size: 30px; }
     }
 

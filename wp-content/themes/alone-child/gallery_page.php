@@ -92,7 +92,7 @@ $show_tabs = ($single_year === 0);
        ========================================== */
     #mws-gallery .gal-hero {
         background: var(--navy);
-        padding: 180px 20px 60px;
+        padding: 64px 20px 60px;
         text-align: center;
         color: var(--white);
     }
@@ -114,7 +114,7 @@ $show_tabs = ($single_year === 0);
 
     @media (max-width: 768px) {
         #mws-gallery .gal-hero {
-            padding: 160px 16px 40px;
+            padding: 48px 16px 40px;
         }
         #mws-gallery .gal-hero h1 {
             font-size: 32px;

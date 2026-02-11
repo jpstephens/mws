@@ -41,7 +41,7 @@
        ========================================== */
     #mws-donate .dn-hero {
         background: var(--navy);
-        padding: 180px 20px 56px;
+        padding: 64px 20px 56px;
         text-align: center;
         color: var(--white);
     }
@@ -63,7 +63,7 @@
     }
 
     @media (max-width: 768px) {
-        #mws-donate .dn-hero { padding: 160px 16px 44px; }
+        #mws-donate .dn-hero { padding: 48px 16px 44px; }
         #mws-donate .dn-hero h1 { font-size: 32px; }
         #mws-donate .dn-hero .dn-subhead { font-size: 16px; }
     }
