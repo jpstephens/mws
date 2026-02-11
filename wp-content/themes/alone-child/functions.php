@@ -1311,21 +1311,36 @@ header,
     }
 }
 
-/* Force custom theme footer to be the only visible footer on frontend */
-body:not(.wp-admin) .elementor-location-footer,
-body:not(.wp-admin) .elementor-location-footer + *[data-elementor-type="footer"],
-body:not(.wp-admin) .tg-site-footer:not(.mws-footer),
-body:not(.wp-admin) .tg-footer-wrap,
-body:not(.wp-admin) .tg-site-footer-bar,
-body:not(.wp-admin) #footer-wrap {
-    display: none !important;
-}
-
-body:not(.wp-admin) .mws-footer {
-    display: block !important;
-    visibility: visible !important;
-}
 </style>
 <?php
 }
 add_action('wp_head', 'mws_header_footer_render_fixes', 99);
+
+// Hide fallback/duplicate footer blocks only when custom footer is present.
+function mws_footer_visibility_guard() {
+?>
+<script>
+(function() {
+    if (document.body.classList.contains('wp-admin')) return;
+    var customFooter = document.querySelector('.mws-footer');
+    if (!customFooter) return;
+    var selectors = [
+        '.elementor-location-footer',
+        '[data-elementor-type=\"footer\"]',
+        '.tg-site-footer',
+        '.tg-footer-wrap',
+        '.tg-site-footer-bar',
+        '#footer-wrap'
+    ];
+    selectors.forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(el) {
+            if (!el.classList.contains('mws-footer') && !el.closest('.mws-footer')) {
+                el.style.display = 'none';
+            }
+        });
+    });
+})();
+</script>
+<?php
+}
+add_action('wp_footer', 'mws_footer_visibility_guard', 999);
