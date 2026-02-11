@@ -713,6 +713,12 @@
         border-top: 1px solid #e5e7eb;
     }
 
+    #mws-home .hp-newsletter-wrap {
+        max-width: 760px;
+        margin: 10px auto 0;
+        padding: 0 20px;
+    }
+
     #mws-home .hp-trust-footer p {
         font-size: 14px;
         color: #666;
@@ -947,6 +953,19 @@
                 <a href="https://www.linkedin.com/company/the-michael-williams-memorial-scholarship" target="_blank" rel="noopener" class="hp-help-link hp-help-link-outline">Follow &amp; Share</a>
             </div>
         </div>
+    </div>
+
+    <div class="hp-newsletter-wrap">
+        <?php
+        if (function_exists('mws_render_newsletter_signup')) {
+            echo mws_render_newsletter_signup(array(
+                'title' => 'Get Scholarship and Event Updates',
+                'description' => 'Join our newsletter for fundraiser announcements, recipient stories, and ways to help.',
+                'button_text' => 'Subscribe',
+                'source' => 'homepage',
+            ));
+        }
+        ?>
     </div>
 
     <!-- ===== 7 — TRUST FOOTER ===== -->

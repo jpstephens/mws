@@ -1344,3 +1344,146 @@ function mws_footer_visibility_guard() {
 <?php
 }
 add_action('wp_footer', 'mws_footer_visibility_guard', 999);
+
+// ============================================
+// NEWSLETTER (MAILCHIMP) INTEGRATION
+// ============================================
+function mws_register_newsletter_settings() {
+    register_setting('general', 'mws_mailchimp_form_action', array(
+        'type' => 'string',
+        'sanitize_callback' => 'esc_url_raw',
+        'default' => ''
+    ));
+
+    add_settings_field(
+        'mws_mailchimp_form_action',
+        'Mailchimp Form Action URL',
+        'mws_mailchimp_form_action_field',
+        'general'
+    );
+}
+add_action('admin_init', 'mws_register_newsletter_settings');
+
+function mws_mailchimp_form_action_field() {
+    $value = esc_url(get_option('mws_mailchimp_form_action', ''));
+    echo '<input type="url" id="mws_mailchimp_form_action" name="mws_mailchimp_form_action" value="' . $value . '" class="regular-text" placeholder="https://...list-manage.com/subscribe/post?...">';
+    echo '<p class="description">Paste the Mailchimp hosted form action URL from your audience signup form. This powers newsletter forms across the site.</p>';
+}
+
+function mws_render_newsletter_signup($args = array()) {
+    $defaults = array(
+        'title' => 'Stay Connected',
+        'description' => 'Get scholarship updates, event news, and ways to support students.',
+        'button_text' => 'Subscribe',
+        'source' => 'site',
+        'class' => '',
+        'compact' => false,
+    );
+    $a = wp_parse_args($args, $defaults);
+
+    $action = trim((string) get_option('mws_mailchimp_form_action', ''));
+
+    if (empty($action)) {
+        if (current_user_can('manage_options')) {
+            return '<div class="mws-newsletter mws-newsletter--unconfigured"><p>Newsletter form is not configured. Add the Mailchimp action URL in Settings > General.</p></div>';
+        }
+        return '';
+    }
+
+    $classes = 'mws-newsletter ' . ($a['compact'] ? 'mws-newsletter--compact ' : '') . $a['class'];
+
+    $html  = '<section class="' . esc_attr(trim($classes)) . '" aria-label="Newsletter signup">';
+    $html .= '<h3 class="mws-newsletter-title">' . esc_html($a['title']) . '</h3>';
+    $html .= '<p class="mws-newsletter-copy">' . esc_html($a['description']) . '</p>';
+    $html .= '<form class="mws-newsletter-form" action="' . esc_url($action) . '" method="post" target="_blank" novalidate>';
+    $html .= '<label class="screen-reader-text" for="mws-newsletter-email-' . esc_attr($a['source']) . '">Email address</label>';
+    $html .= '<input id="mws-newsletter-email-' . esc_attr($a['source']) . '" class="mws-newsletter-input" type="email" name="EMAIL" placeholder="Enter your email" required>';
+    $html .= '<button class="mws-newsletter-btn" type="submit">' . esc_html($a['button_text']) . '</button>';
+    $html .= '</form>';
+    $html .= '<p class="mws-newsletter-note">No spam. Unsubscribe anytime.</p>';
+    $html .= '</section>';
+
+    return $html;
+}
+
+function mws_newsletter_global_css() {
+?>
+<style>
+.mws-newsletter {
+    border: 1px solid rgba(205, 163, 59, 0.35);
+    border-radius: 14px;
+    padding: 20px;
+    background: rgba(205, 163, 59, 0.07);
+}
+.mws-newsletter-title {
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #232842;
+    line-height: 1.2;
+}
+.mws-newsletter-copy {
+    margin: 0 0 12px;
+    color: #4b5563;
+    font-size: 14px;
+}
+.mws-newsletter-form {
+    display: flex;
+    gap: 10px;
+}
+.mws-newsletter-input {
+    flex: 1;
+    min-height: 44px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+.mws-newsletter-input:focus {
+    outline: none;
+    border-color: #cda33b;
+    box-shadow: 0 0 0 3px rgba(205, 163, 59, 0.18);
+}
+.mws-newsletter-btn {
+    min-height: 44px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    background: #cda33b;
+    color: #fff;
+    cursor: pointer;
+}
+.mws-newsletter-btn:hover {
+    background: #b8930e;
+}
+.mws-newsletter-note {
+    margin: 10px 0 0;
+    font-size: 12px;
+    color: #6b7280;
+}
+.mws-newsletter--compact {
+    padding: 16px;
+}
+.mws-newsletter--compact .mws-newsletter-title {
+    font-size: 18px;
+}
+.mws-newsletter--compact .mws-newsletter-copy {
+    font-size: 13px;
+}
+.mws-newsletter--unconfigured {
+    background: #fff7ed;
+    border-color: #fdba74;
+}
+@media (max-width: 680px) {
+    .mws-newsletter-form {
+        flex-direction: column;
+    }
+}
+</style>
+<?php
+}
+add_action('wp_head', 'mws_newsletter_global_css', 101);

@@ -38,7 +38,7 @@
     /* Hero Banner */
     #mws-scholarship .sch-hero {
         background: var(--navy);
-        padding: 60px 20px 50px;
+        padding: 110px 20px 50px;
         text-align: center;
         color: var(--white);
     }
@@ -70,7 +70,7 @@
     }
 
     @media (max-width: 768px) {
-        #mws-scholarship .sch-hero { padding: 40px 16px; }
+        #mws-scholarship .sch-hero { padding: 90px 16px 40px; }
         #mws-scholarship .sch-hero h1 { font-size: 34px; }
         #mws-scholarship .sch-hero p { font-size: 16px; }
     }
@@ -278,6 +278,11 @@
         color: var(--white);
     }
 
+    #mws-scholarship .sch-newsletter {
+        margin: 22px auto 0;
+        max-width: 760px;
+    }
+
 </style>
 
 <div id="mws-scholarship">
@@ -367,6 +372,19 @@
             <h2>Support the Next Scholarship</h2>
             <p>Your donation directly funds the next $5,000 scholarship for an RFH senior. Every dollar makes a difference.</p>
             <a href="<?php echo home_url('/donate/'); ?>" class="btn-donate">Donate Now</a>
+        </div>
+
+        <div class="sch-newsletter">
+            <?php
+            if (function_exists('mws_render_newsletter_signup')) {
+                echo mws_render_newsletter_signup(array(
+                    'title' => 'Stay in the Loop',
+                    'description' => 'Get scholarship milestones, event announcements, and impact updates.',
+                    'button_text' => 'Join Newsletter',
+                    'source' => 'scholarship',
+                ));
+            }
+            ?>
         </div>
 
     </div>
