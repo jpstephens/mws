@@ -289,6 +289,42 @@
         opacity: 0.7;
         cursor: not-allowed;
     }
+
+    /* Policy / Trust Block */
+    #mws-hockey .policy-block {
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+    }
+
+    #mws-hockey .policy-block ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #mws-hockey .policy-block li {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 13px;
+        color: #666;
+        line-height: 1.5;
+        padding: 5px 0;
+    }
+
+    #mws-hockey .policy-block li .policy-icon {
+        flex-shrink: 0;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    #mws-hockey .policy-block .refund-note {
+        font-size: 12px;
+        color: #999;
+        margin-top: 10px;
+        text-align: center;
+    }
 </style>
 
 <div id="mws-hockey">
@@ -332,20 +368,20 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="hk_first_name">First Name</label>
-                            <input type="text" id="hk_first_name" name="first_name" required placeholder="First name" autocomplete="given-name">
+                            <input type="text" id="hk_first_name" name="first_name" required placeholder="First name" autocomplete="given-name" aria-required="true">
                         </div>
                         <div class="form-group">
                             <label for="hk_last_name">Last Name</label>
-                            <input type="text" id="hk_last_name" name="last_name" required placeholder="Last name" autocomplete="family-name">
+                            <input type="text" id="hk_last_name" name="last_name" required placeholder="Last name" autocomplete="family-name" aria-required="true">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="hk_email">Email Address</label>
-                        <input type="email" id="hk_email" name="email" required placeholder="you@example.com" autocomplete="email">
+                        <input type="email" id="hk_email" name="email" required placeholder="you@example.com" autocomplete="email" aria-required="true">
                     </div>
                     <div class="form-group">
                         <label for="hk_phone">Phone Number</label>
-                        <input type="tel" id="hk_phone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel">
+                        <input type="tel" id="hk_phone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel" aria-required="true">
                     </div>
                     <div class="form-group">
                         <label for="hk_num_tickets">Number of Tickets</label>
@@ -369,6 +405,14 @@
                     <div id="hkFormError" class="form-error" role="alert" hidden></div>
                     <button type="submit" class="btn-purchase" id="hkPurchaseBtn">Purchase Tickets</button>
                 </form>
+                <div class="policy-block">
+                    <ul>
+                        <li><span class="policy-icon" aria-hidden="true">&#9993;</span> You'll receive a confirmation email with your ticket details</li>
+                        <li><span class="policy-icon" aria-hidden="true">&#127891;</span> All proceeds benefit the Michael Williams Memorial Scholarship</li>
+                        <li><span class="policy-icon" aria-hidden="true">&#128172;</span> Questions? Contact <a href="mailto:info@michaelwilliamsscholarship.com" style="color: var(--gold); text-decoration: none;">info@michaelwilliamsscholarship.com</a></li>
+                    </ul>
+                    <p class="refund-note">All ticket sales are final. Contact us if you have any issues.</p>
+                </div>
             </div>
         </div>
     </main>

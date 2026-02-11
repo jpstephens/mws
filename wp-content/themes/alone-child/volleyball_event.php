@@ -986,6 +986,44 @@
     }
 
     #mws-volleyball .hidden { display: none !important; }
+
+    /* Policy / Trust Block */
+    #mws-volleyball .policy-block {
+        margin-top: 20px;
+        padding: 18px 20px;
+        background: var(--gray-50);
+        border: 1px solid var(--gray-200);
+        border-radius: 12px;
+    }
+
+    #mws-volleyball .policy-block ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #mws-volleyball .policy-block li {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--gray-600);
+        line-height: 1.5;
+        padding: 5px 0;
+    }
+
+    #mws-volleyball .policy-block li .policy-icon {
+        flex-shrink: 0;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    #mws-volleyball .policy-block .refund-note {
+        font-size: 12px;
+        color: var(--gray-500);
+        margin-top: 10px;
+        text-align: center;
+    }
 </style>
 
 <div id="mws-volleyball">
@@ -993,11 +1031,11 @@
     <div class="vb-hero">
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/tournament.jpg" alt="Mikey's Beach Volleyball Tournament">
         <div class="vb-hero-overlay">
-            <h1>&#127912; <span>Mikey's</span> Beach Volleyball Tournament</h1>
+            <h1><span aria-hidden="true">&#127912;</span> <span>Mikey's</span> Beach Volleyball Tournament</h1>
             <div class="hero-meta">
-                <span>&#128197; March 21, 2026</span>
-                <span>&#128205; Great American Center, Aberdeen NJ</span>
-                <span>&#9200; 12&ndash;4 PM</span>
+                <span><span aria-hidden="true">&#128197;</span> March 21, 2026</span>
+                <span><span aria-hidden="true">&#128205;</span> Great American Center, Aberdeen NJ</span>
+                <span><span aria-hidden="true">&#9200;</span> 12&ndash;4 PM</span>
             </div>
             <div class="hero-prices">
                 <div class="hero-price">
@@ -1034,12 +1072,12 @@
             <div class="info-card">
                 <h3>What's Included</h3>
                 <ul>
-                    <li><span class="icon">&#127912;</span> 4+ volleyball games</li>
-                    <li><span class="icon">&#127829;</span> Food</li>
-                    <li><span class="icon">&#127866;</span> 2 Drinks</li>
-                    <li><span class="icon">&#128085;</span> Player swag</li>
-                    <li><span class="icon">&#127918;</span> Free side game token</li>
-                    <li><span class="icon">&#127942;</span> Prizes for top teams</li>
+                    <li><span class="icon" aria-hidden="true">&#127912;</span> 4+ volleyball games</li>
+                    <li><span class="icon" aria-hidden="true">&#127829;</span> Food</li>
+                    <li><span class="icon" aria-hidden="true">&#127866;</span> 2 Drinks</li>
+                    <li><span class="icon" aria-hidden="true">&#128085;</span> Player swag</li>
+                    <li><span class="icon" aria-hidden="true">&#127918;</span> Free side game token</li>
+                    <li><span class="icon" aria-hidden="true">&#127942;</span> Prizes for top teams</li>
                 </ul>
             </div>
 
@@ -1079,7 +1117,7 @@
                 <div class="card-body">
                     <div class="reg-types">
                         <div class="reg-type" onclick="showForm('captain')">
-                            <span class="icon">&#128081;</span>
+                            <span class="icon" aria-hidden="true">&#128081;</span>
                             <div class="info">
                                 <div class="title">Start a Team</div>
                                 <div class="desc">Create your team, get a link to share with teammates</div>
@@ -1090,7 +1128,7 @@
                             </div>
                         </div>
                         <div class="reg-type" onclick="showForm('joinlookup')">
-                            <span class="icon">&#129309;</span>
+                            <span class="icon" aria-hidden="true">&#129309;</span>
                             <div class="info">
                                 <div class="title">Join a Team</div>
                                 <div class="desc">Your captain already registered? Find your team</div>
@@ -1101,7 +1139,7 @@
                             </div>
                         </div>
                         <div class="reg-type" onclick="showForm('freeagent')">
-                            <span class="icon">&#128587;</span>
+                            <span class="icon" aria-hidden="true">&#128587;</span>
                             <div class="info">
                                 <div class="title">I Need a Team</div>
                                 <div class="desc">Don't have a team? We'll match you with others</div>
@@ -1112,7 +1150,7 @@
                             </div>
                         </div>
                         <div class="reg-type" onclick="showForm('spectator')">
-                            <span class="icon">&#128064;</span>
+                            <span class="icon" aria-hidden="true">&#128064;</span>
                             <div class="info">
                                 <div class="title">Spectator</div>
                                 <div class="desc">Come hang out&mdash;food, drinks &amp; 1 free side game</div>
@@ -1130,30 +1168,30 @@
             <div class="form-section" id="formCaptain">
                 <div class="card-body">
                     <div class="back-link" onclick="goBack()">&#8592; Back</div>
-                    <div class="form-title">&#128081; Start a Team</div>
+                    <div class="form-title"><span aria-hidden="true">&#128081;</span> Start a Team</div>
 
                     <form id="captainForm" onsubmit="submitCaptain(event)">
                         <div class="form-group">
-                            <label>Your Name <span class="required">*</span></label>
-                            <input type="text" name="name" required placeholder="Full name">
+                            <label for="cap_name">Your Name <span class="required">*</span></label>
+                            <input type="text" id="cap_name" name="name" required placeholder="Full name" autocomplete="name" aria-required="true">
                         </div>
 
                         <div class="form-group">
                             <div class="form-row">
                                 <div>
-                                    <label>Email <span class="required">*</span></label>
-                                    <input type="email" name="email" required placeholder="you@email.com">
+                                    <label for="cap_email">Email <span class="required">*</span></label>
+                                    <input type="email" id="cap_email" name="email" required placeholder="you@email.com" autocomplete="email" aria-required="true">
                                 </div>
                                 <div>
-                                    <label>Phone <span class="required">*</span></label>
-                                    <input type="tel" name="phone" required placeholder="(555) 123-4567">
+                                    <label for="cap_phone">Phone <span class="required">*</span></label>
+                                    <input type="tel" id="cap_phone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel" aria-required="true">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label>Team Name <span class="required">*</span></label>
-                            <input type="text" name="team_name" required placeholder="e.g., Sandy Spikers">
+                            <label for="cap_team_name">Team Name <span class="required">*</span></label>
+                            <input type="text" id="cap_team_name" name="team_name" required placeholder="e.g., Sandy Spikers" aria-required="true">
                         </div>
 
                         <div class="form-group">
@@ -1247,7 +1285,7 @@
             <div class="form-section" id="formJoinLookup">
                 <div class="card-body">
                     <div class="back-link" onclick="goBack()">&#8592; Back</div>
-                    <div class="form-title">&#129309; Find Your Team</div>
+                    <div class="form-title"><span aria-hidden="true">&#129309;</span> Find Your Team</div>
 
                     <div class="lookup-tabs">
                         <button type="button" class="lookup-tab active" onclick="switchLookupTab('code')">Enter Code</button>
@@ -1286,25 +1324,25 @@
                         <div class="captain">Captain: <span id="joinCaptainName">Captain Name</span></div>
                     </div>
 
-                    <div class="form-title">&#127939; Join This Team</div>
+                    <div class="form-title"><span aria-hidden="true">&#127939;</span> Join This Team</div>
 
                     <form id="joinForm" onsubmit="submitJoin(event)">
                         <input type="hidden" name="team_code" id="joinTeamCode">
 
                         <div class="form-group">
-                            <label>Your Name <span class="required">*</span></label>
-                            <input type="text" name="name" required placeholder="Full name">
+                            <label for="join_name">Your Name <span class="required">*</span></label>
+                            <input type="text" id="join_name" name="name" required placeholder="Full name" autocomplete="name" aria-required="true">
                         </div>
 
                         <div class="form-group">
                             <div class="form-row">
                                 <div>
-                                    <label>Email <span class="required">*</span></label>
-                                    <input type="email" name="email" required placeholder="you@email.com">
+                                    <label for="join_email">Email <span class="required">*</span></label>
+                                    <input type="email" id="join_email" name="email" required placeholder="you@email.com" autocomplete="email" aria-required="true">
                                 </div>
                                 <div>
-                                    <label>Phone <span class="required">*</span></label>
-                                    <input type="tel" name="phone" required placeholder="(555) 123-4567">
+                                    <label for="join_phone">Phone <span class="required">*</span></label>
+                                    <input type="tel" id="join_phone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel" aria-required="true">
                                 </div>
                             </div>
                         </div>
@@ -1335,23 +1373,23 @@
             <div class="form-section" id="formFreeagent">
                 <div class="card-body">
                     <div class="back-link" onclick="goBack()">&#8592; Back</div>
-                    <div class="form-title">&#128587; I Need a Team</div>
+                    <div class="form-title"><span aria-hidden="true">&#128587;</span> I Need a Team</div>
 
                     <form id="freeagentForm" onsubmit="submitFreeagent(event)">
                         <div class="form-group">
-                            <label>Your Name <span class="required">*</span></label>
-                            <input type="text" name="name" required placeholder="Full name">
+                            <label for="fa_name">Your Name <span class="required">*</span></label>
+                            <input type="text" id="fa_name" name="name" required placeholder="Full name" autocomplete="name" aria-required="true">
                         </div>
 
                         <div class="form-group">
                             <div class="form-row">
                                 <div>
-                                    <label>Email <span class="required">*</span></label>
-                                    <input type="email" name="email" required placeholder="you@email.com">
+                                    <label for="fa_email">Email <span class="required">*</span></label>
+                                    <input type="email" id="fa_email" name="email" required placeholder="you@email.com" autocomplete="email" aria-required="true">
                                 </div>
                                 <div>
-                                    <label>Phone <span class="required">*</span></label>
-                                    <input type="tel" name="phone" required placeholder="(555) 123-4567">
+                                    <label for="fa_phone">Phone <span class="required">*</span></label>
+                                    <input type="tel" id="fa_phone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel" aria-required="true">
                                 </div>
                             </div>
                         </div>
@@ -1399,23 +1437,23 @@
             <div class="form-section" id="formSpectator">
                 <div class="card-body">
                     <div class="back-link" onclick="goBack()">&#8592; Back</div>
-                    <div class="form-title">&#128064; Spectator</div>
+                    <div class="form-title"><span aria-hidden="true">&#128064;</span> Spectator</div>
 
                     <form id="spectatorForm" onsubmit="submitSpectator(event)">
                         <div class="form-group">
-                            <label>Your Name <span class="required">*</span></label>
-                            <input type="text" name="name" required placeholder="Full name">
+                            <label for="spec_name">Your Name <span class="required">*</span></label>
+                            <input type="text" id="spec_name" name="name" required placeholder="Full name" autocomplete="name" aria-required="true">
                         </div>
 
                         <div class="form-group">
                             <div class="form-row">
                                 <div>
-                                    <label>Email <span class="required">*</span></label>
-                                    <input type="email" name="email" required placeholder="you@email.com">
+                                    <label for="spec_email">Email <span class="required">*</span></label>
+                                    <input type="email" id="spec_email" name="email" required placeholder="you@email.com" autocomplete="email" aria-required="true">
                                 </div>
                                 <div>
-                                    <label>Phone <span class="required">*</span></label>
-                                    <input type="tel" name="phone" required placeholder="(555) 123-4567">
+                                    <label for="spec_phone">Phone <span class="required">*</span></label>
+                                    <input type="tel" id="spec_phone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel" aria-required="true">
                                 </div>
                             </div>
                         </div>
@@ -1455,17 +1493,27 @@
             </div>
         </div>
 
+        <!-- Policy / Trust Info -->
+        <div class="policy-block">
+            <ul>
+                <li><span class="policy-icon" aria-hidden="true">&#9993;</span> You'll receive a confirmation email with registration details</li>
+                <li><span class="policy-icon" aria-hidden="true">&#127891;</span> All proceeds fund the Michael Williams Memorial Scholarship for RFH students</li>
+                <li><span class="policy-icon" aria-hidden="true">&#128172;</span> Questions? Contact <a href="mailto:info@michaelwilliamsscholarship.com" style="color: var(--gold); text-decoration: none;">info@michaelwilliamsscholarship.com</a></li>
+            </ul>
+            <p class="refund-note">Registration fees are non-refundable. Contact us if you have any issues.</p>
+        </div>
+
         <!-- MOBILE: Info Below Registration -->
         <div class="mobile-info">
             <div class="info-card">
                 <h3>What's Included</h3>
                 <ul>
-                    <li><span class="icon">&#127912;</span> 4+ volleyball games</li>
-                    <li><span class="icon">&#127829;</span> Food</li>
-                    <li><span class="icon">&#127866;</span> 2 Drinks</li>
-                    <li><span class="icon">&#128085;</span> Player swag</li>
-                    <li><span class="icon">&#127918;</span> Free side game token</li>
-                    <li><span class="icon">&#127942;</span> Prizes for top teams</li>
+                    <li><span class="icon" aria-hidden="true">&#127912;</span> 4+ volleyball games</li>
+                    <li><span class="icon" aria-hidden="true">&#127829;</span> Food</li>
+                    <li><span class="icon" aria-hidden="true">&#127866;</span> 2 Drinks</li>
+                    <li><span class="icon" aria-hidden="true">&#128085;</span> Player swag</li>
+                    <li><span class="icon" aria-hidden="true">&#127918;</span> Free side game token</li>
+                    <li><span class="icon" aria-hidden="true">&#127942;</span> Prizes for top teams</li>
                 </ul>
             </div>
             <div class="info-card">

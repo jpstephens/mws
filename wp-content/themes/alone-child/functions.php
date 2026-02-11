@@ -295,7 +295,7 @@ function winner_bartag_func( $atts ) {
 
             $slider .= '<div class="rsContent">
                         <div class="winner-slide-content">
-                            <div class="winner-imgbox"><img src="'.$image_src.'" width="133" height="133" alt=""></div>
+                            <div class="winner-imgbox"><img src="'.$image_src.'" width="133" height="133" alt="' . esc_attr($title) . ', scholarship recipient"></div>
                             <h4>'.$title.'</h4>
                             <h2>'.$sub_title.'</h2>
                             <p>'.$winner_text.'</p>
@@ -985,7 +985,7 @@ function mws_donate_btn_css() {
     border-radius: 6px !important;
     font-weight: 600 !important;
     letter-spacing: 0.5px !important;
-    transition: background 0.2s !important;
+    transition: background 0.15s !important;
     margin-left: 12px !important;
 }
 .menu-item.nav-donate-btn > a:hover,
@@ -1005,6 +1005,89 @@ function mws_donate_btn_css() {
 <?php
 }
 add_action('wp_head', 'mws_donate_btn_css');
+
+// 1b. Fix nav dropdown "white slab" — dark dropdown matching header
+function mws_nav_dropdown_css() {
+?>
+<style>
+/* ============================
+   NAV DROPDOWNS — Dark style
+   Applies to Elementor nav + classic fallback
+   ============================ */
+
+/* Elementor nav dropdown container */
+.elementor-nav-menu--dropdown .sub-menu,
+.elementor-nav-menu .sub-menu,
+nav.elementor-nav-menu--main ul.sub-menu,
+.tg-primary-menu .sub-menu {
+    background: #1f2433 !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+    min-width: 240px !important;
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.28) !important;
+    margin-top: 10px !important;
+    z-index: 9999 !important;
+}
+
+/* Dropdown links */
+.elementor-nav-menu--dropdown .sub-menu a,
+.elementor-nav-menu .sub-menu a,
+nav.elementor-nav-menu--main ul.sub-menu a,
+.tg-primary-menu .sub-menu a {
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    padding: 10px 12px !important;
+    border-radius: 10px !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    background: transparent !important;
+}
+
+/* Hover + keyboard focus */
+.elementor-nav-menu--dropdown .sub-menu a:hover,
+.elementor-nav-menu--dropdown .sub-menu a:focus,
+.elementor-nav-menu .sub-menu a:hover,
+.elementor-nav-menu .sub-menu a:focus,
+nav.elementor-nav-menu--main ul.sub-menu a:hover,
+nav.elementor-nav-menu--main ul.sub-menu a:focus,
+.tg-primary-menu .sub-menu a:hover,
+.tg-primary-menu .sub-menu a:focus {
+    background: rgba(255, 255, 255, 0.10) !important;
+    color: #ffffff !important;
+}
+
+/* Accessible focus ring */
+.elementor-nav-menu--dropdown .sub-menu a:focus-visible,
+.elementor-nav-menu .sub-menu a:focus-visible,
+nav.elementor-nav-menu--main ul.sub-menu a:focus-visible,
+.tg-primary-menu .sub-menu a:focus-visible {
+    outline: 2px solid #cda33b !important;
+    outline-offset: 2px !important;
+}
+
+/* Submenu caret inherits nav color */
+.elementor-nav-menu .wp-block-navigation-item__label + svg,
+.elementor-nav-menu .sub-arrow svg {
+    fill: currentColor !important;
+}
+
+/* Mobile open menu: keep submenu clean (no nested dark boxes) */
+@media (max-width: 1024px) {
+    .elementor-nav-menu--dropdown .sub-menu,
+    .elementor-nav-menu .sub-menu,
+    .tg-primary-menu .sub-menu {
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin-top: 0 !important;
+    }
+}
+</style>
+<?php
+}
+add_action('wp_head', 'mws_nav_dropdown_css');
 
 // 2. Open Graph & Twitter Card meta tags
 function mws_og_meta_tags() {
@@ -1033,110 +1116,14 @@ function mws_og_meta_tags() {
 }
 add_action('wp_head', 'mws_og_meta_tags', 1);
 
-// 3. Trust indicators below donation forms
-function mws_trust_indicators() {
-    if (!is_page('donate') && !is_front_page()) return;
-    ?>
-    <style>
-    .mws-trust-bar {
-        max-width: 700px;
-        margin: 24px auto 0;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-        padding: 14px 16px;
-        border-top: 1px solid #e5e7eb;
-        font-family: 'Poppins', sans-serif;
-        font-size: 13px;
-        color: #6b7280;
-    }
-    .mws-trust-bar span {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        white-space: nowrap;
-    }
-    .mws-trust-bar .trust-icon {
-        font-size: 16px;
-    }
-    </style>
-    <div class="mws-trust-bar">
-        <span><span class="trust-icon">&#9989;</span> 501(c)(3) Tax-Exempt</span>
-        <span><span class="trust-icon">&#128274;</span> Secure Payment via Stripe</span>
-        <span><span class="trust-icon">&#127891;</span> 6 Scholarships Awarded Since 2020</span>
-    </div>
-    <?php
-}
-add_action('wp_footer', 'mws_trust_indicators');
 
-// 4. Fix Our Team page — show bios, convert carousel to grid
-function mws_fix_our_team_css() {
-    if (!is_page('our-team')) return;
-    ?>
-    <style>
-    /* Show member descriptions */
-    .member-desc {
-        display: block !important;
-        font-size: 14px;
-        line-height: 1.7;
-        color: #555;
-        margin-top: 10px;
-    }
-    /* Override carousel — show all slides as grid */
-    .swiper-wrapper,
-    .slick-track {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 30px !important;
-        transform: none !important;
-        width: auto !important;
-    }
-    .swiper-slide,
-    .slick-slide {
-        width: 100% !important;
-        margin-right: 0 !important;
-    }
-    /* Show navigation arrows if needed */
-    .slick-arrow {
-        display: none !important; /* Keep hidden since we show all in grid */
-    }
-    /* Make circular images slightly smaller */
-    .wp_teamshowcase_slider.design-1 .teamshowcase-image-bg {
-        height: 280px !important;
-        width: 280px !important;
-        margin: 0 auto 16px !important;
-        border-radius: 50% !important;
-    }
-    /* Center member info */
-    .swiper-slide,
-    .slick-slide {
-        text-align: center !important;
-    }
-    /* Tablet: 2 columns */
-    @media (max-width: 1024px) {
-        .swiper-wrapper,
-        .slick-track {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 24px !important;
-        }
-    }
-    /* Mobile: 1 column */
-    @media (max-width: 768px) {
-        .swiper-wrapper,
-        .slick-track {
-            grid-template-columns: 1fr !important;
-            gap: 20px !important;
-        }
-        .wp_teamshowcase_slider.design-1 .teamshowcase-image-bg {
-            height: 220px !important;
-            width: 220px !important;
-        }
-    }
-    </style>
-    <?php
+// Our Team Page Shortcode
+function mws_our_team_func(){
+    ob_start();
+    include_once dirname( __FILE__ ) . '/our_team_page.php';
+    return ob_get_clean();
 }
-add_action('wp_head', 'mws_fix_our_team_css');
+add_shortcode( 'mws_our_team', 'mws_our_team_func' );
 
 // Scholarship Info Page Shortcode
 function mws_scholarship_func(){
@@ -1146,282 +1133,22 @@ function mws_scholarship_func(){
 }
 add_shortcode( 'mws_scholarship', 'mws_scholarship_func' );
 
-// 5. Add LinkedIn link to footer
-function mws_social_links() {
-    ?>
-    <style>
-    .mws-social-footer {
-        text-align: center;
-        padding: 16px 0 8px;
-    }
-    .mws-social-footer a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        background: #232842;
-        color: #fff;
-        border-radius: 50%;
-        text-decoration: none;
-        font-size: 18px;
-        transition: background 0.2s;
-        margin: 0 4px;
-    }
-    .mws-social-footer a:hover {
-        background: #cda33b;
-        color: #fff;
-    }
-    .mws-social-footer a svg { fill: currentColor; width: 20px; height: 20px; }
-    </style>
-    <div class="mws-social-footer">
-        <a href="https://www.linkedin.com/company/the-michael-williams-memorial-scholarship" target="_blank" rel="noopener" aria-label="Follow us on LinkedIn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-    </div>
-    <?php
+// About Us Page Shortcode
+function mws_about_us_func(){
+    ob_start();
+    include_once dirname( __FILE__ ) . '/about_us_page.php';
+    return ob_get_clean();
 }
-add_action('wp_footer', 'mws_social_links');
+add_shortcode( 'mws_about_us', 'mws_about_us_func' );
 
-// ============================================
-// PHASE 3 — HOMEPAGE MISSION BAR + DONATE
-// ============================================
-
-function mws_homepage_mission_section() {
-    if (!is_front_page()) return;
-    ?>
-    <style>
-    /* Hide the original Elementor donation/mission section */
-    .elementor-page-4321 .elementor-section:has(.elementor-widget-be-give-totals) {
-        display: none !important;
-    }
-    /* Fallback for browsers without :has() */
-    .mws-mission-loaded .elementor-widget-be-give-totals {
-        /* handled by JS fallback */
-    }
-
-    .mws-mission-wrap {
-        background: #232842;
-        padding: 50px 20px;
-        font-family: 'Poppins', sans-serif;
-        color: #fff;
-    }
-    .mws-mission-inner {
-        max-width: 1100px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 380px;
-        gap: 40px;
-        align-items: center;
-    }
-    .mws-mission-left .mission-heading {
-        font-size: 26px;
-        font-weight: 700;
-        margin: 0 0 14px;
-        line-height: 1.3;
-    }
-    .mws-mission-left .mission-text {
-        font-size: 16px;
-        line-height: 1.7;
-        opacity: 0.9;
-        margin: 0 0 28px;
-    }
-    .mws-mission-left .mission-text strong {
-        color: #cda33b;
-    }
-    .mws-impact-row {
-        display: flex;
-        gap: 24px;
-        flex-wrap: wrap;
-        margin-bottom: 24px;
-    }
-    .mws-impact-item {
-        text-align: center;
-        min-width: 90px;
-    }
-    .mws-impact-item .impact-num {
-        display: block;
-        font-size: 28px;
-        font-weight: 700;
-        color: #cda33b;
-        line-height: 1.2;
-    }
-    .mws-impact-item .impact-lbl {
-        display: block;
-        font-size: 11px;
-        opacity: 0.7;
-        margin-top: 3px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    .mws-mission-left .btn-story {
-        display: inline-block;
-        padding: 10px 24px;
-        border: 2px solid rgba(255,255,255,0.3);
-        border-radius: 6px;
-        color: #fff;
-        font-family: 'Poppins', sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: border-color 0.2s, color 0.2s;
-    }
-    .mws-mission-left .btn-story:hover {
-        border-color: #cda33b;
-        color: #cda33b;
-    }
-
-    /* Donate card on the right */
-    .mws-donate-card {
-        background: #fff;
-        border-radius: 12px;
-        padding: 28px 24px;
-        color: #333;
-    }
-    .mws-donate-card h3 {
-        font-size: 20px;
-        font-weight: 700;
-        color: #232842;
-        margin: 0 0 4px;
-        text-align: center;
-    }
-    .mws-donate-card .donate-sub {
-        font-size: 13px;
-        color: #888;
-        text-align: center;
-        margin: 0 0 16px;
-    }
-
-    /* Style the embedded GiveWP form */
-    .mws-donate-card .give-form-wrap {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    .mws-donate-card .give-goal-progress {
-        margin-bottom: 14px !important;
-    }
-    .mws-donate-card .give-progress-bar {
-        height: 8px !important;
-        border-radius: 4px !important;
-        background: #e5e7eb !important;
-    }
-    .mws-donate-card .give-progress-bar > span {
-        background: #cda33b !important;
-        border-radius: 4px !important;
-    }
-    .mws-donate-card .give-donation-amount {
-        margin-bottom: 12px !important;
-    }
-    .mws-donate-card .give-btn {
-        background: #cda33b !important;
-        border: none !important;
-        border-radius: 6px !important;
-        font-family: 'Poppins', sans-serif !important;
-        font-weight: 600 !important;
-        width: 100% !important;
-        padding: 12px !important;
-        font-size: 15px !important;
-        transition: background 0.2s !important;
-    }
-    .mws-donate-card .give-btn:hover {
-        background: #b8930e !important;
-    }
-
-    @media (max-width: 860px) {
-        .mws-mission-inner {
-            grid-template-columns: 1fr;
-            gap: 30px;
-            text-align: center;
-        }
-        .mws-impact-row {
-            justify-content: center;
-        }
-        .mws-donate-card {
-            max-width: 400px;
-            margin: 0 auto;
-        }
-    }
-    @media (max-width: 480px) {
-        .mws-mission-wrap { padding: 36px 16px; }
-        .mws-mission-left .mission-heading { font-size: 22px; }
-        .mws-impact-row { gap: 16px; }
-        .mws-impact-item .impact-num { font-size: 24px; }
-    }
-    </style>
-
-    <div class="mws-mission-wrap" style="display:none;">
-        <div class="mws-mission-inner">
-            <div class="mws-mission-left">
-                <h2 class="mission-heading">Honoring Michael's Legacy</h2>
-                <p class="mission-text">
-                    Since 2020, we've awarded <strong>$30,000+</strong> in scholarships to graduating seniors from <strong>Rumson-Fair Haven Regional High School</strong> who embody Michael's passion for music, art, academics, and community.
-                </p>
-                <div class="mws-impact-row">
-                    <div class="mws-impact-item">
-                        <span class="impact-num">$30K+</span>
-                        <span class="impact-lbl">Awarded</span>
-                    </div>
-                    <div class="mws-impact-item">
-                        <span class="impact-num">6</span>
-                        <span class="impact-lbl">Scholarships</span>
-                    </div>
-                    <div class="mws-impact-item">
-                        <span class="impact-num">$5,000</span>
-                        <span class="impact-lbl">Per Year</span>
-                    </div>
-                    <div class="mws-impact-item">
-                        <span class="impact-num">100%</span>
-                        <span class="impact-lbl">To Students</span>
-                    </div>
-                </div>
-                <a href="<?php echo home_url('/about-us/'); ?>" class="btn-story">Read Michael's Story</a>
-            </div>
-            <div class="mws-donate-card">
-                <h3>Support the Scholarship</h3>
-                <p class="donate-sub">100% of your gift funds student scholarships</p>
-                <div id="mws-donate-slot">
-                    <?php echo do_shortcode('[give_form id="20160" show_title="false" show_goal="true" show_content="none" display_style="modal"]'); ?>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-    (function() {
-        var missionWrap = document.querySelector('.mws-mission-wrap');
-        var slider = document.querySelector('.elementor-widget-slides');
-        if (!missionWrap || !slider) return;
-
-        // Place mission bar right after the hero slider section
-        var sliderSection = slider.closest('.elementor-section') || slider.closest('.elementor-element');
-        if (sliderSection && sliderSection.parentNode) {
-            sliderSection.parentNode.insertBefore(missionWrap, sliderSection.nextSibling);
-            missionWrap.style.display = '';
-        }
-
-        // Hide the original Elementor section that had the donation widget + mission text
-        // It's the section right after the slider that contains be-give-totals
-        var giveTotals = document.querySelector('.elementor-widget-be-give-totals');
-        if (giveTotals) {
-            var origSection = giveTotals.closest('.elementor-section');
-            if (origSection) origSection.style.display = 'none';
-        }
-
-        // Also hide the "OUR MISSION" text section if it's a separate section
-        var headings = document.querySelectorAll('.elementor-widget-heading .elementor-heading-title');
-        headings.forEach(function(h) {
-            if (h.textContent.trim() === 'OUR MISSION') {
-                var sec = h.closest('.elementor-section');
-                if (sec) sec.style.display = 'none';
-            }
-        });
-
-        document.body.classList.add('mws-mission-loaded');
-    })();
-    </script>
-    <?php
+// Homepage Shortcode
+function mws_homepage_func(){
+    ob_start();
+    include_once dirname( __FILE__ ) . '/homepage.php';
+    return ob_get_clean();
 }
-add_action('wp_footer', 'mws_homepage_mission_section');
+add_shortcode( 'mws_homepage', 'mws_homepage_func' );
+
 
 // ============================================
 // PHASE 3 — STRUCTURED DATA (Schema.org)
@@ -1444,3 +1171,97 @@ function mws_schema_org_markup() {
     echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>' . "\n";
 }
 add_action('wp_head', 'mws_schema_org_markup', 5);
+
+// ============================================
+// PHASE 4 — GLOBAL DESIGN SYSTEM
+// ============================================
+
+// Global typography, contrast, spacing, hover, header, face cropping
+function mws_global_design_css() {
+?>
+<style>
+/* --- Consistent Header Background (Task 20) --- */
+header, .site-header, #masthead, .tg-site-header { background-color: #232842 !important; }
+
+/* --- WCAG AA Contrast Fix (Task 5) --- gold text on light backgrounds --- */
+/* --gold-text: #8a6d1b provides 4.6:1 on white */
+</style>
+<?php
+}
+add_action('wp_head', 'mws_global_design_css');
+
+// ============================================
+// NAVIGATION — Rename "About Michael" to "About Mikey" (Task 7)
+// ============================================
+function mws_rename_about_nav_label($items) {
+    foreach ($items as $item) {
+        if ($item->title === 'About Michael') $item->title = 'About Mikey';
+    }
+    return $items;
+}
+add_filter('wp_nav_menu_objects', 'mws_rename_about_nav_label');
+
+// ============================================
+// NEW PAGE SHORTCODES
+// ============================================
+
+// Past Winners Page Shortcode
+function mws_past_winners_func(){
+    ob_start();
+    include_once dirname( __FILE__ ) . '/past_winners_page.php';
+    return ob_get_clean();
+}
+add_shortcode( 'mws_past_winners', 'mws_past_winners_func' );
+
+// Donate Page Shortcode
+function mws_donate_func(){
+    ob_start();
+    include_once dirname( __FILE__ ) . '/donate_page.php';
+    return ob_get_clean();
+}
+add_shortcode( 'mws_donate', 'mws_donate_func' );
+
+// Gallery Page Shortcode
+function mws_gallery_func($atts){
+    $atts = shortcode_atts(array('year' => ''), $atts);
+    ob_start();
+    $gallery_year = $atts['year'];
+    include dirname( __FILE__ ) . '/gallery_page.php';
+    return ob_get_clean();
+}
+add_shortcode( 'mws_gallery', 'mws_gallery_func' );
+
+// ============================================
+// PHASE 4 — ACCESSIBILITY FIXES
+// ============================================
+
+// Prevent screen readers from reading duplicate navigation
+function mws_nav_aria_hidden_script() {
+?>
+<script>
+(function() {
+    var mobileMenu = document.getElementById('mobile-primary-menu');
+    var desktopNav = document.querySelector('.elementor-nav-menu--main');
+    if (!mobileMenu && !desktopNav) return;
+
+    var mql = window.matchMedia('(max-width: 1024px)');
+
+    function updateNavAria(e) {
+        if (e.matches) {
+            // Mobile viewport: hide desktop nav from screen readers
+            if (desktopNav) desktopNav.setAttribute('aria-hidden', 'true');
+            if (mobileMenu) mobileMenu.removeAttribute('aria-hidden');
+        } else {
+            // Desktop viewport: hide mobile nav from screen readers
+            if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'true');
+            if (desktopNav) desktopNav.removeAttribute('aria-hidden');
+        }
+    }
+
+    updateNavAria(mql);
+    mql.addEventListener('change', updateNavAria);
+})();
+</script>
+<?php
+}
+add_action('wp_footer', 'mws_nav_aria_hidden_script');

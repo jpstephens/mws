@@ -26,6 +26,8 @@
 
     #mws-scholarship {
         --gold: #cda33b;
+        --gold-hover: #b8930e;
+        --gold-text: #8a6d1b;
         --navy: #232842;
         --white: #ffffff;
         --light-bg: #f8f8f8;
@@ -36,13 +38,13 @@
     /* Hero Banner */
     #mws-scholarship .sch-hero {
         background: var(--navy);
-        padding: 60px 20px;
+        padding: 60px 20px 50px;
         text-align: center;
         color: var(--white);
     }
 
     #mws-scholarship .sch-hero h1 {
-        font-size: 36px;
+        font-size: 46px;
         font-weight: 700;
         margin: 0 0 12px;
         color: var(--white);
@@ -69,7 +71,7 @@
 
     @media (max-width: 768px) {
         #mws-scholarship .sch-hero { padding: 40px 16px; }
-        #mws-scholarship .sch-hero h1 { font-size: 28px; }
+        #mws-scholarship .sch-hero h1 { font-size: 34px; }
         #mws-scholarship .sch-hero p { font-size: 16px; }
     }
 
@@ -81,11 +83,11 @@
     }
 
     #mws-scholarship .sch-section {
-        margin-bottom: 48px;
+        margin-bottom: 36px;
     }
 
     #mws-scholarship .sch-section h2 {
-        font-size: 24px;
+        font-size: 28px;
         font-weight: 700;
         color: var(--navy);
         margin-bottom: 16px;
@@ -120,17 +122,23 @@
         border-radius: 10px;
         padding: 20px 22px;
         border-left: 4px solid var(--gold);
+        transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    #mws-scholarship .criteria-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
     }
 
     #mws-scholarship .criteria-card h3 {
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 600;
         color: var(--navy);
         margin: 0 0 6px;
     }
 
     #mws-scholarship .criteria-card p {
-        font-size: 14px;
+        font-size: 16px;
         margin: 0;
         color: #666;
     }
@@ -155,13 +163,21 @@
         background: var(--light-bg);
         border-radius: 10px;
         padding: 24px 16px;
+        transition: transform 0.15s, box-shadow 0.15s;
+        cursor: pointer;
+    }
+
+    #mws-scholarship .winner-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
     }
 
     #mws-scholarship .winner-card img {
-        width: 90px;
-        height: 90px;
+        width: 120px;
+        height: 120px;
         border-radius: 50%;
         object-fit: cover;
+        object-position: center 20%;
         margin-bottom: 12px;
         border: 3px solid var(--gold);
     }
@@ -174,14 +190,14 @@
     }
 
     #mws-scholarship .winner-card .winner-year {
-        font-size: 13px;
-        color: var(--gold);
+        font-size: 14px;
+        color: var(--gold-text);
         font-weight: 600;
         margin-bottom: 6px;
     }
 
     #mws-scholarship .winner-card p {
-        font-size: 13px;
+        font-size: 14px;
         color: #666;
         margin: 0;
         line-height: 1.5;
@@ -229,8 +245,8 @@
         text-align: center;
         background: var(--light-bg);
         border-radius: 12px;
-        padding: 40px 20px;
-        margin-top: 48px;
+        padding: 36px 20px;
+        margin-top: 36px;
     }
 
     #mws-scholarship .sch-cta h2 {
@@ -254,20 +270,21 @@
         font-size: 16px;
         font-weight: 600;
         text-decoration: none;
-        transition: background 0.2s;
+        transition: background 0.15s;
     }
 
     #mws-scholarship .btn-donate:hover {
         background: #b8930e;
         color: var(--white);
     }
+
 </style>
 
 <div id="mws-scholarship">
 
     <div class="sch-hero">
         <h1>The Michael Williams Memorial Scholarship</h1>
-        <p>Honoring Michael's legacy by supporting the next generation of leaders from Rumson-Fair Haven Regional High School.</p>
+        <p>Honoring Mikey&rsquo;s legacy by supporting the next generation of leaders from Rumson-Fair Haven Regional High School.</p>
         <div class="sch-amount">$5,000 Annual Scholarship</div>
     </div>
 
@@ -342,7 +359,7 @@
                 </div>
             </div>
             <p style="text-align: center; margin-top: 20px;">
-                <a href="<?php echo home_url('/past-winners/'); ?>" style="color: var(--gold); font-weight: 600; text-decoration: none;">View all past recipients &rarr;</a>
+                <a href="<?php echo home_url('/past-winners/'); ?>" style="color: var(--gold-text); font-weight: 600; text-decoration: none;">View all past recipients &rarr;</a>
             </p>
         </div>
 
