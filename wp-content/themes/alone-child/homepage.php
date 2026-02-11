@@ -375,6 +375,11 @@
         display: block;
     }
 
+    /* Keep both faces visible in the hockey promo image crop */
+    #mws-home .hp-events-grid .hp-event-card:first-child img {
+        object-position: center 18%;
+    }
+
     #mws-home .hp-event-body {
         padding: 20px 22px;
     }
