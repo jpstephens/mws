@@ -382,15 +382,21 @@
 
     #mws-home .hp-event-card img {
         width: 100%;
-        height: 220px;
+        height: auto;
+        aspect-ratio: 16 / 9;
         object-fit: cover;
-        object-position: center 30%;
+        object-position: center center;
         display: block;
     }
 
     /* Keep both faces visible in the hockey promo image crop */
     #mws-home .hp-events-grid .hp-event-card:first-child img {
-        object-position: center 40%;
+        object-position: center 34%;
+    }
+
+    /* Keep court action and tournament banner visible */
+    #mws-home .hp-events-grid .hp-event-card:nth-child(2) img {
+        object-position: center 30%;
     }
 
     #mws-home .hp-event-body {
@@ -664,7 +670,7 @@
     #mws-home .hp-help-card p {
         font-size: 14px;
         color: #666;
-        margin: 0;
+        margin: 0 0 20px;
         line-height: 1.6;
     }
 
