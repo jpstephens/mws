@@ -4,23 +4,37 @@
  * Rendered via [mws_gallery] shortcode in alone-child theme
  *
  * Receives $gallery_year (string|null) from shortcode handler.
- * Queries WP media library attachments grouped by year.
+ * Queries WP media library attachments by known golf outing IDs per year.
  */
 
-// Build image data from WordPress media library
-$years = array(2025, 2024, 2023);
+// Golf outing attachment IDs per year
+$gallery_ids_by_year = array(
+    2025 => array(20288,20289,20290,20291,20292,20296,20305,20306,20307,20308,20309,20310,20311,20312,20313,20314,20315,20316,20317,20318,20319,20320,20321,20322,20323,20324,20325,20327,20331,20332,20333,20334,20335,20336,20337,20338,20339,20340,20341,20342,20343,20344,20348,20349,20350,20351,20352,20353,20354,20355,20356,20357,20358,20359,20360,20361,20365,20366,20367,20368,20369,20370,20371,20372,20373,20374,20375,20376,20377,20378,20383,20384,20385,20386,20387,20388,20389,20390,20391,20392,20393,20394,20395,20396,20398,20399,20400,20401,20402,20403,20404,20405,20406,20407,20408,20409,20410,20411,20412,20413,20414,20415,20416,20417,20418,20419,20420,20421,20422,20423,20424),
+    2024 => array(19904,20029,20028,20027,20026,20025,20024,20023,20022,20021,20020,20019,20018,20017,20016,20015,20014,20013,20012,20011,20010,20009,20008,20007,20006,20005,20004,20003,20002,20001,20000,19999,19998,19997,19996,19995,19994,19993,19992,19991,19990,19989,19988,19987,19986,19985,19984,19983,19982,19981,19980,19979,19978,19977,19976,19975,19974,19973,19972,19971,19970,19969,19968,19967,19966,19965,19964,19963,19962,19961,19960,19959,19958,19957,19956,19955,19954,19953,19952,19951,19950,19949,19948,19947,19946,19945,19944,19943,19942,19941,19940,19939,19938,19937,19936,19935,19934,19933,19932,19931,19930,19929,19928,19927,19926,19925,19924,19923,19922,19921,19920,19919,19918,19917,19916,19915,19914,19913,19912,19911,19910,19909,19908,19907,19906,19905),
+    2023 => array(19687,19686,19685,19684,19683,19682,19681,19680,19679,19678,19677,19676,19675,19674,19673,19672,19671,19670,19669,19668,19667,19666,19665,19664,19663,19662,19661,19660,19659,19658,19657,19656,19655,19654,19653,19652,19651,19650,19649,19648,19647,19646,19645,19644,19643,19642,19641,19640,19639,19638,19637,19636,19635,19634,19633,19632,19631,19630,19629,19628,19627,19626,19625,19624,19623,19622,19621,19620,19619,19618,19617,19616,19615,19614,19613,19612,19611,19610,19609,19608,19607,19606,19605,19604,19603,19602,19601,19600,19599,19598,19597),
+    2022 => array(18999,18998,18997,18996,18995,18994,18993,18992,18991,18990,18989,18988,18987,18986,18985,18984,18983,18982,18981,18980,18979,18978,18977,18976,18975,18974,18973,18972,18971,18970,18969,18968,18967,18966,18965,18964,18963,18962,18961,18960,18959,18958,18957,18956,18955,18954,18953,18952,18951,18950,18949,18948,18947,18946,18945,18944,18943,18942),
+);
+
+$years = array_keys($gallery_ids_by_year);
+
+// If a specific year is requested, only load that year
+$single_year = (!empty($gallery_year) && in_array((int) $gallery_year, $years, true))
+    ? (int) $gallery_year
+    : 0; // 0 = show all years with tabs
+
+$years_to_load = ($single_year > 0) ? array($single_year) : $years;
+
+// Build image data from WordPress media library by attachment IDs
 $all_images = array();
-foreach ($years as $y) {
+foreach ($years_to_load as $y) {
+    $ids = $gallery_ids_by_year[$y];
     $args = array(
         'post_type'      => 'attachment',
         'post_mime_type' => 'image',
         'posts_per_page' => -1,
         'post_status'    => 'inherit',
-        'date_query'     => array(
-            array('year' => $y),
-        ),
-        'orderby' => 'date',
-        'order'   => 'DESC',
+        'post__in'       => $ids,
+        'orderby'        => 'post__in',
     );
     $imgs = get_posts($args);
     foreach ($imgs as $img) {
@@ -34,10 +48,8 @@ foreach ($years as $y) {
     }
 }
 
-// Determine the pre-selected year from shortcode attribute
-$active_year = (!empty($gallery_year) && in_array((int) $gallery_year, $years, true))
-    ? (int) $gallery_year
-    : 0; // 0 = "All"
+$active_year = ($single_year > 0) ? $single_year : 0;
+$show_tabs = ($single_year === 0);
 ?>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -467,19 +479,26 @@ $active_year = (!empty($gallery_year) && in_array((int) $gallery_year, $years, t
 
     <!-- Hero Banner -->
     <div class="gal-hero">
-        <h1>Event Gallery</h1>
-        <p>Relive the memories from our events, fundraisers, and community gatherings throughout the years.</p>
+        <?php if ($single_year > 0) : ?>
+            <h1>Golf Outing <?php echo esc_html($single_year); ?></h1>
+            <p>Photos from the <?php echo esc_html($single_year); ?> Michael Williams Memorial Golf Outing.</p>
+        <?php else : ?>
+            <h1>Golf Outing Gallery</h1>
+            <p>Relive the memories from our annual golf outings and community gatherings throughout the years.</p>
+        <?php endif; ?>
     </div>
 
+    <?php if ($show_tabs) : ?>
     <!-- Year Filter Tabs -->
     <div class="gal-filters">
         <div class="gal-filter-row">
-            <button class="gal-filter-btn <?php echo ($active_year === 0) ? 'active' : ''; ?>" data-year="all">All</button>
+            <button class="gal-filter-btn <?php echo ($active_year === 0) ? 'active' : ''; ?>" data-year="all">All Years</button>
             <?php foreach ($years as $y) : ?>
                 <button class="gal-filter-btn <?php echo ($active_year === $y) ? 'active' : ''; ?>" data-year="<?php echo esc_attr($y); ?>"><?php echo esc_html($y); ?></button>
             <?php endforeach; ?>
         </div>
     </div>
+    <?php endif; ?>
 
     <!-- Image Grid -->
     <div class="gal-grid-wrap">
@@ -559,7 +578,7 @@ $active_year = (!empty($gallery_year) && in_array((int) $gallery_year, $years, t
     var toast      = root.querySelector('.gal-toast');
 
     var BATCH         = 12;
-    var activeYear    = '<?php echo ($active_year === 0) ? 'all' : esc_js($active_year); ?>';
+    var activeYear    = '<?php echo ($single_year > 0) ? 'all' : (($active_year === 0) ? 'all' : esc_js($active_year)); ?>';
     var visibleCount  = 0;
     var currentLbIdx  = -1;
     var visibleItems  = [];
