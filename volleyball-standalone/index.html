@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mikey's Beach Volleyball Tournament | March 21, 2026</title>
+    <meta name="description" content="2nd Annual Michael Williams Scholarship Beach Volleyball Tournament. March 21 in Great American Center (Aberdeen, NJ).">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --gold-bg: #fef9e7;
+            --red: #dc2626;
+            --green: #059669;
+        }
+
+        html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            background: var(--gray-100);
+            color: var(--gray-900);
+            min-height: 100vh;
+        }
+
+        /* ==========================================
+           HEADER
+           ========================================== */
+        .header {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .header h1 span { color: var(--gold-light); }
+
+        .header-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 20px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .header {
+                padding: 28px 32px;
+            }
+            .header h1 {
+                font-size: 28px;
+            }
+            .header-meta {
+                gap: 16px 32px;
+                font-size: 15px;
+            }
+        }
+
+        /* ==========================================
+           MAIN LAYOUT
+           ========================================== */
+        .main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+        }
+
+        @media (min-width: 768px) {
+            .main {
+                display: grid;
+                grid-template-columns: 1fr 420px;
+                gap: 32px;
+                padding: 32px 24px 48px;
+                align-items: start;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .main {
+                grid-template-columns: 1fr 480px;
+                gap: 48px;
+                padding: 40px 32px 64px;
+            }
+        }
+
+        /* ==========================================
+           LEFT SIDE - INFO (Desktop) / Below (Mobile)
+           ========================================== */
+        .info-section {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .info-section {
+                display: block;
+                order: -1;
+            }
+        }
+
+        .info-header {
+            margin-bottom: 24px;
+        }
+
+        .info-header h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gray-900);
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .info-header p {
+            font-size: 16px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .info-box {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+        }
+
+        .info-box .amount {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .info-box .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .info-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+
+        .info-card li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 15px;
+            color: var(--gray-800);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .info-card li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .info-card .icon {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 15px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .info-row .label {
+            color: var(--gray-500);
+        }
+
+        .info-row .value {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .about-text {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* ==========================================
+           RIGHT SIDE - REGISTRATION CARD
+           ========================================== */
+        .register-card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .register-card {
+                position: sticky;
+                top: 24px;
+            }
+        }
+
+        .card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--gray-200);
+            background: var(--gray-50);
+        }
+
+        .card-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .card-header p {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-top: 2px;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* ==========================================
+           REGISTRATION TYPE OPTIONS
+           ========================================== */
+        .reg-types {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .reg-type {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .reg-type:hover {
+            border-color: var(--gold);
+            background: var(--gold-bg);
+        }
+
+        .reg-type .icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .reg-type .info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .reg-type .title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .reg-type .desc {
+            font-size: 12px;
+            color: var(--gray-600);
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        .reg-type .price-info {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .reg-type .price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+        }
+
+        .reg-type .price-note {
+            font-size: 10px;
+            color: var(--gray-500);
+            display: block;
+        }
+
+        /* ==========================================
+           FORMS
+           ========================================== */
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-500);
+            cursor: pointer;
+            margin-bottom: 16px;
+            padding: 4px 0;
+        }
+
+        .back-link:hover {
+            color: var(--gray-900);
+        }
+
+        .form-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group:last-of-type {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 6px;
+        }
+
+        label .required {
+            color: var(--red);
+        }
+
+        input, select {
+            width: 100%;
+            font-size: 16px;
+            font-family: inherit;
+            padding: 12px 14px;
+            border: 2px solid var(--gray-300);
+            border-radius: 10px;
+            background: var(--white);
+            color: var(--gray-900);
+            transition: all 0.15s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+        }
+
+        input::placeholder {
+            color: var(--gray-500);
+        }
+
+        .hint {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-top: 6px;
+        }
+
+        /* Two column layout for name/email on desktop */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Division Picker */
+        .division-picker {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .division-option {
+            padding: 14px 12px;
+            background: var(--white);
+            border: 2px solid var(--gray-300);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-align: center;
+        }
+
+        .division-option:hover {
+            border-color: var(--gold);
+        }
+
+        .division-option.selected {
+            border-color: var(--gold);
+            background: var(--gold-bg);
+        }
+
+        .division-option input { display: none; }
+
+        .division-option .name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .division-option .details {
+            font-size: 11px;
+            color: var(--gray-600);
+            margin-top: 2px;
+        }
+
+        /* Payment Picker */
+        .payment-picker {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            background: var(--white);
+            border: 2px solid var(--gray-300);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .payment-option:hover {
+            border-color: var(--gold);
+        }
+
+        .payment-option.selected {
+            border-color: var(--gold);
+            background: var(--gold-bg);
+        }
+
+        .payment-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .payment-option .text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        /* Toggle */
+        .toggle-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: var(--gray-50);
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .toggle-switch {
+            width: 44px;
+            height: 26px;
+            background: var(--gray-300);
+            border-radius: 100px;
+            position: relative;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border-radius: 50%;
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch.active {
+            background: var(--gold);
+        }
+
+        .toggle-switch.active::after {
+            left: 21px;
+        }
+
+        .toggle-label .title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .toggle-label .desc {
+            font-size: 12px;
+            color: var(--gray-600);
+        }
+
+        /* Roster List */
+        .roster-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .roster-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 40px;
+            gap: 8px;
+            align-items: center;
+        }
+
+        @media (max-width: 480px) {
+            .roster-row {
+                grid-template-columns: 1fr 40px;
+            }
+            .roster-row input[name="roster_email[]"],
+            .roster-row input[name="paid_email[]"] {
+                grid-column: 1;
+            }
+        }
+
+        .roster-row input {
+            padding: 12px 14px;
+            font-size: 15px;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            background: var(--white);
+        }
+
+        .roster-row input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+        }
+
+        .roster-row input::placeholder {
+            color: var(--gray-500);
+        }
+
+        .roster-remove {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray-100);
+            border: none;
+            border-radius: 8px;
+            color: var(--gray-500);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .roster-remove:hover {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .add-roster-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--white);
+            border: 2px dashed var(--gray-300);
+            border-radius: 8px;
+            color: var(--gray-600);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .add-roster-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: var(--gold-bg);
+        }
+
+        /* Submit Button */
+        .btn {
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--gold);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            background: var(--gold-light);
+        }
+
+        .btn:disabled {
+            background: var(--gray-400);
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: var(--white);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Success State */
+        .success-state {
+            text-align: center;
+            padding: 24px 16px;
+        }
+
+        .success-state .icon {
+            font-size: 56px;
+            margin-bottom: 12px;
+        }
+
+        .success-state h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .success-state p {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 20px;
+        }
+
+        .share-link-box {
+            background: var(--gray-100);
+            border: 2px solid var(--gray-300);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .share-link-box .label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+
+        .share-link-box .link-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .share-link-box input {
+            flex: 1;
+            font-size: 13px;
+            padding: 10px 12px;
+            background: var(--white);
+        }
+
+        .share-link-box .copy-btn {
+            padding: 10px 14px;
+            background: var(--gray-800);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .share-link-box .copy-btn:hover {
+            background: var(--gray-900);
+        }
+
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-800);
+            border: 2px solid var(--gray-300);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            background: var(--gold-bg);
+        }
+
+        /* Join Team Banner */
+        .join-banner {
+            background: var(--gold-bg);
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .join-banner .team-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .join-banner .captain {
+            font-size: 13px;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+
+        /* Team Lookup */
+        .lookup-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .lookup-tab {
+            flex: 1;
+            padding: 12px 16px;
+            background: var(--gray-100);
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .lookup-tab:hover {
+            border-color: var(--gold);
+            color: var(--gray-800);
+        }
+
+        .lookup-tab.active {
+            background: var(--gold-bg);
+            border-color: var(--gold);
+            color: var(--gray-900);
+        }
+
+        .lookup-panel {
+            display: none;
+        }
+
+        .lookup-panel.active {
+            display: block;
+        }
+
+        .lookup-hint {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 12px;
+        }
+
+        .code-input-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .code-input {
+            width: 100%;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            padding: 16px;
+            border: 2px solid var(--gray-300);
+            border-radius: 10px;
+        }
+
+        .code-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+        }
+
+        .code-input::placeholder {
+            letter-spacing: 4px;
+            color: var(--gray-400);
+        }
+
+        .code-input-wrap .btn {
+            width: 100%;
+        }
+
+        .lookup-error {
+            margin-top: 12px;
+            padding: 12px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            color: #dc2626;
+            font-size: 14px;
+        }
+
+        .search-input-wrap {
+            margin-bottom: 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 16px;
+            border: 2px solid var(--gray-300);
+            border-radius: 10px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+        }
+
+        .search-results {
+            max-height: 240px;
+            overflow-y: auto;
+        }
+
+        .search-empty {
+            text-align: center;
+            padding: 24px;
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        .search-result {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .search-result:hover {
+            border-color: var(--gold);
+            background: var(--gold-bg);
+        }
+
+        .search-result .team-info .name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .search-result .team-info .captain {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        .search-result .join-arrow {
+            font-size: 18px;
+            color: var(--gold);
+        }
+
+        .search-loading {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray-500);
+        }
+
+        /* ==========================================
+           MOBILE INFO SECTION (shown below form)
+           ========================================== */
+        .mobile-info {
+            margin-top: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-info {
+                display: none;
+            }
+        }
+
+        .mobile-info .info-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .mobile-info .info-card h3 {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .mobile-info ul {
+            list-style: none;
+        }
+
+        .mobile-info li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--gray-800);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-info li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .mobile-info .icon {
+            font-size: 16px;
+        }
+
+        .mobile-info .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-info .info-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .mobile-info .info-row .label {
+            color: var(--gray-500);
+        }
+
+        .mobile-info .info-row .value {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .footer {
+            text-align: center;
+            padding: 24px 16px;
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        .footer a {
+            color: var(--gold);
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🏐 <span>Mikey's</span> Beach Volleyball Tournament</h1>
+        <div class="header-meta">
+            <span>📅 March 21, 2026</span>
+            <span>📍 Great American Center (Aberdeen, NJ)</span>
+            <span>⏰ 12–4 PM</span>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- LEFT: Info Section (Desktop Only) -->
+        <aside class="info-section">
+            <div class="info-header">
+                <h2>Play Volleyball.<br>Support Scholarships.</h2>
+                <p>Join us for the 2nd Annual Michael Williams Scholarship Beach Volleyball Tournament. All proceeds fund scholarships for RFH students who share Mikey's creative spirit.</p>
+            </div>
+
+            <div class="info-card" style="padding: 0; overflow: hidden;">
+                <img src="tournament.jpg" alt="Mikey's Beach Volleyball Tournament" style="width: 100%; display: block; border-radius: 12px;">
+            </div>
+
+            <div class="info-grid">
+                <div class="info-box">
+                    <div class="amount">$120</div>
+                    <div class="label">Per Player</div>
+                </div>
+                <div class="info-box">
+                    <div class="amount">$50</div>
+                    <div class="label">Spectators</div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>What's Included</h3>
+                <ul>
+                    <li><span class="icon">🏐</span> 4+ volleyball games</li>
+                    <li><span class="icon">🍕</span> Food</li>
+                    <li><span class="icon">🍺</span> 2 Drinks</li>
+                    <li><span class="icon">👕</span> Player swag</li>
+                    <li><span class="icon">🎮</span> Free side game token</li>
+                    <li><span class="icon">🏆</span> Prizes for top teams</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>Event Details</h3>
+                <div class="info-row">
+                    <span class="label">Date</span>
+                    <span class="value">Saturday, March 21, 2026</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Time</span>
+                    <span class="value">12 PM – 4 PM</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Location</span>
+                    <span class="value">Great American Center (Aberdeen, NJ)</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Team Size</span>
+                    <span class="value">4–10 players</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Divisions</span>
+                    <span class="value">Rec 6v6 & Competitive 4v4</span>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- RIGHT: Registration Card -->
+        <div class="register-card">
+            <!-- STEP 1: Choose Type -->
+            <div class="form-section active" id="stepChoose">
+                <div class="card-header">
+                    <h2>Register</h2>
+                    <p>How would you like to join?</p>
+                </div>
+                <div class="card-body">
+                    <div class="reg-types">
+                        <div class="reg-type" onclick="showForm('captain')">
+                            <span class="icon">👑</span>
+                            <div class="info">
+                                <div class="title">Start a Team</div>
+                                <div class="desc">Create your team, get a link to share with teammates</div>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">$120</span>
+                                <span class="price-note">per player</span>
+                            </div>
+                        </div>
+                        <div class="reg-type" onclick="showForm('joinlookup')">
+                            <span class="icon">🤝</span>
+                            <div class="info">
+                                <div class="title">Join a Team</div>
+                                <div class="desc">Your captain already registered? Find your team</div>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">$120</span>
+                                <span class="price-note">per player</span>
+                            </div>
+                        </div>
+                        <div class="reg-type" onclick="showForm('freeagent')">
+                            <span class="icon">🙋</span>
+                            <div class="info">
+                                <div class="title">I Need a Team</div>
+                                <div class="desc">Don't have a team? We'll match you with others</div>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">$120</span>
+                                <span class="price-note">per player</span>
+                            </div>
+                        </div>
+                        <div class="reg-type" onclick="showForm('spectator')">
+                            <span class="icon">👀</span>
+                            <div class="info">
+                                <div class="title">Spectator</div>
+                                <div class="desc">Come hang out—food, drinks & 1 free side game</div>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">$50</span>
+                                <span class="price-note">per person</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAPTAIN FORM -->
+            <div class="form-section" id="formCaptain">
+                <div class="card-body">
+                    <div class="back-link" onclick="goBack()">← Back</div>
+                    <div class="form-title">👑 Start a Team</div>
+
+                    <form id="captainForm" onsubmit="submitCaptain(event)">
+                        <div class="form-group">
+                            <label>Your Name <span class="required">*</span></label>
+                            <input type="text" name="name" required placeholder="Full name">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div>
+                                    <label>Email <span class="required">*</span></label>
+                                    <input type="email" name="email" required placeholder="you@email.com">
+                                </div>
+                                <div>
+                                    <label>Phone <span class="required">*</span></label>
+                                    <input type="tel" name="phone" required placeholder="(555) 123-4567">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Team Name <span class="required">*</span></label>
+                            <input type="text" name="team_name" required placeholder="e.g., Sandy Spikers">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Division <span class="required">*</span></label>
+                            <div class="division-picker">
+                                <label class="division-option" onclick="selectOption(this)">
+                                    <input type="radio" name="division" value="rec_6s" required>
+                                    <div class="name">🎈 Rec</div>
+                                    <div class="details">6v6 · All levels</div>
+                                </label>
+                                <label class="division-option" onclick="selectOption(this)">
+                                    <input type="radio" name="division" value="competitive_4s">
+                                    <div class="name">🔥 Competitive</div>
+                                    <div class="details">4v4 · Experienced</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Players I am paying for <span style="color: var(--gray-500); font-weight: 400;">(other than myself)</span></label>
+                            <p class="hint" style="margin-bottom: 12px;">These players will be registered and receive a confirmation email. You'll pay for them at checkout.</p>
+                            <div class="roster-list" id="paidRosterList">
+                                <div class="roster-row paid-roster-row">
+                                    <input type="text" name="paid_name[]" placeholder="Name" oninput="updateCaptainTotal()">
+                                    <input type="email" name="paid_email[]" placeholder="Email" oninput="updateCaptainTotal()">
+                                    <button type="button" class="roster-remove" onclick="removePaidRosterRow(this)">×</button>
+                                </div>
+                            </div>
+                            <button type="button" class="add-roster-btn" onclick="addPaidRosterRow()">+ Add Another Player</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Players I want to invite to register on my team <span style="color: var(--gray-500); font-weight: 400;">(optional)</span></label>
+                            <p class="hint" style="margin-bottom: 12px;">Add teammates now and they'll get an email invite to register. You can also share the team link later.</p>
+                            <div class="roster-list" id="rosterList">
+                                <div class="roster-row">
+                                    <input type="text" name="roster_name[]" placeholder="Name">
+                                    <input type="email" name="roster_email[]" placeholder="Email">
+                                    <button type="button" class="roster-remove" onclick="removeRosterRow(this)">×</button>
+                                </div>
+                            </div>
+                            <button type="button" class="add-roster-btn" onclick="addRosterRow()">+ Add Another Teammate</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Payment <span class="required">*</span></label>
+                            <div class="payment-picker">
+                                <label class="payment-option" onclick="selectOption(this)">
+                                    <input type="radio" name="payment" value="card" required>
+                                    <span class="text">💳 Pay by Card</span>
+                                </label>
+                                <label class="payment-option" onclick="selectOption(this)">
+                                    <input type="radio" name="payment" value="check">
+                                    <span class="text">📬 Mail a Check</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn">
+                            <span class="btn-text">Register Team — $120</span>
+                            <span class="spinner hidden"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- CAPTAIN SUCCESS -->
+            <div class="form-section" id="successCaptain">
+                <div class="card-body">
+                    <div class="success-state">
+                        <div class="icon">🎉</div>
+                        <h3>Team Created!</h3>
+                        <p>Share this link with your teammates so they can join:</p>
+
+                        <div class="share-link-box">
+                            <div class="label">Team invite link:</div>
+                            <div class="link-row">
+                                <input type="text" id="teamLinkInput" readonly>
+                                <button type="button" class="copy-btn" onclick="copyLink()">Copy</button>
+                            </div>
+                        </div>
+
+                        <p style="font-size: 13px; color: var(--gray-500);">Check your email for confirmation and payment details.</p>
+
+                        <button type="button" class="btn btn-secondary" onclick="resetAll()" style="margin-top: 16px;">Register Someone Else</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOIN TEAM LOOKUP -->
+            <div class="form-section" id="formJoinLookup">
+                <div class="card-body">
+                    <div class="back-link" onclick="goBack()">← Back</div>
+                    <div class="form-title">🤝 Find Your Team</div>
+
+                    <div class="lookup-tabs">
+                        <button type="button" class="lookup-tab active" onclick="switchLookupTab('code')">Enter Code</button>
+                        <button type="button" class="lookup-tab" onclick="switchLookupTab('search')">Search by Name</button>
+                    </div>
+
+                    <!-- Code Entry -->
+                    <div class="lookup-panel active" id="lookupCode">
+                        <p class="lookup-hint">Ask your captain for the 6-character team code</p>
+                        <div class="code-input-wrap">
+                            <input type="text" id="teamCodeInput" maxlength="6" placeholder="ABC123" class="code-input" oninput="this.value = this.value.toUpperCase()">
+                            <button type="button" class="btn" onclick="lookupByCode()">Find Team</button>
+                        </div>
+                        <div class="lookup-error hidden" id="codeError">Team not found. Check the code and try again.</div>
+                    </div>
+
+                    <!-- Search by Name -->
+                    <div class="lookup-panel" id="lookupSearch">
+                        <p class="lookup-hint">Search for your team by name</p>
+                        <div class="search-input-wrap">
+                            <input type="text" id="teamSearchInput" placeholder="Team name..." class="search-input" oninput="searchTeams()">
+                        </div>
+                        <div class="search-results" id="searchResults">
+                            <div class="search-empty">Type to search for teams</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOIN TEAM FORM -->
+            <div class="form-section" id="formJoin">
+                <div class="card-body">
+                    <div class="back-link" onclick="showSection('formJoinLookup')">← Back to search</div>
+                    <div class="join-banner">
+                        <div class="team-name" id="joinTeamName">Team Name</div>
+                        <div class="captain">Captain: <span id="joinCaptainName">Captain Name</span></div>
+                    </div>
+
+                    <div class="form-title">🏃 Join This Team</div>
+
+                    <form id="joinForm" onsubmit="submitJoin(event)">
+                        <input type="hidden" name="team_code" id="joinTeamCode">
+
+                        <div class="form-group">
+                            <label>Your Name <span class="required">*</span></label>
+                            <input type="text" name="name" required placeholder="Full name">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div>
+                                    <label>Email <span class="required">*</span></label>
+                                    <input type="email" name="email" required placeholder="you@email.com">
+                                </div>
+                                <div>
+                                    <label>Phone <span class="required">*</span></label>
+                                    <input type="tel" name="phone" required placeholder="(555) 123-4567">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Payment <span class="required">*</span></label>
+                            <div class="payment-picker">
+                                <label class="payment-option" onclick="selectOption(this)">
+                                    <input type="radio" name="payment" value="card" required>
+                                    <span class="text">💳 Pay by Card — $120</span>
+                                </label>
+                                <label class="payment-option" onclick="selectOption(this)">
+                                    <input type="radio" name="payment" value="check">
+                                    <span class="text">📬 Mail a Check</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn">
+                            <span class="btn-text">Join Team — $120</span>
+                            <span class="spinner hidden"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- FREE AGENT FORM -->
+            <div class="form-section" id="formFreeagent">
+                <div class="card-body">
+                    <div class="back-link" onclick="goBack()">← Back</div>
+                    <div class="form-title">🙋 I Need a Team</div>
+
+                    <form id="freeagentForm" onsubmit="submitFreeagent(event)">
+                        <div class="form-group">
+                            <label>Your Name <span class="required">*</span></label>
+                            <input type="text" name="name" required placeholder="Full name">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div>
+                                    <label>Email <span class="required">*</span></label>
+                                    <input type="email" name="email" required placeholder="you@email.com">
+                                </div>
+                                <div>
+                                    <label>Phone <span class="required">*</span></label>
+                                    <input type="tel" name="phone" required placeholder="(555) 123-4567">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Skill Level <span class="required">*</span></label>
+                            <div class="division-picker">
+                                <label class="division-option" onclick="selectOption(this)">
+                                    <input type="radio" name="skill" value="rec_6s" required>
+                                    <div class="name">🎈 Casual 6x6</div>
+                                    <div class="details">Just here to have fun</div>
+                                </label>
+                                <label class="division-option" onclick="selectOption(this)">
+                                    <input type="radio" name="skill" value="competitive_4s">
+                                    <div class="name">🔥 Competitive 4x4</div>
+                                    <div class="details">I'm pretty decent</div>
+                                </label>
+                            </div>
+                            <p class="hint">We'll match you with a team at your level.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Payment <span class="required">*</span></label>
+                            <div class="payment-picker">
+                                <label class="payment-option" onclick="selectOption(this)">
+                                    <input type="radio" name="payment" value="card" required>
+                                    <span class="text">💳 Pay by Card</span>
+                                </label>
+                                <label class="payment-option" onclick="selectOption(this)">
+                                    <input type="radio" name="payment" value="check">
+                                    <span class="text">📬 Mail a Check</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn">
+                            <span class="btn-text">Register — $120</span>
+                            <span class="spinner hidden"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- SPECTATOR FORM -->
+            <div class="form-section" id="formSpectator">
+                <div class="card-body">
+                    <div class="back-link" onclick="goBack()">← Back</div>
+                    <div class="form-title">👀 Spectator</div>
+
+                    <form id="spectatorForm" onsubmit="submitSpectator(event)">
+                        <div class="form-group">
+                            <label>Your Name <span class="required">*</span></label>
+                            <input type="text" name="name" required placeholder="Full name">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div>
+                                    <label>Email <span class="required">*</span></label>
+                                    <input type="email" name="email" required placeholder="you@email.com">
+                                </div>
+                                <div>
+                                    <label>Phone <span class="required">*</span></label>
+                                    <input type="tel" name="phone" required placeholder="(555) 123-4567">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Payment <span class="required">*</span></label>
+                            <div class="payment-picker">
+                                <label class="payment-option" onclick="selectOption(this)">
+                                    <input type="radio" name="payment" value="card" required>
+                                    <span class="text">💳 Pay by Card</span>
+                                </label>
+                                <label class="payment-option" onclick="selectOption(this)">
+                                    <input type="radio" name="payment" value="check">
+                                    <span class="text">📬 Mail a Check</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn">
+                            <span class="btn-text">Register — $50</span>
+                            <span class="spinner hidden"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- GENERIC SUCCESS -->
+            <div class="form-section" id="successGeneric">
+                <div class="card-body">
+                    <div class="success-state">
+                        <div class="icon">🎉</div>
+                        <h3>You're Registered!</h3>
+                        <p>Check your email for confirmation and next steps. See you March 21, 2026!</p>
+                        <button type="button" class="btn btn-secondary" onclick="resetAll()">Register Someone Else</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE: Info Below Form -->
+        <div class="mobile-info">
+            <div class="info-card" style="padding: 0; overflow: hidden;">
+                <img src="tournament.jpg" alt="Mikey's Beach Volleyball Tournament" style="width: 100%; display: block; border-radius: 12px;">
+            </div>
+
+            <div class="info-card">
+                <h3>What's Included</h3>
+                <ul>
+                    <li><span class="icon">🏐</span> 4+ volleyball games</li>
+                    <li><span class="icon">🍕</span> Food</li>
+                    <li><span class="icon">🍺</span> 2 Drinks</li>
+                    <li><span class="icon">👕</span> Player swag</li>
+                    <li><span class="icon">🎮</span> Free side game token</li>
+                    <li><span class="icon">🏆</span> Prizes for top teams</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>Event Details</h3>
+                <div class="info-row">
+                    <span class="label">Date</span>
+                    <span class="value">Saturday, March 21, 2026</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Time</span>
+                    <span class="value">12 PM – 4 PM</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Location</span>
+                    <span class="value">Great American Center (Aberdeen, NJ)</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Team Size</span>
+                    <span class="value">4–10 players</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p><strong>Michael Williams Memorial Scholarship</strong></p>
+        <p>501(c)(3) Nonprofit · <a href="https://michaelwilliamsmemorialscholarship.com" target="_blank">Learn more</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://rhqefcihaeovyhtxfccs.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJocWVmY2loYWVvdnlodHhmY2NzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYxMTcwMzIsImV4cCI6MjA4MTY5MzAzMn0.MiycEzpruo4liIPFac_V98TUo_mmFfT6SB5IclfIpmc';
+
+        let db = null;
+        try {
+            if (window.supabase) {
+                db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+        } catch (e) {
+            console.error('Supabase init error:', e);
+        }
+
+        let currentTeamData = null;
+
+        function generateCode() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let code = '';
+            for (let i = 0; i < 6; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function showForm(type) {
+            if (type === 'captain') showSection('formCaptain');
+            else if (type === 'joinlookup') showSection('formJoinLookup');
+            else if (type === 'freeagent') showSection('formFreeagent');
+            else if (type === 'spectator') showSection('formSpectator');
+        }
+
+        function goBack() {
+            showSection('stepChoose');
+        }
+
+        function resetAll() {
+            document.querySelectorAll('form').forEach(f => f.reset());
+            document.querySelectorAll('.division-option, .payment-option').forEach(o => o.classList.remove('selected'));
+            document.getElementById('teamCodeInput').value = '';
+            document.getElementById('teamSearchInput').value = '';
+            document.getElementById('searchResults').innerHTML = '<div class="search-empty">Type to search for teams</div>';
+            document.getElementById('codeError').classList.add('hidden');
+            // Reset paid roster to single empty row
+            const paidList = document.getElementById('paidRosterList');
+            paidList.innerHTML = `<div class="roster-row paid-roster-row">
+                <input type="text" name="paid_name[]" placeholder="Name">
+                <input type="email" name="paid_email[]" placeholder="Email">
+                <button type="button" class="roster-remove" onclick="removePaidRosterRow(this)">×</button>
+            </div>`;
+            updateCaptainTotal();
+            showSection('stepChoose');
+        }
+
+        // Lookup tab switching
+        function switchLookupTab(tab) {
+            document.querySelectorAll('.lookup-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.lookup-panel').forEach(p => p.classList.remove('active'));
+
+            if (tab === 'code') {
+                document.querySelector('.lookup-tab:first-child').classList.add('active');
+                document.getElementById('lookupCode').classList.add('active');
+            } else {
+                document.querySelector('.lookup-tab:last-child').classList.add('active');
+                document.getElementById('lookupSearch').classList.add('active');
+            }
+        }
+
+        // Lookup by code
+        async function lookupByCode() {
+            const code = document.getElementById('teamCodeInput').value.trim().toUpperCase();
+            const errorEl = document.getElementById('codeError');
+            errorEl.classList.add('hidden');
+
+            if (code.length !== 6) {
+                errorEl.textContent = 'Please enter a 6-character code.';
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            if (db) {
+                const { data, error } = await db
+                    .from('volleyball_registrations')
+                    .select('*')
+                    .eq('team_code', code)
+                    .single();
+
+                if (error || !data) {
+                    errorEl.textContent = 'Team not found. Check the code and try again.';
+                    errorEl.classList.remove('hidden');
+                    return;
+                }
+
+                selectTeam(data);
+            } else {
+                // Demo mode
+                selectTeam({
+                    name: 'Demo Captain',
+                    team_name: 'Demo Team',
+                    team_code: code
+                });
+            }
+        }
+
+        // Search teams by name
+        let searchTimeout = null;
+        async function searchTeams() {
+            const query = document.getElementById('teamSearchInput').value.trim();
+            const resultsEl = document.getElementById('searchResults');
+
+            if (query.length < 2) {
+                resultsEl.innerHTML = '<div class="search-empty">Type at least 2 characters to search</div>';
+                return;
+            }
+
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async () => {
+                resultsEl.innerHTML = '<div class="search-loading">Searching...</div>';
+
+                if (db) {
+                    const { data, error } = await db
+                        .from('volleyball_registrations')
+                        .select('*')
+                        .eq('registration_type', 'captain')
+                        .ilike('team_name', `%${query}%`)
+                        .limit(10);
+
+                    if (error || !data || data.length === 0) {
+                        resultsEl.innerHTML = '<div class="search-empty">No teams found matching "' + query + '"</div>';
+                        return;
+                    }
+
+                    resultsEl.innerHTML = data.map(team => `
+                        <div class="search-result" onclick="selectTeamById('${team.team_code}')">
+                            <div class="team-info">
+                                <div class="name">${team.team_name}</div>
+                                <div class="captain">Captain: ${team.name}</div>
+                            </div>
+                            <span class="join-arrow">→</span>
+                        </div>
+                    `).join('');
+                } else {
+                    // Demo mode
+                    resultsEl.innerHTML = `
+                        <div class="search-result" onclick="selectTeam({name: 'Demo Captain', team_name: 'Demo Team', team_code: 'DEMO01'})">
+                            <div class="team-info">
+                                <div class="name">Demo Team</div>
+                                <div class="captain">Captain: Demo Captain</div>
+                            </div>
+                            <span class="join-arrow">→</span>
+                        </div>
+                    `;
+                }
+            }, 300);
+        }
+
+        // Select a team from search results
+        async function selectTeamById(code) {
+            if (db) {
+                const { data, error } = await db
+                    .from('volleyball_registrations')
+                    .select('*')
+                    .eq('team_code', code)
+                    .single();
+
+                if (!error && data) {
+                    selectTeam(data);
+                }
+            }
+        }
+
+        // Set up the join form with team data
+        function selectTeam(data) {
+            currentTeamData = data;
+            document.getElementById('joinTeamName').textContent = data.team_name;
+            document.getElementById('joinCaptainName').textContent = data.name;
+            document.getElementById('joinTeamCode').value = data.team_code;
+
+            showSection('formJoin');
+        }
+
+        function selectOption(el) {
+            const container = el.closest('.division-picker, .payment-picker');
+            container.querySelectorAll('.division-option, .payment-option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+
+        // Paid roster management
+        function addPaidRosterRow() {
+            const list = document.getElementById('paidRosterList');
+            const row = document.createElement('div');
+            row.className = 'roster-row paid-roster-row';
+            row.innerHTML = `
+                <input type="text" name="paid_name[]" placeholder="Name" oninput="updateCaptainTotal()">
+                <input type="email" name="paid_email[]" placeholder="Email" oninput="updateCaptainTotal()">
+                <button type="button" class="roster-remove" onclick="removePaidRosterRow(this)">×</button>
+            `;
+            list.appendChild(row);
+            updateCaptainTotal();
+        }
+
+        function removePaidRosterRow(btn) {
+            const rows = document.querySelectorAll('#paidRosterList .roster-row');
+            if (rows.length > 1) {
+                btn.closest('.roster-row').remove();
+            } else {
+                const row = btn.closest('.roster-row');
+                row.querySelectorAll('input').forEach(input => input.value = '');
+            }
+            updateCaptainTotal();
+        }
+
+        function updateCaptainTotal() {
+            const rows = document.querySelectorAll('#paidRosterList .roster-row');
+            const filledRows = [...rows].filter(row => {
+                const name = row.querySelector('input[name="paid_name[]"]').value.trim();
+                const email = row.querySelector('input[name="paid_email[]"]').value.trim();
+                return name || email;
+            });
+            const total = 120 * (1 + filledRows.length);
+            const btnText = document.querySelector('#captainForm .btn .btn-text');
+            if (btnText) {
+                btnText.textContent = `Register Team — $${total}`;
+            }
+        }
+
+        // Invite roster management
+        function addRosterRow() {
+            const list = document.getElementById('rosterList');
+            const row = document.createElement('div');
+            row.className = 'roster-row';
+            row.innerHTML = `
+                <input type="text" name="roster_name[]" placeholder="Name">
+                <input type="email" name="roster_email[]" placeholder="Email">
+                <button type="button" class="roster-remove" onclick="removeRosterRow(this)">×</button>
+            `;
+            list.appendChild(row);
+        }
+
+        function removeRosterRow(btn) {
+            const list = document.getElementById('rosterList');
+            const rows = list.querySelectorAll('.roster-row');
+            if (rows.length > 1) {
+                btn.closest('.roster-row').remove();
+            } else {
+                const row = btn.closest('.roster-row');
+                row.querySelectorAll('input').forEach(input => input.value = '');
+            }
+        }
+
+        function setLoading(form, loading) {
+            const btn = form.querySelector('.btn');
+            const text = btn.querySelector('.btn-text');
+            const spinner = btn.querySelector('.spinner');
+            btn.disabled = loading;
+            spinner.classList.toggle('hidden', !loading);
+            if (loading) {
+                text.dataset.original = text.textContent;
+                text.textContent = 'Submitting...';
+            } else {
+                text.textContent = text.dataset.original || text.textContent;
+            }
+        }
+
+        async function submitCaptain(e) {
+            e.preventDefault();
+            const form = e.target;
+            setLoading(form, true);
+
+            try {
+                const fd = new FormData(form);
+                const teamCode = generateCode();
+
+                const data = {
+                    registration_type: 'captain',
+                    name: fd.get('name'),
+                    email: fd.get('email'),
+                    phone: fd.get('phone'),
+                    team_name: fd.get('team_name'),
+                    team_group: fd.get('division'),
+                    payment_method: fd.get('payment'),
+                    payment_status: fd.get('payment') === 'card' ? 'pending' : 'check_pending',
+                    team_code: teamCode
+                };
+
+                // Get paid roster entries
+                const paidNames = fd.getAll('paid_name[]');
+                const paidEmails = fd.getAll('paid_email[]');
+                const paidRosterEntries = paidNames
+                    .map((name, i) => ({
+                        player_name: name.trim(),
+                        player_email: paidEmails[i]?.trim() || null,
+                        is_paid_by_captain: true,
+                        invite_sent: false
+                    }))
+                    .filter(entry => entry.player_name || entry.player_email);
+
+                // Get invite roster entries
+                const rosterNames = fd.getAll('roster_name[]');
+                const rosterEmails = fd.getAll('roster_email[]');
+                const inviteRosterEntries = rosterNames
+                    .map((name, i) => ({
+                        player_name: name.trim(),
+                        player_email: rosterEmails[i]?.trim() || null,
+                        is_paid_by_captain: false,
+                        invite_sent: false
+                    }))
+                    .filter(entry => entry.player_name || entry.player_email);
+
+                const allRosterEntries = [...paidRosterEntries, ...inviteRosterEntries];
+                const totalAmount = 120 * (1 + paidRosterEntries.length);
+
+                if (db) {
+                    // Insert captain registration
+                    const { data: reg, error } = await db
+                        .from('volleyball_registrations')
+                        .insert([data])
+                        .select()
+                        .single();
+
+                    if (error) throw error;
+
+                    // Insert roster entries if any
+                    if (allRosterEntries.length > 0) {
+                        const rosterWithRegId = allRosterEntries.map(entry => ({
+                            ...entry,
+                            registration_id: reg.id
+                        }));
+
+                        const { error: rosterError } = await db
+                            .from('volleyball_team_roster')
+                            .insert(rosterWithRegId);
+
+                        if (rosterError) {
+                            console.error('Roster save error:', rosterError);
+                        }
+                    }
+
+                    // Send emails via Edge Function
+                    const emailHeaders = {
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json'
+                    };
+
+                    // Send confirmation to captain
+                    try {
+                        await fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
+                            method: 'POST',
+                            headers: emailHeaders,
+                            body: JSON.stringify({
+                                type: 'confirmation',
+                                to: data.email,
+                                data: { name: data.name, amount: `$${totalAmount}`, registrationType: 'Captain', paymentStatus: data.payment_status, teamName: data.team_name }
+                            })
+                        });
+                    } catch (emailErr) {
+                        console.error('Captain email error:', emailErr);
+                    }
+
+                    // Send confirmation to paid players
+                    for (const player of paidRosterEntries) {
+                        if (player.player_email) {
+                            try {
+                                await fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
+                                    method: 'POST',
+                                    headers: emailHeaders,
+                                    body: JSON.stringify({
+                                        type: 'confirmation',
+                                        to: player.player_email,
+                                        data: { name: player.player_name, amount: '$120', registrationType: 'Player (paid by captain)', paymentStatus: 'Paid by captain', teamName: data.team_name }
+                                    })
+                                });
+                            } catch (emailErr) {
+                                console.error('Paid player email error:', emailErr);
+                            }
+                        }
+                    }
+
+                    // Send invite to invited players
+                    const baseUrl = window.location.origin + window.location.pathname;
+                    for (const player of inviteRosterEntries) {
+                        if (player.player_email) {
+                            try {
+                                await fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
+                                    method: 'POST',
+                                    headers: emailHeaders,
+                                    body: JSON.stringify({
+                                        type: 'invite',
+                                        to: player.player_email,
+                                        data: { name: player.player_name, captainName: data.name, teamName: data.team_name, joinUrl: `${baseUrl}?join=${teamCode}` }
+                                    })
+                                });
+                            } catch (emailErr) {
+                                console.error('Invite email error:', emailErr);
+                            }
+                        }
+                    }
+                } else {
+                    console.log('Demo mode:', data, 'Paid:', paidRosterEntries, 'Invites:', inviteRosterEntries, 'Total:', totalAmount);
+                    await new Promise(r => setTimeout(r, 800));
+                }
+
+                const baseUrl = window.location.origin + window.location.pathname;
+                const teamLink = `${baseUrl}?join=${teamCode}`;
+                document.getElementById('teamLinkInput').value = teamLink;
+                showSection('successCaptain');
+
+            } catch (err) {
+                console.error(err);
+                alert('Something went wrong. Please try again.');
+            } finally {
+                setLoading(form, false);
+            }
+        }
+
+        async function submitFreeagent(e) {
+            e.preventDefault();
+            const form = e.target;
+            setLoading(form, true);
+
+            try {
+                const fd = new FormData(form);
+
+                const data = {
+                    registration_type: 'free_agent',
+                    name: fd.get('name'),
+                    email: fd.get('email'),
+                    phone: fd.get('phone'),
+                    skill_level: fd.get('skill'),
+                    payment_method: fd.get('payment'),
+                    payment_status: fd.get('payment') === 'card' ? 'pending' : 'check_pending'
+                };
+
+                if (db) {
+                    const { error } = await db.from('volleyball_registrations').insert([data]);
+                    if (error) throw error;
+                } else {
+                    console.log('Demo mode:', data);
+                    await new Promise(r => setTimeout(r, 800));
+                }
+
+                showSection('successGeneric');
+
+            } catch (err) {
+                console.error(err);
+                alert('Something went wrong. Please try again.');
+            } finally {
+                setLoading(form, false);
+            }
+        }
+
+        async function submitSpectator(e) {
+            e.preventDefault();
+            const form = e.target;
+            setLoading(form, true);
+
+            try {
+                const fd = new FormData(form);
+
+                const data = {
+                    registration_type: 'spectator',
+                    name: fd.get('name'),
+                    email: fd.get('email'),
+                    phone: fd.get('phone'),
+                    payment_method: fd.get('payment'),
+                    payment_status: fd.get('payment') === 'card' ? 'pending' : 'check_pending'
+                };
+
+                if (db) {
+                    const { error } = await db.from('volleyball_registrations').insert([data]);
+                    if (error) throw error;
+                } else {
+                    console.log('Demo mode:', data);
+                    await new Promise(r => setTimeout(r, 800));
+                }
+
+                showSection('successGeneric');
+
+            } catch (err) {
+                console.error(err);
+                alert('Something went wrong. Please try again.');
+            } finally {
+                setLoading(form, false);
+            }
+        }
+
+        async function submitJoin(e) {
+            e.preventDefault();
+            const form = e.target;
+            setLoading(form, true);
+
+            try {
+                const fd = new FormData(form);
+
+                const data = {
+                    registration_type: 'player',
+                    name: fd.get('name'),
+                    email: fd.get('email'),
+                    phone: fd.get('phone'),
+                    captain_name: currentTeamData.name,
+                    payment_method: fd.get('payment'),
+                    payment_status: fd.get('payment') === 'card' ? 'pending' : 'check_pending'
+                };
+
+                if (db) {
+                    const { error } = await db.from('volleyball_registrations').insert([data]);
+                    if (error) throw error;
+                } else {
+                    console.log('Demo mode:', data);
+                    await new Promise(r => setTimeout(r, 800));
+                }
+
+                showSection('successGeneric');
+
+            } catch (err) {
+                console.error(err);
+                alert('Something went wrong. Please try again.');
+            } finally {
+                setLoading(form, false);
+            }
+        }
+
+        function copyLink() {
+            const input = document.getElementById('teamLinkInput');
+            input.select();
+            document.execCommand('copy');
+            const btn = input.nextElementSibling;
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy', 2000);
+        }
+
+        async function checkJoinCode() {
+            const params = new URLSearchParams(window.location.search);
+            const joinCode = params.get('join');
+
+            if (!joinCode) return;
+
+            if (db) {
+                const { data, error } = await db
+                    .from('volleyball_registrations')
+                    .select('*')
+                    .eq('team_code', joinCode)
+                    .single();
+
+                if (error || !data) {
+                    alert('Invalid or expired team link.');
+                    return;
+                }
+
+                selectTeam(data);
+            } else {
+                // Demo mode
+                selectTeam({
+                    name: 'Demo Captain',
+                    team_name: 'Demo Team',
+                    team_code: joinCode
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkJoinCode();
+            console.log('Page loaded. Supabase:', !!db);
+        });
+    </script>
+</body>
+</html>
