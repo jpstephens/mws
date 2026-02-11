@@ -26,7 +26,9 @@ $years_to_load = ($single_year > 0) ? array($single_year) : $years;
 
 // Build image data from WordPress media library by attachment IDs
 $all_images = array();
+$year_counts = array();
 foreach ($years_to_load as $y) {
+    $year_counts[$y] = 0;
     $ids = $gallery_ids_by_year[$y];
     $args = array(
         'post_type'      => 'attachment',
@@ -38,11 +40,12 @@ foreach ($years_to_load as $y) {
     );
     $imgs = get_posts($args);
     foreach ($imgs as $img) {
+        $year_counts[$y]++;
         $all_images[] = array(
             'id'    => $img->ID,
             'year'  => $y,
             'url'   => wp_get_attachment_url($img->ID),
-            'thumb' => wp_get_attachment_image_url($img->ID, 'medium_large'),
+            'thumb' => wp_get_attachment_image_url($img->ID, 'large'),
             'alt'   => get_post_meta($img->ID, '_wp_attachment_image_alt', true) ?: $img->post_title,
         );
     }
@@ -50,6 +53,7 @@ foreach ($years_to_load as $y) {
 
 $active_year = ($single_year > 0) ? $single_year : 0;
 $show_tabs = ($single_year === 0);
+$total_images = count($all_images);
 ?>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,7 +96,7 @@ $show_tabs = ($single_year === 0);
        ========================================== */
     #mws-gallery .gal-hero {
         background: var(--navy);
-        padding: 64px 20px 60px;
+        padding: 110px 20px 60px;
         text-align: center;
         color: var(--white);
     }
@@ -114,7 +118,7 @@ $show_tabs = ($single_year === 0);
 
     @media (max-width: 768px) {
         #mws-gallery .gal-hero {
-            padding: 48px 16px 40px;
+            padding: 90px 16px 40px;
         }
         #mws-gallery .gal-hero h1 {
             font-size: 32px;
@@ -122,15 +126,30 @@ $show_tabs = ($single_year === 0);
         #mws-gallery .gal-hero p {
             font-size: 16px;
         }
+        #mws-gallery .gal-filters {
+            top: 64px;
+        }
+        #mws-gallery .gal-filters-inner {
+            padding: 12px 16px;
+        }
     }
 
     /* ==========================================
        YEAR FILTER TABS
        ========================================== */
     #mws-gallery .gal-filters {
+        position: sticky;
+        top: 74px;
+        z-index: 20;
+        backdrop-filter: blur(10px);
+        background: rgba(248, 248, 248, 0.9);
+        border-bottom: 1px solid rgba(35, 40, 66, 0.1);
+    }
+
+    #mws-gallery .gal-filters-inner {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 32px 20px 0;
+        padding: 14px 20px;
     }
 
     #mws-gallery .gal-filter-row {
@@ -186,29 +205,38 @@ $show_tabs = ($single_year === 0);
     }
 
     #mws-gallery .gal-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
+        column-count: 4;
+        column-gap: 14px;
+    }
+
+    @media (max-width: 1024px) {
+        #mws-gallery .gal-grid {
+            column-count: 3;
+        }
     }
 
     @media (max-width: 768px) {
         #mws-gallery .gal-grid {
-            grid-template-columns: repeat(2, 1fr);
+            column-count: 2;
         }
     }
 
     @media (max-width: 480px) {
         #mws-gallery .gal-grid {
-            grid-template-columns: 1fr;
+            column-count: 1;
         }
     }
 
     #mws-gallery .gal-item {
         position: relative;
+        display: inline-block;
+        width: 100%;
+        margin: 0 0 14px;
+        break-inside: avoid;
         border-radius: 12px;
         overflow: hidden;
         cursor: pointer;
-        transition: transform var(--transition), box-shadow var(--transition);
+        transition: transform var(--transition), box-shadow var(--transition), opacity 0.35s ease;
     }
 
     #mws-gallery .gal-item:hover {
@@ -223,7 +251,7 @@ $show_tabs = ($single_year === 0);
     #mws-gallery .gal-item img {
         display: block;
         width: 100%;
-        height: 280px;
+        height: auto;
         object-fit: cover;
         border-radius: 12px;
         transition: opacity var(--transition);
@@ -276,35 +304,31 @@ $show_tabs = ($single_year === 0);
         z-index: 2;
     }
 
-    /* ==========================================
-       LOAD MORE BUTTON
-       ========================================== */
-    #mws-gallery .gal-load-more-wrap {
+    /* Photo count indicator */
+    #mws-gallery .gal-photo-count {
         text-align: center;
-        padding: 16px 0 0;
+        padding: 4px 20px 12px;
+        font-size: 13px;
+        color: #666;
+        font-weight: 500;
+        letter-spacing: 0.2px;
     }
 
-    #mws-gallery .gal-load-more {
-        display: inline-block;
-        padding: 14px 40px;
-        border: none;
-        border-radius: 50px;
-        background: var(--gold);
-        color: var(--white);
-        font-family: 'Poppins', sans-serif;
-        font-size: 15px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background var(--transition), transform var(--transition);
+    /* Fade-in animation for images on scroll */
+    #mws-gallery .gal-item {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.15s ease;
     }
 
-    #mws-gallery .gal-load-more:hover {
-        background: var(--gold-hover);
-        transform: translateY(-1px);
+    #mws-gallery .gal-item.gal-visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 
-    #mws-gallery .gal-load-more.hidden {
-        display: none;
+    #mws-gallery .gal-item.hidden {
+        opacity: 0;
+        transform: translateY(12px);
     }
 
     /* Empty state */
@@ -491,11 +515,13 @@ $show_tabs = ($single_year === 0);
     <?php if ($show_tabs) : ?>
     <!-- Year Filter Tabs -->
     <div class="gal-filters">
-        <div class="gal-filter-row">
-            <button class="gal-filter-btn <?php echo ($active_year === 0) ? 'active' : ''; ?>" data-year="all">All Years</button>
-            <?php foreach ($years as $y) : ?>
-                <button class="gal-filter-btn <?php echo ($active_year === $y) ? 'active' : ''; ?>" data-year="<?php echo esc_attr($y); ?>"><?php echo esc_html($y); ?></button>
-            <?php endforeach; ?>
+        <div class="gal-filters-inner">
+            <div class="gal-filter-row">
+                <button class="gal-filter-btn <?php echo ($active_year === 0) ? 'active' : ''; ?>" data-year="all">All Years (<?php echo esc_html($total_images); ?>)</button>
+                <?php foreach ($years as $y) : ?>
+                    <button class="gal-filter-btn <?php echo ($active_year === $y) ? 'active' : ''; ?>" data-year="<?php echo esc_attr($y); ?>"><?php echo esc_html($y); ?> (<?php echo esc_html($year_counts[$y]); ?>)</button>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
     <?php endif; ?>
@@ -504,7 +530,7 @@ $show_tabs = ($single_year === 0);
     <div class="gal-grid-wrap">
         <div class="gal-grid">
             <?php foreach ($all_images as $index => $image) : ?>
-                <div class="gal-item<?php echo ($index >= 12) ? ' hidden' : ''; ?>"
+                <div class="gal-item"
                      data-year="<?php echo esc_attr($image['year']); ?>"
                      data-index="<?php echo esc_attr($index); ?>"
                      data-url="<?php echo esc_url($image['url']); ?>"
@@ -512,8 +538,8 @@ $show_tabs = ($single_year === 0);
                     <img src="<?php echo esc_url($image['thumb']); ?>"
                          alt="<?php echo esc_attr($image['alt']); ?>"
                          loading="lazy"
-                         width="600"
-                         height="280">
+                         width="900"
+                         height="900">
                     <span class="gal-year-badge"><?php echo esc_html($image['year']); ?></span>
                     <button class="gal-share-btn" title="Share this photo" data-share-url="<?php echo esc_url($image['url']); ?>">
                         <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11A2.99 2.99 0 0 0 18 8a3 3 0 1 0-3-3c0 .24.04.47.09.7L8.04 9.81A2.99 2.99 0 0 0 6 9a3 3 0 1 0 0 6c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.92 2.92 0 0 0 2.92 2.92A2.92 2.92 0 0 0 21 18.92 2.92 2.92 0 0 0 18 16.08z"/></svg>
@@ -525,10 +551,8 @@ $show_tabs = ($single_year === 0);
         <!-- Empty state -->
         <div class="gal-empty">No photos found for this year.</div>
 
-        <!-- Load More -->
-        <div class="gal-load-more-wrap">
-            <button class="gal-load-more <?php echo (count($all_images) <= 12) ? 'hidden' : ''; ?>">Load More Photos</button>
-        </div>
+        <!-- Photo count -->
+        <div class="gal-photo-count"></div>
     </div>
 
     <!-- Lightbox Overlay -->
@@ -564,7 +588,7 @@ $show_tabs = ($single_year === 0);
     var grid       = root.querySelector('.gal-grid');
     var items      = Array.prototype.slice.call(grid.querySelectorAll('.gal-item'));
     var filterBtns = Array.prototype.slice.call(root.querySelectorAll('.gal-filter-btn'));
-    var loadMore   = root.querySelector('.gal-load-more');
+    var photoCount = root.querySelector('.gal-photo-count');
     var emptyMsg   = root.querySelector('.gal-empty');
 
     // Lightbox elements
@@ -577,12 +601,25 @@ $show_tabs = ($single_year === 0);
     var lbCounter  = lightbox.querySelector('.gal-lb-counter');
     var toast      = root.querySelector('.gal-toast');
 
-    var BATCH         = 12;
     var activeYear    = '<?php echo ($single_year > 0) ? 'all' : (($active_year === 0) ? 'all' : esc_js($active_year)); ?>';
-    var visibleCount  = 0;
     var currentLbIdx  = -1;
     var visibleItems  = [];
     var toastTimer    = null;
+
+    /* ------------------------------------------
+       INTERSECTION OBSERVER - fade in on scroll
+       ------------------------------------------ */
+    var fadeObserver = null;
+    if ('IntersectionObserver' in window) {
+        fadeObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('gal-visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '50px', threshold: 0.1 });
+    }
 
     /* ------------------------------------------
        UTILITY: Show toast message
@@ -637,27 +674,36 @@ $show_tabs = ($single_year === 0);
        ------------------------------------------ */
     function applyFilter(year) {
         activeYear = year;
-        visibleCount = 0;
+        var matchCount = 0;
 
         // Update active button
         filterBtns.forEach(function(btn) {
             btn.classList.toggle('active', btn.getAttribute('data-year') === String(year));
         });
 
-        // Filter items
+        // Filter items — show all matching, hide non-matching
         items.forEach(function(item) {
             var itemYear = item.getAttribute('data-year');
             var match = (year === 'all' || String(itemYear) === String(year));
             if (match) {
-                visibleCount++;
-                item.classList.toggle('hidden', visibleCount > BATCH);
+                matchCount++;
+                item.classList.remove('hidden');
+                // Reset fade-in for re-observation
+                item.classList.remove('gal-visible');
+                if (fadeObserver) {
+                    fadeObserver.observe(item);
+                } else {
+                    item.classList.add('gal-visible');
+                }
             } else {
                 item.classList.add('hidden');
+                item.classList.remove('gal-visible');
+                if (fadeObserver) fadeObserver.unobserve(item);
             }
         });
 
         updateVisibleItems();
-        updateLoadMore();
+        updatePhotoCount(matchCount);
         updateEmpty();
     }
 
@@ -674,47 +720,15 @@ $show_tabs = ($single_year === 0);
         });
     }
 
-    function updateLoadMore() {
-        var filtered = getFilteredItems();
-        var shownCount = filtered.filter(function(item) {
-            return !item.classList.contains('hidden');
-        }).length;
-        if (shownCount >= filtered.length) {
-            loadMore.classList.add('hidden');
-        } else {
-            loadMore.classList.remove('hidden');
+    function updatePhotoCount(count) {
+        if (photoCount) {
+            photoCount.textContent = 'Showing ' + count + ' photo' + (count !== 1 ? 's' : '') + (activeYear === 'all' ? ' across all years' : ' from ' + activeYear);
         }
     }
 
     function updateEmpty() {
         var filtered = getFilteredItems();
         emptyMsg.classList.toggle('visible', filtered.length === 0);
-    }
-
-    /* ------------------------------------------
-       LOAD MORE
-       ------------------------------------------ */
-    function handleLoadMore() {
-        var filtered = getFilteredItems();
-        var shown = 0;
-        var revealed = 0;
-
-        filtered.forEach(function(item) {
-            if (!item.classList.contains('hidden')) {
-                shown++;
-            }
-        });
-
-        filtered.forEach(function(item) {
-            if (item.classList.contains('hidden') && revealed < BATCH) {
-                item.classList.remove('hidden');
-                revealed++;
-            }
-        });
-
-        visibleCount = shown + revealed;
-        updateVisibleItems();
-        updateLoadMore();
     }
 
     /* ------------------------------------------
@@ -761,9 +775,6 @@ $show_tabs = ($single_year === 0);
             applyFilter(btn.getAttribute('data-year'));
         });
     });
-
-    // Load More
-    loadMore.addEventListener('click', handleLoadMore);
 
     // Grid item clicks (open lightbox)
     grid.addEventListener('click', function(e) {

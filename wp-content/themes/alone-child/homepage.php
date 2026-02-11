@@ -41,7 +41,7 @@
        ========================================== */
     #mws-home .hp-hero {
         background: var(--navy);
-        padding: 64px 20px 62px;
+        padding: 110px 20px 62px;
     }
 
     #mws-home .hp-hero-inner {
@@ -316,7 +316,7 @@
     }
 
     @media (max-width: 480px) {
-        #mws-home .hp-hero { padding: 48px 16px 48px; }
+        #mws-home .hp-hero { padding: 90px 16px 48px; }
         #mws-home .hp-hero-left h1 { font-size: 30px; }
         #mws-home .hp-hero-left .hp-subhead { font-size: 15px; }
         #mws-home .hp-pills { grid-template-columns: repeat(2, 1fr); }
@@ -532,12 +532,12 @@
     }
 
     #mws-home .hp-winner-card img {
-        width: 120px;
-        height: 120px;
+        width: 190px;
+        height: 190px;
         border-radius: 50%;
         object-fit: cover;
         object-position: center 20%;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
         border: 3px solid var(--gold);
     }
 
@@ -582,6 +582,10 @@
         #mws-home .hp-winners-grid {
             grid-template-columns: 1fr;
             gap: 14px;
+        }
+        #mws-home .hp-winner-card img {
+            width: 156px;
+            height: 156px;
         }
     }
 

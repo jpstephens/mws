@@ -1265,3 +1265,67 @@ function mws_nav_aria_hidden_script() {
 <?php
 }
 add_action('wp_footer', 'mws_nav_aria_hidden_script');
+
+// ============================================
+// HEADER + FOOTER RENDER FIXES
+// ============================================
+function mws_header_footer_render_fixes() {
+?>
+<style>
+/* Prevent logo clipping across desktop/mobile header variants */
+.tg-site-header .site-logo,
+.tg-site-header .site-branding,
+.tg-site-header .site-branding a,
+.tg-site-header .custom-logo-link,
+.elementor-location-header .custom-logo-link,
+.elementor-location-header .site-logo {
+    overflow: visible !important;
+}
+
+header,
+.site-header,
+#masthead,
+.tg-site-header,
+.elementor-location-header {
+    overflow: visible !important;
+}
+
+.tg-site-header .custom-logo,
+.tg-site-header .site-logo img,
+.elementor-location-header .custom-logo,
+.elementor-location-header .site-logo img {
+    display: block !important;
+    width: auto !important;
+    max-height: 104px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+}
+
+@media (max-width: 1024px) {
+    .tg-site-header .custom-logo,
+    .tg-site-header .site-logo img,
+    .elementor-location-header .custom-logo,
+    .elementor-location-header .site-logo img {
+        max-height: 82px !important;
+    }
+}
+
+/* Force custom theme footer to be the only visible footer on frontend */
+body:not(.wp-admin) .elementor-location-footer,
+body:not(.wp-admin) .elementor-location-footer + *[data-elementor-type="footer"],
+body:not(.wp-admin) .tg-site-footer:not(.mws-footer),
+body:not(.wp-admin) .tg-footer-wrap,
+body:not(.wp-admin) .tg-site-footer-bar,
+body:not(.wp-admin) #footer-wrap {
+    display: none !important;
+}
+
+body:not(.wp-admin) .mws-footer {
+    display: block !important;
+    visibility: visible !important;
+}
+</style>
+<?php
+}
+add_action('wp_head', 'mws_header_footer_render_fixes', 99);

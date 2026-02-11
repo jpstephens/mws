@@ -41,7 +41,7 @@
        ========================================== */
     #mws-winners .pw-hero {
         background: linear-gradient(135deg, #1a1f34, #232842 50%, #2a3052);
-        padding: 64px 20px 56px;
+        padding: 110px 20px 56px;
         color: var(--white);
         position: relative;
         overflow: hidden;
@@ -72,26 +72,29 @@
     #mws-winners .pw-hero-inner {
         max-width: 1120px;
         margin: 0 auto;
+        text-align: center;
     }
 
     #mws-winners .pw-hero h1 {
         font-size: 48px;
         font-weight: 700;
-        margin: 0 0 12px;
+        margin: 0 auto 14px;
         color: var(--white);
         line-height: 1.15;
+        max-width: 16ch;
     }
 
     #mws-winners .pw-hero .pw-intro {
-        font-size: 16px;
-        opacity: 0.85;
-        margin: 0 0 20px;
-        max-width: 58ch;
+        font-size: 17px;
+        opacity: 0.9;
+        margin: 0 auto;
+        max-width: 62ch;
     }
 
     @media (max-width: 860px) {
-        #mws-winners .pw-hero { padding: 48px 16px 48px; }
+        #mws-winners .pw-hero { padding: 90px 16px 48px; }
         #mws-winners .pw-hero h1 { font-size: 30px; }
+        #mws-winners .pw-hero .pw-intro { font-size: 15px; }
     }
 
     /* ==========================================
@@ -117,25 +120,6 @@
     /* ==========================================
        C — WINNER PROFILES — Alternating Rows
        ========================================== */
-    #mws-winners .pw-profiles-header {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 36px 20px 0;
-    }
-
-    #mws-winners .pw-profiles-header h2 {
-        font-size: 28px;
-        font-weight: 700;
-        color: var(--navy);
-        margin: 0 0 8px;
-    }
-
-    #mws-winners .pw-profiles-header p {
-        font-size: 15px;
-        color: var(--text);
-        margin: 0;
-    }
-
     #mws-winners .pw-row {
         padding: 44px 20px;
     }
@@ -325,14 +309,8 @@
     <div class="pw-hero">
         <div class="pw-hero-inner">
             <h1>Past Scholarship Recipients</h1>
-            <p class="pw-intro">Since 2020, the Michael Williams Memorial Scholarship has awarded $5,000 each year to a graduating senior at Rumson-Fair Haven Regional High School who embodies creativity, character, and community.</p>
+            <p class="pw-intro">Celebrating students who carry Michael&rsquo;s spirit forward through creativity, character, and service at Rumson-Fair Haven and beyond.</p>
         </div>
-    </div>
-
-    <!-- ===== B — WINNER PROFILES ===== -->
-    <div class="pw-profiles-header">
-        <h2>Our Recipients</h2>
-        <p>Meet the outstanding young people who carry Michael&rsquo;s spirit forward.</p>
     </div>
 
     <!-- ===== 2025 — Evan McCormick — photo left ===== -->
