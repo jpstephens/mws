@@ -45,7 +45,7 @@
        A — BOARD MISSION HERO
        ========================================== */
     #mws-team .tm-hero {
-        background: linear-gradient(135deg, #1a1f34, #232842 50%, #2a3052);
+        background: var(--navy);
         padding: 110px 20px;
         color: var(--white);
         position: relative;
@@ -53,15 +53,7 @@
     }
 
     #mws-team .tm-hero::before {
-        content: '';
-        position: absolute;
-        top: -80px;
-        right: -120px;
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(circle, rgba(205,163,59,0.12), transparent 70%);
-        border-radius: 50%;
-        pointer-events: none;
+        content: none;
     }
 
     #mws-team .tm-hero::after {
