@@ -667,60 +667,39 @@
 
     <!-- ===== B — MICHAEL'S STORY ===== -->
     <div class="au-section">
-        <h2>Michael's Story</h2>
+        <h2>Michael&rsquo;s Story</h2>
         <div class="au-story-grid">
-            <!-- Full-width banner photo -->
-            <div class="au-story-row">
-                <div class="au-story-row-img" style="grid-column: 1 / -1;">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/02/9e63a8bd5b6decb9db92ff7fbe82fe69-rotated-1.jpg" alt="Michael Williams" style="height: 420px; width: 100%; border-radius: 12px; object-fit: cover; object-position: center 20%;">
-                </div>
-            </div>
 
-            <!-- A friend to everyone — image left -->
+            <!-- A friend to everyone — Michael with his mom (image left) -->
             <div class="au-story-row">
                 <div class="au-story-row-img">
-                    <!-- TODO: Replace with additional photo of Michael -->
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/02/9e63a8bd5b6decb9db92ff7fbe82fe69-rotated-1.jpg" alt="Michael with friends">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/michael-with-mom.jpeg" alt="Michael Williams with his mother">
                 </div>
                 <div class="au-story-row-text">
                     <h3>A friend to everyone</h3>
-                    <p>Michael Williams&mdash;&ldquo;Mikey&rdquo; to everyone who knew him&mdash;left a lasting imprint on the people around him. He was generous with his time, genuinely curious about others, and the kind of person who made you feel like the most important one in the room.</p>
+                    <p>Michael Williams&mdash;&ldquo;Mikey&rdquo; to everyone who knew him&mdash;left a lasting imprint on the people around him. He was generous with his time, genuinely curious about others, and the kind of person who made you feel like the most important one in the room. His warmth extended to everyone, but especially to the family and friends he held closest.</p>
                 </div>
             </div>
 
-            <!-- Music and art — image right -->
+            <!-- Music, art, and community — Michael walking (image right) -->
             <div class="au-story-row au-story-row-reverse">
                 <div class="au-story-row-img">
-                    <!-- TODO: Replace with photo of Michael with music/art -->
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/02/9e63a8bd5b6decb9db92ff7fbe82fe69-rotated-1.jpg" alt="Michael playing guitar">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/michael-walking.jpeg" alt="Michael Williams">
                 </div>
                 <div class="au-story-row-text">
-                    <h3>Music and art were his language</h3>
-                    <p>Whether playing acoustic guitar for friends, painting in his studio, or finding creative outlets in his career, Michael expressed himself through art. His mother Carol still maintains &ldquo;Mike&rsquo;s Gallery,&rdquo; a dedicated space showcasing his paintings&mdash;each one inspired by his personal thoughts, dreams, and the world around him.</p>
+                    <h3>Creative spirit, deep roots</h3>
+                    <p>Whether playing acoustic guitar for friends, painting in his studio, or finding creative outlets in his career, Michael expressed himself through art. He grew up in Rumson and Sea Bright, attended Rumson-Fair Haven Regional High School, and later earned his MBA from Quinnipiac University. He loved the beach, sports, animals, and learning about people. Above all, he loved his family and his community.</p>
                 </div>
             </div>
 
-            <!-- A love for community — image left -->
+            <!-- Why this scholarship — main Michael photo (image left) -->
             <div class="au-story-row">
                 <div class="au-story-row-img">
-                    <!-- TODO: Replace with photo of Michael in community -->
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/02/9e63a8bd5b6decb9db92ff7fbe82fe69-rotated-1.jpg" alt="Michael in his community">
-                </div>
-                <div class="au-story-row-text">
-                    <h3>A love for community</h3>
-                    <p>Michael grew up in Rumson and Sea Bright, where he built deep roots. He attended Rumson-Fair Haven Regional High School and later earned his MBA from Quinnipiac University. He loved the beach, sports, animals, and learning about people. Above all, he loved his family and his community.</p>
-                </div>
-            </div>
-
-            <!-- Why this scholarship — image right -->
-            <div class="au-story-row au-story-row-reverse">
-                <div class="au-story-row-img">
-                    <!-- TODO: Replace with scholarship/legacy photo -->
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/02/9e63a8bd5b6decb9db92ff7fbe82fe69-rotated-1.jpg" alt="The Michael Williams Memorial Scholarship">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/02/9e63a8bd5b6decb9db92ff7fbe82fe69-rotated-1.jpg" alt="Michael Williams">
                 </div>
                 <div class="au-story-row-text">
                     <h3>Why this scholarship exists</h3>
-                    <p>Established in 2020, the Michael Williams Memorial Scholarship exists to keep Mikey&rsquo;s spirit alive by supporting a graduating RFH senior each year&mdash;someone who, like Michael, blends creativity, kindness, academic drive, and commitment to community.</p>
+                    <p>Established in 2020, the Michael Williams Memorial Scholarship exists to keep Mikey&rsquo;s spirit alive by supporting a graduating RFH senior each year&mdash;someone who, like Michael, blends creativity, kindness, academic drive, and commitment to community. His mother Carol still maintains &ldquo;Mike&rsquo;s Gallery,&rdquo; a dedicated space showcasing his paintings&mdash;each one inspired by his personal thoughts, dreams, and the world around him.</p>
                 </div>
             </div>
 
