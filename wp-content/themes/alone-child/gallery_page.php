@@ -96,7 +96,7 @@ $total_images = count($all_images);
        ========================================== */
     #mws-gallery .gal-hero {
         background: var(--navy);
-        padding: 110px 20px 60px;
+        padding: 74px 20px 54px;
         text-align: center;
         color: var(--white);
     }
@@ -118,7 +118,7 @@ $total_images = count($all_images);
 
     @media (max-width: 768px) {
         #mws-gallery .gal-hero {
-            padding: 90px 16px 40px;
+            padding: 56px 16px 34px;
         }
         #mws-gallery .gal-hero h1 {
             font-size: 32px;
@@ -236,11 +236,11 @@ $total_images = count($all_images);
         border-radius: 12px;
         overflow: hidden;
         cursor: pointer;
-        transition: transform var(--transition), box-shadow var(--transition), opacity 0.35s ease;
+        transition: box-shadow var(--transition), opacity 0.2s ease;
+        will-change: box-shadow;
     }
 
     #mws-gallery .gal-item:hover {
-        transform: scale(1.02);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     }
 
@@ -254,7 +254,12 @@ $total_images = count($all_images);
         height: auto;
         object-fit: cover;
         border-radius: 12px;
-        transition: opacity var(--transition);
+        transition: filter 0.15s ease;
+        backface-visibility: hidden;
+    }
+
+    #mws-gallery .gal-item:hover img {
+        filter: brightness(0.97);
     }
 
     /* Share button overlay */
@@ -316,19 +321,15 @@ $total_images = count($all_images);
 
     /* Fade-in animation for images on scroll */
     #mws-gallery .gal-item {
-        opacity: 0;
-        transform: translateY(12px);
-        transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.15s ease;
+        opacity: 1;
     }
 
     #mws-gallery .gal-item.gal-visible {
         opacity: 1;
-        transform: translateY(0);
     }
 
     #mws-gallery .gal-item.hidden {
         opacity: 0;
-        transform: translateY(12px);
     }
 
     /* Empty state */
