@@ -290,10 +290,17 @@
         width: 100%;
         height: 420px;
         object-fit: cover;
-        object-position: center 20%;
+        object-position: center 30%;
         border-radius: var(--radius);
         display: block;
     }
+
+    /* Per-member focal points to avoid face cutoff */
+    #mws-team .tm-photo img.tm-crop-jason { object-position: center 26%; }
+    #mws-team .tm-photo img.tm-crop-vincent { object-position: center 24%; }
+    #mws-team .tm-photo img.tm-crop-jesse { object-position: center 22%; }
+    #mws-team .tm-photo img.tm-crop-joe { object-position: center 30%; }
+    #mws-team .tm-photo img.tm-crop-chris { object-position: center 24%; }
 
     #mws-team .tm-photo img:hover {
         transform: scale(1.02);
@@ -476,7 +483,7 @@
     <div class="tm-row">
         <div class="tm-row-inner">
             <div class="tm-photo">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2024/09/jason.jpg" alt="Jason Stephens">
+                <img class="tm-crop-jason" src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2024/09/jason.jpg" alt="Jason Stephens">
             </div>
             <div class="tm-text">
                 <h3>Jason Stephens</h3>
@@ -490,7 +497,7 @@
     <div class="tm-row tm-row-reverse">
         <div class="tm-row-inner">
             <div class="tm-photo">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/06/IMG_0800.jpg" alt="Vincent Fabrico">
+                <img class="tm-crop-vincent" src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/06/IMG_0800.jpg" alt="Vincent Fabrico">
             </div>
             <div class="tm-text">
                 <h3>Vincent Fabrico</h3>
@@ -504,7 +511,7 @@
     <div class="tm-row">
         <div class="tm-row-inner">
             <div class="tm-photo">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/06/Jesse-Login_MW-1.jpg" alt="Jesse Login">
+                <img class="tm-crop-jesse" src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/06/Jesse-Login_MW-1.jpg" alt="Jesse Login">
             </div>
             <div class="tm-text">
                 <h3>Jesse Login</h3>
@@ -518,7 +525,7 @@
     <div class="tm-row tm-row-reverse">
         <div class="tm-row-inner">
             <div class="tm-photo">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/06/IMG_2284.jpg" alt="Joe Prota">
+                <img class="tm-crop-joe" src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/06/IMG_2284.jpg" alt="Joe Prota">
             </div>
             <div class="tm-text">
                 <h3>Joe Prota</h3>
@@ -532,7 +539,7 @@
     <div class="tm-row">
         <div class="tm-row-inner">
             <div class="tm-photo">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2024/09/chris.jpg" alt="Chris Goger">
+                <img class="tm-crop-chris" src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2024/09/chris.jpg" alt="Chris Goger">
             </div>
             <div class="tm-text">
                 <h3>Chris Goger</h3>
