@@ -41,7 +41,7 @@
        ========================================== */
     #mws-home .hp-hero {
         background: var(--navy);
-        padding: 144px 20px 116px;
+        padding: 182px 20px 84px;
         position: relative;
     }
 
@@ -308,7 +308,7 @@
     }
 
     @media (max-width: 860px) {
-        #mws-home .hp-hero { padding: 130px 20px 104px; }
+        #mws-home .hp-hero { padding: 154px 20px 78px; }
         #mws-home .hp-hero-inner {
             grid-template-columns: 1fr;
             gap: 32px;
@@ -329,7 +329,7 @@
     }
 
     @media (max-width: 480px) {
-        #mws-home .hp-hero { padding: 118px 16px 92px; }
+        #mws-home .hp-hero { padding: 136px 16px 68px; }
         #mws-home .hp-hero-left h1 { font-size: 30px; }
         #mws-home .hp-hero-left .hp-subhead { font-size: 15px; }
         #mws-home .hp-pills { grid-template-columns: repeat(2, 1fr); }
@@ -383,7 +383,7 @@
     #mws-home .hp-event-card img {
         width: 100%;
         height: auto;
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 3 / 2;
         object-fit: cover;
         object-position: center center;
         display: block;
@@ -391,7 +391,7 @@
 
     /* Keep both faces visible in the hockey promo image crop */
     #mws-home .hp-events-grid .hp-event-card:first-child img {
-        object-position: center 34%;
+        object-position: center 26%;
     }
 
     /* Keep court action and tournament banner visible */
