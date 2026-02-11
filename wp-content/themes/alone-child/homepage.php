@@ -42,6 +42,19 @@
     #mws-home .hp-hero {
         background: var(--navy);
         padding: 178px 20px 62px;
+        position: relative;
+    }
+
+    /* Subtle top separation so hero doesn't visually merge with fixed navy header */
+    #mws-home .hp-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 34px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+        pointer-events: none;
     }
 
     #mws-home .hp-hero-inner {

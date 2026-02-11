@@ -1180,8 +1180,41 @@ add_action('wp_head', 'mws_schema_org_markup', 5);
 function mws_global_design_css() {
 ?>
 <style>
-/* --- Consistent Header Background (Task 20) --- */
-header, .site-header, #masthead, .tg-site-header { background-color: #232842 !important; }
+/* --- Unified Header System --- */
+header,
+.site-header,
+#masthead,
+.tg-site-header,
+.elementor-location-header,
+.elementor-location-header .elementor-section,
+.elementor-location-header .elementor-container,
+.tg-site-header .tg-header,
+.tg-site-header .tg-header-wrap {
+    background-color: #1d2338 !important;
+}
+
+/* Keep the nav visually separate from dark hero sections */
+header,
+.site-header,
+#masthead,
+.tg-site-header,
+.elementor-location-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* Consistent nav contrast */
+.tg-site-header a,
+.elementor-location-header a,
+.elementor-location-header .elementor-nav-menu a {
+    color: #ffffff !important;
+}
+
+.tg-site-header a:hover,
+.elementor-location-header a:hover,
+.elementor-location-header .elementor-nav-menu a:hover {
+    color: #cda33b !important;
+}
 
 /* --- WCAG AA Contrast Fix (Task 5) --- gold text on light backgrounds --- */
 /* --gold-text: #8a6d1b provides 4.6:1 on white */
