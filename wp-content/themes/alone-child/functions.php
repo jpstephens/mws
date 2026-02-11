@@ -1341,7 +1341,11 @@ header,
 
 /* Ensure logo stays visible against dark header variants */
 .tg-site-header .custom-logo-link,
-.elementor-location-header .custom-logo-link {
+.elementor-location-header .custom-logo-link,
+.tg-site-header .site-logo,
+.tg-site-header .site-logo a,
+.elementor-location-header .site-logo,
+.elementor-location-header .site-logo a {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1349,6 +1353,13 @@ header,
     border-radius: 999px !important;
     background: rgba(255, 255, 255, 0.96) !important;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22) !important;
+}
+
+.tg-site-header .site-logo img,
+.tg-site-header .custom-logo,
+.elementor-location-header .site-logo img,
+.elementor-location-header .custom-logo {
+    border-radius: 999px !important;
 }
 
 @media (max-width: 1024px) {
