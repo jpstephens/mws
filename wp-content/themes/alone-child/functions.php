@@ -2116,3 +2116,240 @@ function mws_legacy_route_redirects() {
     exit;
 }
 add_action('template_redirect', 'mws_legacy_route_redirects', 2);
+
+// ============================================
+// HIGH-VISIBILITY MOBILE REDESIGN LAYER
+// ============================================
+function mws_mobile_2026_redesign_css() {
+    if (is_admin()) return;
+?>
+<style id="mws-mobile-2026-redesign">
+@media (max-width: 767px) {
+    :root {
+        --mws-mobile-gutter: 14px;
+        --mws-mobile-radius: 14px;
+        --mws-mobile-card-shadow: 0 10px 28px rgba(15, 23, 42, 0.10);
+    }
+
+    body {
+        background: #f5f6fa;
+    }
+
+    /* Header gets cleaner, denser, and consistently legible */
+    .elementor-location-header,
+    .tg-site-header,
+    #masthead {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.26) !important;
+    }
+
+    .elementor-location-header .site-logo img,
+    .elementor-location-header .custom-logo,
+    .tg-site-header .site-logo img,
+    .tg-site-header .custom-logo {
+        max-height: 70px !important;
+    }
+
+    /* Shared mobile section rhythm */
+    #mws-home .hp-events,
+    #mws-home .hp-winners,
+    #mws-home .hp-help,
+    #mws-home .hp-newsletter-wrap,
+    #mws-about-us .au-main,
+    #mws-donate .dn-body,
+    #mws-donate .dn-faq,
+    #mws-team .tm-row,
+    #mws-team .tm-profiles-header,
+    #mws-scholarship .sch-main,
+    #mws-gallery .gal-main,
+    #mws-hockey .hk-main,
+    #mws-volleyball .vb-main {
+        padding-left: var(--mws-mobile-gutter) !important;
+        padding-right: var(--mws-mobile-gutter) !important;
+    }
+
+    /* Hero typography and spacing: visually tighter and clearer */
+    #mws-home .hp-hero-left h1,
+    #mws-about-us .au-hero h1,
+    #mws-donate .dn-hero h1,
+    #mws-team .tm-hero h1,
+    #mws-scholarship .sch-hero h1,
+    #mws-past-winners .pw-hero h1,
+    #mws-gallery .gal-hero h1,
+    #mws-hockey .hk-hero h1,
+    #mws-volleyball .vb-hero h1 {
+        font-size: clamp(2rem, 8.5vw, 2.5rem) !important;
+        line-height: 1.08 !important;
+        letter-spacing: -0.02em;
+        margin-bottom: 10px !important;
+    }
+
+    #mws-home .hp-hero-left .hp-subhead,
+    #mws-about-us .au-hero .au-subhead,
+    #mws-donate .dn-hero .dn-subhead,
+    #mws-team .tm-hero .tm-intro,
+    #mws-team .tm-hero .tm-mission,
+    #mws-scholarship .sch-hero p,
+    #mws-past-winners .pw-hero p,
+    #mws-gallery .gal-hero p,
+    #mws-hockey .hk-hero .hk-hero-sub {
+        font-size: 15px !important;
+        line-height: 1.58 !important;
+    }
+
+    /* Card treatment is now clearly modern mobile */
+    #mws-home .hp-event-card,
+    #mws-home .hp-winner-card,
+    #mws-home .hp-help-card,
+    #mws-donate .dn-impact-stat,
+    #mws-donate .dn-trust-badge,
+    #mws-scholarship .criteria-card,
+    #mws-scholarship .winner-card,
+    #mws-scholarship .impact-stat,
+    #mws-hockey .form-card,
+    #mws-hockey .meta-item,
+    #mws-volleyball .register-card,
+    #mws-volleyball .reg-type,
+    #mws-team .tm-hero-right,
+    #mws-team .tm-row-inner,
+    #mws-past-winners .pw-row-inner {
+        border-radius: var(--mws-mobile-radius) !important;
+        box-shadow: var(--mws-mobile-card-shadow) !important;
+    }
+
+    #mws-home .hp-event-body,
+    #mws-home .hp-winner-card,
+    #mws-home .hp-help-card,
+    #mws-donate .dn-form-card,
+    #mws-hockey .form-card,
+    #mws-volleyball .card-body {
+        padding: 16px !important;
+    }
+
+    /* Form controls become finger-first */
+    #mws-donate input,
+    #mws-donate select,
+    #mws-donate button,
+    #mws-hockey input,
+    #mws-hockey select,
+    #mws-hockey button,
+    #mws-volleyball input,
+    #mws-volleyball select,
+    #mws-volleyball button,
+    .mws-newsletter input,
+    .mws-newsletter button {
+        min-height: 48px !important;
+        border-radius: 10px !important;
+        font-size: 16px !important;
+    }
+
+    /* Donate + quick donate amount selectors are easier to scan */
+    #mws-home .hp-pills,
+    #mws-donate .dn-pills {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+    }
+
+    /* Gallery and event media ratios optimized for phone viewport */
+    #mws-home .hp-event-card img,
+    #mws-gallery .gal-card img,
+    #mws-hockey .hero-image img {
+        aspect-ratio: 4 / 3 !important;
+        height: auto !important;
+    }
+
+    /* Team page uses space better on mobile */
+    #mws-team .tm-hero-inner {
+        gap: 18px !important;
+    }
+
+    #mws-team .tm-hero-ctas .tm-btn-primary,
+    #mws-team .tm-hero-ctas .tm-btn-secondary {
+        flex: 1 1 calc(50% - 8px);
+    }
+
+    /* Mobile sticky action strip across key conversion pages */
+    body.page-id-17::after,
+    body.page-id-20453::after,
+    body.page-id-20452::after {
+        content: "";
+        display: block;
+        height: 70px;
+    }
+
+    .mws-mobile-cta-rail {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10000;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+        background: rgba(17, 25, 45, 0.95);
+        border-top: 1px solid rgba(205, 163, 59, 0.4);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .mws-mobile-cta-rail a {
+        min-height: 46px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .mws-mobile-cta-rail .mws-rail-primary {
+        background: #cda33b;
+        color: #fff;
+    }
+
+    .mws-mobile-cta-rail .mws-rail-secondary {
+        background: transparent;
+        color: #fff;
+        border: 2px solid rgba(255,255,255,0.4);
+    }
+}
+</style>
+<?php
+}
+add_action('wp_head', 'mws_mobile_2026_redesign_css', 120);
+
+function mws_mobile_2026_redesign_cta_rail() {
+    if (is_admin()) return;
+    if (!wp_is_mobile()) return;
+
+    $show = false;
+    $secondary_url = home_url('/qu-hockey-2026/');
+    $secondary_label = 'See Events';
+
+    if (is_page('donate') || is_page(17)) {
+        $show = true;
+        $secondary_url = home_url('/');
+        $secondary_label = 'Home';
+    } elseif (is_page('qu-hockey-2026') || is_page(20453)) {
+        $show = true;
+        $secondary_url = home_url('/donate/');
+        $secondary_label = 'Donate';
+    } elseif (is_page('volleyball') || is_page(20452)) {
+        $show = true;
+        $secondary_url = home_url('/donate/');
+        $secondary_label = 'Donate';
+    }
+
+    if (!$show) return;
+    ?>
+    <div class="mws-mobile-cta-rail" role="navigation" aria-label="Quick actions">
+        <a class="mws-rail-primary" href="<?php echo esc_url(home_url('/donate/')); ?>">Donate</a>
+        <a class="mws-rail-secondary" href="<?php echo esc_url($secondary_url); ?>"><?php echo esc_html($secondary_label); ?></a>
+    </div>
+    <?php
+}
+add_action('wp_footer', 'mws_mobile_2026_redesign_cta_rail', 995);
