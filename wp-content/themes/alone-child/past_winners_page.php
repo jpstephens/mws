@@ -91,7 +91,7 @@
         max-width: 62ch;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 768px) {
         #mws-winners .pw-hero { padding: 90px 16px 48px; }
         #mws-winners .pw-hero h1 { font-size: 30px; }
         #mws-winners .pw-hero .pw-intro { font-size: 15px; }
@@ -192,7 +192,7 @@
         order: 1;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
         #mws-winners .pw-row-inner { gap: 32px; }
         #mws-winners .pw-photo img { height: 360px; }
         #mws-winners .pw-text h3 { font-size: 24px; }

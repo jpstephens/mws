@@ -243,7 +243,7 @@
         color: var(--gold);
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 768px) {
         #mws-team .tm-hero { padding: 90px 16px; }
         #mws-team .tm-hero h1 { font-size: 36px; }
         #mws-team .tm-hero-ctas { justify-content: flex-start; }
@@ -344,7 +344,7 @@
         order: 1;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
         #mws-team .tm-row-inner { gap: 32px; }
         #mws-team .tm-photo img { height: 360px; }
         #mws-team .tm-text h3 { font-size: 24px; }

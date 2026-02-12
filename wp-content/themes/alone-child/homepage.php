@@ -307,7 +307,7 @@
         margin: 0;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 768px) {
         #mws-home .hp-hero { padding: 132px 20px 66px; }
         #mws-home .hp-hero-inner {
             grid-template-columns: 1fr;

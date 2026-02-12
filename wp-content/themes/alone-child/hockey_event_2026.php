@@ -96,7 +96,7 @@
         align-items: start;
     }
 
-    @media (max-width: 991px) {
+    @media (max-width: 1024px) {
         #mws-hockey .hk-main {
             grid-template-columns: 1fr;
             gap: 30px;

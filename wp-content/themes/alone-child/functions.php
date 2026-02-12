@@ -1163,6 +1163,22 @@ function mws_og_meta_tags() {
 }
 add_action('wp_head', 'mws_og_meta_tags', 1);
 
+// ============================================
+// APPLE HIG 2026 META TAGS
+// ============================================
+function mws_apple_hig_meta_tags() {
+?>
+<script>!function(){var m=document.querySelector('meta[name="viewport"]');if(m&&m.content.indexOf('viewport-fit')===-1){m.content+=',viewport-fit=cover'}}()</script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MWS">
+<link rel="apple-touch-icon" sizes="180x180" href="<?php echo esc_url(get_stylesheet_directory_uri() . '/images/apple-touch-icon.png'); ?>">
+<link rel="manifest" href="<?php echo esc_url(get_stylesheet_directory_uri() . '/manifest.webmanifest'); ?>">
+<meta name="theme-color" content="#232842" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1420" media="(prefers-color-scheme: dark)">
+<?php
+}
+add_action('wp_head', 'mws_apple_hig_meta_tags', 2);
 
 // Our Team Page Shortcode
 function mws_our_team_func(){
@@ -1903,13 +1919,26 @@ function mws_mobile_2026_foundation_css() {
     --mws-tap-min: 44px;
 }
 
+/* 2a. Touch behavior — eliminate 300ms tap delay */
 html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     scroll-padding-top: 92px;
+    touch-action: manipulation;
 }
 
+a,
+button,
+input,
+select,
+textarea,
+.elementor-button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 2e. System font fallback */
 body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     text-rendering: optimizeLegibility;
     overflow-wrap: break-word;
 }
@@ -1963,6 +1992,19 @@ textarea {
     padding-bottom: clamp(56px, 7vw, 88px);
 }
 
+/* 2b. Hover vs touch differentiation */
+@media (hover: hover) and (pointer: fine) {
+    a, button, .elementor-button {
+        transition: opacity 0.15s, background 0.15s, color 0.15s;
+    }
+}
+
+@media (hover: none) {
+    a, button, .elementor-button {
+        transition: none !important;
+    }
+}
+
 /* Mobile nav consistency */
 @media (max-width: 1024px) {
     .elementor-location-header .elementor-nav-menu--dropdown,
@@ -1978,12 +2020,43 @@ textarea {
     }
 }
 
+/* 2d. Content-visibility performance for off-screen sections */
+@media (max-width: 1024px) {
+    #mws-home .hp-events,
+    #mws-home .hp-winners,
+    #mws-home .hp-help,
+    #mws-donate .dn-faq,
+    #mws-gallery .gal-main,
+    #mws-team .tm-profiles-header,
+    #mws-team .tm-row,
+    #mws-past-winners .pw-row,
+    .mws-footer-fallback {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 500px;
+    }
+}
+
+/* 2c. Safe area insets */
 @media (max-width: 767px) {
     .elementor-section,
     .elementor-container,
     .mws-footer-fallback .mws-footer-shell {
         padding-left: 16px !important;
         padding-right: 16px !important;
+    }
+
+    @supports (padding: max(0px)) {
+        body {
+            padding-left: max(0px, env(safe-area-inset-left));
+            padding-right: max(0px, env(safe-area-inset-right));
+        }
+
+        .elementor-section,
+        .elementor-container,
+        .mws-footer-fallback .mws-footer-shell {
+            padding-left: max(16px, env(safe-area-inset-left)) !important;
+            padding-right: max(16px, env(safe-area-inset-right)) !important;
+        }
     }
 }
 
@@ -1995,6 +2068,87 @@ textarea {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+}
+
+/* 2f. Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --mws-dark-bg: #0f1420;
+        --mws-dark-surface: #1a2035;
+        --mws-dark-text: #e4e4e7;
+        --mws-dark-text-muted: #a1a1aa;
+        --mws-dark-border: rgba(255, 255, 255, 0.10);
+    }
+
+    body {
+        background: var(--mws-dark-bg) !important;
+        color: var(--mws-dark-text);
+    }
+
+    #mws-home,
+    #mws-donate,
+    #mws-about-us,
+    #mws-team,
+    #mws-scholarship,
+    #mws-past-winners,
+    #mws-gallery,
+    #mws-hockey,
+    #mws-volleyball {
+        --white: #e4e4e7;
+        --light-bg: #1a2035;
+        --text: #e4e4e7;
+        --heading: #f4f4f5;
+    }
+
+    /* Dark card surfaces */
+    #mws-home .hp-event-card,
+    #mws-home .hp-winner-card,
+    #mws-home .hp-help-card,
+    #mws-donate .dn-form-card,
+    #mws-donate .dn-impact-stat,
+    #mws-donate .dn-trust-badge,
+    #mws-scholarship .criteria-card,
+    #mws-scholarship .winner-card,
+    #mws-scholarship .impact-stat,
+    #mws-hockey .form-card,
+    #mws-hockey .meta-item,
+    #mws-volleyball .register-card,
+    #mws-volleyball .reg-type,
+    #mws-team .tm-hero-right,
+    #mws-team .tm-row-inner,
+    #mws-past-winners .pw-row-inner {
+        background: var(--mws-dark-surface) !important;
+        color: var(--mws-dark-text);
+        border-color: var(--mws-dark-border);
+    }
+
+    /* Dark section backgrounds */
+    #mws-home .hp-events,
+    #mws-home .hp-winners,
+    #mws-home .hp-help,
+    #mws-home .hp-newsletter-wrap,
+    #mws-about-us .au-main,
+    #mws-donate .dn-body,
+    #mws-donate .dn-faq,
+    #mws-scholarship .sch-main,
+    #mws-gallery .gal-main,
+    #mws-team .tm-profiles-header {
+        background: var(--mws-dark-bg) !important;
+    }
+
+    /* Dark form inputs */
+    input,
+    select,
+    textarea {
+        background: var(--mws-dark-surface) !important;
+        color: var(--mws-dark-text) !important;
+        border-color: var(--mws-dark-border) !important;
+    }
+
+    /* Dark footer */
+    .mws-footer-fallback {
+        background: #0a0e1a !important;
     }
 }
 </style>
@@ -2135,29 +2289,52 @@ function mws_mobile_2026_redesign_css() {
         background: #f5f6fa;
     }
 
-    /* Header gets cleaner, denser, and consistently legible */
-    .elementor-location-header,
-    .tg-site-header,
-    #masthead {
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.26) !important;
-    }
-
-    .elementor-location-header .site-logo img,
-    .elementor-location-header .custom-logo,
-    .tg-site-header .site-logo img,
-    .tg-site-header .custom-logo {
-        max-height: 70px !important;
-    }
-
-    /* Ensure mobile nav remains visible and operable on homepage and all pages */
+    /* Header: compact, dense mobile bar */
     .elementor-location-header,
     .tg-site-header,
     #masthead {
         position: sticky !important;
         top: 0 !important;
         z-index: 11000 !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28) !important;
+        padding: 0 !important;
+        min-height: 0 !important;
+        max-height: none;
+    }
+
+    /* Tighten header inner containers */
+    .elementor-location-header .elementor-section,
+    .elementor-location-header .elementor-container,
+    .elementor-location-header .elementor-widget-wrap,
+    .tg-site-header .tg-header,
+    .tg-site-header .tg-header-wrap {
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
+        min-height: 0 !important;
+        align-items: center;
+    }
+
+    /* Shrink the logo dramatically for mobile */
+    .elementor-location-header .site-logo img,
+    .elementor-location-header .custom-logo,
+    .tg-site-header .site-logo img,
+    .tg-site-header .custom-logo {
+        max-height: 44px !important;
+        width: auto !important;
+    }
+
+    /* Kill the oversized white bubble around the logo */
+    .tg-site-header .custom-logo-link,
+    .elementor-location-header .custom-logo-link,
+    .tg-site-header .site-logo,
+    .tg-site-header .site-logo a,
+    .elementor-location-header .site-logo,
+    .elementor-location-header .site-logo a {
+        padding: 2px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18) !important;
+        background: rgba(255, 255, 255, 0.92) !important;
     }
 
     .elementor-location-header .elementor-widget-nav-menu,
@@ -2314,10 +2491,8 @@ function mws_mobile_2026_redesign_css() {
         flex: 1 1 calc(50% - 8px);
     }
 
-    /* Mobile sticky action strip across key conversion pages */
-    body.page-id-17::after,
-    body.page-id-20453::after,
-    body.page-id-20452::after {
+    /* Mobile sticky action strip — universal bottom spacer */
+    body::after {
         content: "";
         display: block;
         height: 70px;
@@ -2361,6 +2536,34 @@ function mws_mobile_2026_redesign_css() {
         color: #fff;
         border: 2px solid rgba(255,255,255,0.4);
     }
+
+    /* Step 5: Global CTA rail replaces homepage mobile bar */
+    #mws-home .hp-mobile-bar {
+        display: none !important;
+    }
+
+    /* Step 4: Dark mode overrides for redesign layer */
+    @media (prefers-color-scheme: dark) {
+        body {
+            background: #0f1420 !important;
+        }
+
+        :root {
+            --mws-mobile-card-shadow: 0 10px 28px rgba(0, 0, 0, 0.30);
+        }
+
+        .elementor-location-header,
+        .tg-site-header,
+        #masthead {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(10, 14, 26, 0.92) !important;
+        }
+
+        .mws-mobile-cta-rail {
+            background: rgba(10, 14, 26, 0.97);
+        }
+    }
 }
 </style>
 <?php
@@ -2371,28 +2574,32 @@ function mws_mobile_2026_redesign_cta_rail() {
     if (is_admin()) return;
     if (!wp_is_mobile()) return;
 
-    $show = false;
+    // Page-aware button labels
+    $primary_url = home_url('/donate/');
+    $primary_label = 'Donate';
     $secondary_url = home_url('/qu-hockey-2026/');
     $secondary_label = 'See Events';
 
-    if (is_page('donate') || is_page(17)) {
-        $show = true;
-        $secondary_url = home_url('/');
-        $secondary_label = 'Home';
+    if (is_front_page() || is_page('home')) {
+        $secondary_url = home_url('/qu-hockey-2026/');
+        $secondary_label = 'Events';
+    } elseif (is_page('donate') || is_page(17)) {
+        $secondary_url = home_url('/qu-hockey-2026/');
+        $secondary_label = 'Events';
     } elseif (is_page('qu-hockey-2026') || is_page(20453)) {
-        $show = true;
+        $primary_url = home_url('/qu-hockey-2026/#hk-register');
+        $primary_label = 'Get Tickets';
         $secondary_url = home_url('/donate/');
         $secondary_label = 'Donate';
     } elseif (is_page('volleyball') || is_page(20452)) {
-        $show = true;
+        $primary_url = home_url('/volleyball/#vb-register');
+        $primary_label = 'Register';
         $secondary_url = home_url('/donate/');
         $secondary_label = 'Donate';
     }
-
-    if (!$show) return;
     ?>
     <div class="mws-mobile-cta-rail" role="navigation" aria-label="Quick actions">
-        <a class="mws-rail-primary" href="<?php echo esc_url(home_url('/donate/')); ?>">Donate</a>
+        <a class="mws-rail-primary" href="<?php echo esc_url($primary_url); ?>"><?php echo esc_html($primary_label); ?></a>
         <a class="mws-rail-secondary" href="<?php echo esc_url($secondary_url); ?>"><?php echo esc_html($secondary_label); ?></a>
     </div>
     <?php
