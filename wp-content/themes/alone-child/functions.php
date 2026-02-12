@@ -1426,10 +1426,11 @@ add_action('wp_head', 'mws_header_footer_render_fixes', 99);
 // Force all header variants to use one canonical site logo asset.
 function mws_fix_header_logo_asset() {
     if (is_admin()) return;
+    $canonical_logo = content_url('/uploads/2021/06/g852.png');
 ?>
 <script>
 (function() {
-    var canonicalSrc = 'https://didactic-query.flywheelstaging.com/wp-content/uploads/2021/06/g852.png';
+    var canonicalSrc = '<?php echo esc_js($canonical_logo); ?>';
     var selectors = ['.elementor-location-header img', '.tg-site-header img', '#masthead img'];
 
     function fixHeaderLogo() {
@@ -1474,9 +1475,10 @@ function mws_force_canonical_logo_html($html) {
     if (is_admin() || empty($html) || stripos($html, 'image834.png') === false) {
         return $html;
     }
-    $old_logo = 'https://didactic-query.flywheelstaging.com/wp-content/uploads/2023/02/image834.png';
-    $new_logo = 'https://didactic-query.flywheelstaging.com/wp-content/uploads/2021/06/g852.png';
+    $old_logo = content_url('/uploads/2023/02/image834.png');
+    $new_logo = content_url('/uploads/2021/06/g852.png');
     $html = str_replace($old_logo, $new_logo, $html);
+    $html = str_replace('/wp-content/uploads/2023/02/image834.png', '/wp-content/uploads/2021/06/g852.png', $html);
     $html = str_replace('Photo from the 2023 Michael Williams Memorial Golf Outing', 'Michael Williams Memorial Scholarship', $html);
     return $html;
 }
@@ -1881,3 +1883,236 @@ function mws_footer_fallback_renderer() {
     mws_render_custom_footer_fallback_markup();
 }
 add_action('wp_footer', 'mws_footer_fallback_renderer', 998);
+
+// ============================================
+// MOBILE-FIRST FOUNDATION (2026 STANDARDS)
+// ============================================
+function mws_mobile_2026_foundation_css() {
+?>
+<style id="mws-mobile-2026-foundation">
+:root {
+    --mws-space-1: clamp(4px, 0.5vw, 8px);
+    --mws-space-2: clamp(8px, 1vw, 12px);
+    --mws-space-3: clamp(12px, 1.4vw, 16px);
+    --mws-space-4: clamp(16px, 2vw, 24px);
+    --mws-space-5: clamp(24px, 3vw, 36px);
+    --mws-space-6: clamp(32px, 4vw, 56px);
+    --mws-rad-sm: 8px;
+    --mws-rad-md: 12px;
+    --mws-rad-lg: 16px;
+    --mws-tap-min: 44px;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-padding-top: 92px;
+}
+
+body {
+    text-rendering: optimizeLegibility;
+    overflow-wrap: break-word;
+}
+
+img,
+video,
+iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+a,
+button,
+input[type="submit"],
+input[type="button"],
+.elementor-button,
+.mws-newsletter-btn {
+    min-height: var(--mws-tap-min);
+}
+
+input,
+select,
+textarea {
+    font-size: 16px;
+}
+
+/* Constrain wide custom sections on all templates */
+#mws-home,
+#mws-about-us,
+#mws-donate,
+#mws-team,
+#mws-scholarship,
+#mws-past-winners,
+#mws-gallery,
+#mws-hockey,
+#mws-volleyball {
+    isolation: isolate;
+}
+
+/* Normalize hero spacing so header/hero overlap does not occur */
+#mws-home .hp-hero,
+#mws-about-us .au-hero,
+#mws-donate .dn-hero,
+#mws-team .tm-hero,
+#mws-scholarship .sc-hero,
+#mws-past-winners .pw-hero,
+#mws-gallery .gal-hero,
+#mws-hockey .hk-hero,
+#mws-volleyball .vb-hero {
+    padding-top: clamp(84px, 10vw, 120px);
+    padding-bottom: clamp(56px, 7vw, 88px);
+}
+
+/* Mobile nav consistency */
+@media (max-width: 1024px) {
+    .elementor-location-header .elementor-nav-menu--dropdown,
+    .elementor-location-header .sub-menu {
+        border-radius: var(--mws-rad-md) !important;
+    }
+
+    .elementor-location-header .elementor-nav-menu--dropdown a,
+    .elementor-location-header .elementor-nav-menu a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .elementor-section,
+    .elementor-container,
+    .mws-footer-fallback .mws-footer-shell {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+<?php
+}
+add_action('wp_head', 'mws_mobile_2026_foundation_css', 97);
+
+// ============================================
+// ACCESSIBILITY + MOBILE NAV UX
+// ============================================
+function mws_mobile_nav_accessibility_script() {
+    if (is_admin()) return;
+?>
+<script>
+(function() {
+    var menuToggle = document.querySelector('.elementor-menu-toggle');
+    var menu = document.querySelector('.elementor-nav-menu--dropdown');
+    if (!menuToggle || !menu) return;
+
+    function syncExpanded() {
+        var expanded = menuToggle.classList.contains('elementor-active') || menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        menu.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+    }
+
+    syncExpanded();
+    menuToggle.addEventListener('click', function() {
+        window.setTimeout(syncExpanded, 0);
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+            menuToggle.click();
+            menuToggle.focus();
+        }
+    });
+})();
+</script>
+<?php
+}
+add_action('wp_footer', 'mws_mobile_nav_accessibility_script', 997);
+
+// ============================================
+// ANALYTICS: MOBILE CONVERSION TRACKING
+// ============================================
+function mws_conversion_tracking_script() {
+    if (is_admin()) return;
+?>
+<script>
+(function() {
+    window.dataLayer = window.dataLayer || [];
+
+    function track(eventName, payload) {
+        window.dataLayer.push(Object.assign({
+            event: eventName,
+            page_path: window.location.pathname,
+            device_class: window.matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop'
+        }, payload || {}));
+    }
+
+    document.addEventListener('click', function(e) {
+        var a = e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('/donate') !== -1) track('cta_click', {cta_type: 'donate', cta_href: href});
+        if (href.indexOf('/volleyball') !== -1) track('cta_click', {cta_type: 'volleyball', cta_href: href});
+        if (href.indexOf('/qu-hockey-2026') !== -1) track('cta_click', {cta_type: 'hockey', cta_href: href});
+    });
+
+    document.addEventListener('submit', function(e) {
+        var form = e.target;
+        if (!form || !form.id) return;
+
+        if (form.id === 'donateForm' || form.id === 'zender-pay-form' || form.id === 'zender-pay-form-agt') {
+            track('donate_submit', {form_id: form.id});
+        } else if (form.id === 'hockeyTicketForm' || form.id === 'zhockey_event') {
+            track('event_registration_submit', {event_type: 'hockey', form_id: form.id});
+        } else if (form.classList.contains('mws-newsletter-form')) {
+            track('newsletter_submit', {form_id: form.id || 'newsletter'});
+        } else if (form.closest('#mws-volleyball')) {
+            track('event_registration_submit', {event_type: 'volleyball', form_id: form.id || 'volleyball'});
+        }
+    }, true);
+})();
+</script>
+<?php
+}
+add_action('wp_footer', 'mws_conversion_tracking_script', 996);
+
+// ============================================
+// LEGACY ROUTE CLEANUP (301 REDIRECTS)
+// ============================================
+function mws_legacy_route_redirects() {
+    if (is_admin() || wp_doing_ajax() || (defined('REST_REQUEST') && REST_REQUEST)) return;
+    if (!is_404() && !is_page()) return;
+    if (!isset($_SERVER['REQUEST_URI'])) return;
+
+    $path = wp_parse_url(home_url($_SERVER['REQUEST_URI']), PHP_URL_PATH);
+    if (!is_string($path)) return;
+    $path = trailingslashit(strtolower($path));
+
+    $redirects = array(
+        '/home-pumori/' => '/',
+        '/home-saltoro/' => '/',
+        '/sample-page/' => '/',
+        '/2025-quinnipiac-hockey-game/' => '/qu-hockey-2026/',
+        '/quinnipiac-mens-ice-hockey-outing/' => '/qu-hockey-2026/',
+        '/annual-golf-tournament/' => '/golf-outing-2025/',
+        '/golfer-registration/' => '/volleyball/',
+        '/sponsorship-registration/' => '/volleyball/',
+        '/hotel-information/' => '/golf-outing-2025/',
+        '/test/' => '/',
+    );
+
+    if (!isset($redirects[$path])) return;
+    $target = home_url($redirects[$path]);
+    if (untrailingslashit($target) === untrailingslashit(home_url($path))) return;
+    wp_safe_redirect($target, 301);
+    exit;
+}
+add_action('template_redirect', 'mws_legacy_route_redirects', 2);
