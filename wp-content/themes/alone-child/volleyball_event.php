@@ -49,7 +49,7 @@
        ========================================== */
     #mws-volleyball .vb-hero {
         background: linear-gradient(135deg, #1a1f34, var(--navy) 50%, #2a3052);
-        padding: 64px 20px 50px;
+        padding: 112px 20px 58px;
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -113,7 +113,7 @@
     }
 
     @media (max-width: 768px) {
-        #mws-volleyball .vb-hero { padding: 48px 16px 40px; }
+        #mws-volleyball .vb-hero { padding: 92px 16px 50px; }
         #mws-volleyball .vb-hero h1 { font-size: 32px; }
     }
 
@@ -198,6 +198,12 @@
         padding: 24px;
     }
 
+    @media (max-width: 767px) {
+        #mws-volleyball .card-body {
+            padding: 18px;
+        }
+    }
+
     /* ==========================================
        REGISTRATION TYPE OPTIONS
        ========================================== */
@@ -212,6 +218,7 @@
         align-items: center;
         gap: 14px;
         padding: 14px 16px;
+        min-height: 56px;
         background: var(--white);
         border: 2px solid var(--gray-200);
         border-radius: 12px;

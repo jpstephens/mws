@@ -41,7 +41,7 @@
        ========================================== */
     #mws-home .hp-hero {
         background: var(--navy);
-        padding: 182px 20px 84px;
+        padding: 164px 20px 82px;
         position: relative;
     }
 
@@ -308,7 +308,7 @@
     }
 
     @media (max-width: 860px) {
-        #mws-home .hp-hero { padding: 154px 20px 78px; }
+        #mws-home .hp-hero { padding: 132px 20px 66px; }
         #mws-home .hp-hero-inner {
             grid-template-columns: 1fr;
             gap: 32px;
@@ -329,7 +329,7 @@
     }
 
     @media (max-width: 480px) {
-        #mws-home .hp-hero { padding: 136px 16px 68px; }
+        #mws-home .hp-hero { padding: 118px 16px 54px; }
         #mws-home .hp-hero-left h1 { font-size: 30px; }
         #mws-home .hp-hero-left .hp-subhead { font-size: 15px; }
         #mws-home .hp-pills { grid-template-columns: repeat(2, 1fr); }
@@ -383,7 +383,7 @@
     #mws-home .hp-event-card img {
         width: 100%;
         height: auto;
-        aspect-ratio: 3 / 2;
+        aspect-ratio: 4 / 3;
         object-fit: cover;
         object-position: center center;
         display: block;
@@ -426,6 +426,9 @@
     @media (max-width: 768px) {
         #mws-home .hp-events-grid {
             grid-template-columns: 1fr;
+        }
+        #mws-home .hp-event-body {
+            padding: 18px;
         }
     }
 
@@ -870,7 +873,7 @@
         <p class="hp-section-lead">Join us at our next fundraiser &mdash; every ticket and registration directly supports the scholarship fund.</p>
         <div class="hp-events-grid">
             <a href="<?php echo home_url('/qu-hockey-2026/'); ?>" class="hp-event-card">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hockey-hero.jpeg" alt="Quinnipiac vs Colgate hockey game fundraiser">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hockey-hero.jpeg" alt="Quinnipiac vs Colgate hockey game fundraiser" loading="lazy" decoding="async" fetchpriority="low">
                 <div class="hp-event-body">
                     <div class="hp-event-date">February 21, 2026</div>
                     <h3>QU vs Colgate Hockey</h3>
@@ -878,7 +881,7 @@
                 </div>
             </a>
             <a href="<?php echo home_url('/volleyball/'); ?>" class="hp-event-card">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/tournament.jpg" alt="Mikey's Beach Volleyball Tournament">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/tournament.jpg" alt="Mikey's Beach Volleyball Tournament" loading="lazy" decoding="async" fetchpriority="low">
                 <div class="hp-event-body">
                     <div class="hp-event-date">March 21, 2026</div>
                     <h3>Mikey&rsquo;s Beach Volleyball Tournament</h3>
@@ -915,7 +918,7 @@
                 <a href="<?php echo home_url('/about-us/'); ?>" class="hp-btn-primary">Read Michael&rsquo;s Story</a>
             </div>
             <div class="hp-story-img">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/02/9e63a8bd5b6decb9db92ff7fbe82fe69-rotated-1.jpg" alt="Michael Williams" width="480" height="480">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/02/9e63a8bd5b6decb9db92ff7fbe82fe69-rotated-1.jpg" alt="Michael Williams" width="480" height="480" loading="lazy" decoding="async" fetchpriority="low">
             </div>
         </div>
     </div>
@@ -926,19 +929,19 @@
         <p class="hp-section-lead">Meet some of the students whose futures you&rsquo;ve helped shape.</p>
         <div class="hp-winners-grid">
             <div class="hp-winner-card">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2025/06/4.jpeg" alt="Evan McCormick, 2025 scholarship recipient">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2025/06/4.jpeg" alt="Evan McCormick, 2025 scholarship recipient" loading="lazy" decoding="async" fetchpriority="low">
                 <h4>Evan McCormick</h4>
                 <div class="hp-winner-year">2025 Recipient</div>
                 <p>Georgetown University &mdash; Finance</p>
             </div>
             <div class="hp-winner-card">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2024/10/IMG_3041.jpg" alt="Melanie Marucci, 2024 scholarship recipient">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2024/10/IMG_3041.jpg" alt="Melanie Marucci, 2024 scholarship recipient" loading="lazy" decoding="async" fetchpriority="low">
                 <h4>Melanie Marucci</h4>
                 <div class="hp-winner-year">2024 Recipient</div>
                 <p>University of Richmond &mdash; Business</p>
             </div>
             <div class="hp-winner-card">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/06/68cf1109-5c8e-4f82-8408-6fd3f62c8f0a-modified.jpg" alt="Ethan Smith, 2023 scholarship recipient">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2023/06/68cf1109-5c8e-4f82-8408-6fd3f62c8f0a-modified.jpg" alt="Ethan Smith, 2023 scholarship recipient" loading="lazy" decoding="async" fetchpriority="low">
                 <h4>Ethan Smith</h4>
                 <div class="hp-winner-year">2023 Recipient</div>
                 <p>Indiana University &mdash; Business</p>

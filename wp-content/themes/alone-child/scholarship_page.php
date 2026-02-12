@@ -38,7 +38,7 @@
     /* Hero Banner */
     #mws-scholarship .sch-hero {
         background: var(--navy);
-        padding: 110px 20px 50px;
+        padding: 112px 20px 56px;
         text-align: center;
         color: var(--white);
     }
@@ -70,7 +70,7 @@
     }
 
     @media (max-width: 768px) {
-        #mws-scholarship .sch-hero { padding: 90px 16px 40px; }
+        #mws-scholarship .sch-hero { padding: 92px 16px 48px; }
         #mws-scholarship .sch-hero h1 { font-size: 34px; }
         #mws-scholarship .sch-hero p { font-size: 16px; }
     }

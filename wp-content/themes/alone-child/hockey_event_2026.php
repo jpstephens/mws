@@ -44,7 +44,7 @@
        ========================================== */
     #mws-hockey .hk-hero {
         background: linear-gradient(135deg, #1a1f34, #232842 50%, #2a3052);
-        padding: 64px 20px 50px;
+        padding: 112px 20px 58px;
         text-align: center;
         color: var(--white);
         position: relative;
@@ -78,7 +78,7 @@
     }
 
     @media (max-width: 768px) {
-        #mws-hockey .hk-hero { padding: 48px 16px 40px; }
+        #mws-hockey .hk-hero { padding: 92px 16px 50px; }
         #mws-hockey .hk-hero h1 { font-size: 32px; }
         #mws-hockey .hk-hero .hk-hero-sub { font-size: 16px; }
     }
@@ -249,7 +249,7 @@
         border: 1px solid var(--border);
         border-radius: 8px;
         font-family: 'Poppins', sans-serif;
-        font-size: 14px;
+        font-size: 16px;
         color: var(--text);
         transition: border-color 0.15s;
         box-sizing: border-box;

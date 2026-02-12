@@ -41,7 +41,7 @@
        ========================================== */
     #mws-donate .dn-hero {
         background: var(--navy);
-        padding: 64px 20px 56px;
+        padding: 112px 20px 64px;
         text-align: center;
         color: var(--white);
     }
@@ -63,7 +63,7 @@
     }
 
     @media (max-width: 768px) {
-        #mws-donate .dn-hero { padding: 48px 16px 44px; }
+        #mws-donate .dn-hero { padding: 92px 16px 52px; }
         #mws-donate .dn-hero h1 { font-size: 32px; }
         #mws-donate .dn-hero .dn-subhead { font-size: 16px; }
     }
@@ -280,6 +280,7 @@
         cursor: pointer;
         transition: border-color 0.15s, background 0.15s, color 0.15s;
         text-align: center;
+        min-height: 46px;
     }
 
     #mws-donate .dn-pill:hover {
@@ -403,7 +404,7 @@
         display: block;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
         #mws-donate .dn-pills {
             grid-template-columns: repeat(2, 1fr);
         }
