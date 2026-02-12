@@ -390,7 +390,7 @@
             <div class="event-info">
                 <h2>Event Details</h2>
                 <p>
-                    The Michael Williams Scholarship teamed up with Quinnipiac University once again to support this great cause.
+                    The Michael Williams Scholarship has teamed up with Quinnipiac University once again to support this great cause.
                     Join us on Saturday, February 21st as Quinnipiac takes on Colgate in Men's Ice Hockey.
                     All proceeds go to the Michael Williams Scholarship.
                 </p>
