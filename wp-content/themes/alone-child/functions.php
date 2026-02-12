@@ -2151,6 +2151,37 @@ function mws_mobile_2026_redesign_css() {
         max-height: 70px !important;
     }
 
+    /* Ensure mobile nav remains visible and operable on homepage and all pages */
+    .elementor-location-header,
+    .tg-site-header,
+    #masthead {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 11000 !important;
+    }
+
+    .elementor-location-header .elementor-widget-nav-menu,
+    .elementor-location-header .elementor-widget-nav-menu .elementor-widget-container {
+        overflow: visible !important;
+    }
+
+    .elementor-location-header .elementor-menu-toggle {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        min-width: 44px;
+        color: #ffffff !important;
+        border: 1px solid rgba(255,255,255,0.28);
+        border-radius: 10px;
+        padding: 6px 10px;
+        background: rgba(255,255,255,0.08);
+    }
+
+    .elementor-location-header .elementor-nav-menu--main {
+        display: none !important;
+    }
+
     /* Shared mobile section rhythm */
     #mws-home .hp-events,
     #mws-home .hp-winners,
@@ -2167,6 +2198,20 @@ function mws_mobile_2026_redesign_css() {
     #mws-volleyball .vb-main {
         padding-left: var(--mws-mobile-gutter) !important;
         padding-right: var(--mws-mobile-gutter) !important;
+    }
+
+    /* Extend redesign language to Elementor pages outside shortcode templates */
+    body.page .elementor:not(.elementor-location-header):not(.elementor-location-footer) .elementor-section {
+        border-radius: var(--mws-mobile-radius);
+    }
+
+    body.page .elementor:not(.elementor-location-header):not(.elementor-location-footer) .elementor-widget-wrap > .elementor-element {
+        margin-bottom: 12px;
+    }
+
+    body.page .elementor:not(.elementor-location-header):not(.elementor-location-footer) .elementor-button {
+        min-height: 46px !important;
+        border-radius: 10px !important;
     }
 
     /* Hero typography and spacing: visually tighter and clearer */
