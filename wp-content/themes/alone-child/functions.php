@@ -1368,72 +1368,26 @@ add_action('wp_footer', 'mws_nav_aria_hidden_script');
 function mws_header_footer_render_fixes() {
 ?>
 <style>
-/* Prevent logo clipping across desktop/mobile header variants */
-.tg-site-header .site-logo,
-.tg-site-header .site-branding,
-.tg-site-header .site-branding a,
-.tg-site-header .custom-logo-link,
-.elementor-location-header .custom-logo-link,
-.elementor-location-header .site-logo {
-    overflow: visible !important;
-}
-
-header,
-.site-header,
-#masthead,
-.tg-site-header,
+/* Prevent logo clipping */
 .elementor-location-header {
     overflow: visible !important;
 }
 
-.tg-site-header .custom-logo,
-.tg-site-header .site-logo img,
-.elementor-location-header .custom-logo,
-.elementor-location-header .site-logo img {
+/* Logo sizing — targets actual Elementor image widget */
+.elementor-location-header .elementor-widget-image img {
     display: block !important;
     width: auto !important;
-    max-height: 104px !important;
+    max-height: 80px !important;
     height: auto !important;
     object-fit: contain !important;
-    object-position: center !important;
-    opacity: 1 !important;
-    filter: none !important;
-    mix-blend-mode: normal !important;
-    -webkit-filter: none !important;
-}
-
-/* Ensure logo stays visible against dark header variants */
-.tg-site-header .custom-logo-link,
-.elementor-location-header .custom-logo-link,
-.tg-site-header .site-logo,
-.tg-site-header .site-logo a,
-.elementor-location-header .site-logo,
-.elementor-location-header .site-logo a {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 4px !important;
-    border-radius: 999px !important;
-    background: rgba(255, 255, 255, 0.96) !important;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22) !important;
-}
-
-.tg-site-header .site-logo img,
-.tg-site-header .custom-logo,
-.elementor-location-header .site-logo img,
-.elementor-location-header .custom-logo {
-    border-radius: 999px !important;
+    border-radius: 50% !important;
 }
 
 @media (max-width: 1024px) {
-    .tg-site-header .custom-logo,
-    .tg-site-header .site-logo img,
-    .elementor-location-header .custom-logo,
-    .elementor-location-header .site-logo img {
-        max-height: 82px !important;
+    .elementor-location-header .elementor-widget-image img {
+        max-height: 60px !important;
     }
 }
-
 </style>
 <?php
 }
@@ -1927,6 +1881,12 @@ html {
     touch-action: manipulation;
 }
 
+@media (max-width: 767px) {
+    html {
+        scroll-padding-top: 64px;
+    }
+}
+
 a,
 button,
 input,
@@ -1992,6 +1952,22 @@ textarea {
     padding-bottom: clamp(56px, 7vw, 88px);
 }
 
+/* Tighter hero padding on mobile — header is compact */
+@media (max-width: 767px) {
+    #mws-home .hp-hero,
+    #mws-about-us .au-hero,
+    #mws-donate .dn-hero,
+    #mws-team .tm-hero,
+    #mws-scholarship .sc-hero,
+    #mws-past-winners .pw-hero,
+    #mws-gallery .gal-hero,
+    #mws-hockey .hk-hero,
+    #mws-volleyball .vb-hero {
+        padding-top: clamp(40px, 6vw, 64px);
+        padding-bottom: clamp(32px, 5vw, 56px);
+    }
+}
+
 /* 2b. Hover vs touch differentiation */
 @media (hover: hover) and (pointer: fine) {
     a, button, .elementor-button {
@@ -2021,6 +1997,9 @@ textarea {
 }
 
 /* 2d. Content-visibility performance for off-screen sections */
+/* Disabled — content-visibility with estimated sizes causes scroll jumps
+   and layout recalculations that make scrolling feel janky on mobile.
+   The backdrop-filter removal is the bigger perf win.
 @media (max-width: 1024px) {
     #mws-home .hp-events,
     #mws-home .hp-winners,
@@ -2035,6 +2014,7 @@ textarea {
         contain-intrinsic-size: auto 500px;
     }
 }
+*/
 
 /* 2c. Safe area insets */
 @media (max-width: 767px) {
@@ -2289,54 +2269,73 @@ function mws_mobile_2026_redesign_css() {
         background: #f5f6fa;
     }
 
-    /* Header: compact, dense mobile bar */
-    .elementor-location-header,
-    .tg-site-header,
-    #masthead {
+    /* Header: compact, dense mobile bar — solid bg for scroll perf */
+    .elementor-location-header {
         position: sticky !important;
         top: 0 !important;
         z-index: 11000 !important;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        background: #11192d !important;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28) !important;
+        will-change: transform;
+    }
+
+    /* Override Elementor's absolute positioning on header section */
+    .elementor-location-header .elementor-section {
+        position: relative !important;
         padding: 0 !important;
         min-height: 0 !important;
-        max-height: none;
     }
 
-    /* Tighten header inner containers */
-    .elementor-location-header .elementor-section,
-    .elementor-location-header .elementor-container,
-    .elementor-location-header .elementor-widget-wrap,
-    .tg-site-header .tg-header,
-    .tg-site-header .tg-header-wrap {
-        padding-top: 6px !important;
-        padding-bottom: 6px !important;
+    /* Tighten header container */
+    .elementor-location-header .elementor-container {
+        padding: 8px 12px !important;
         min-height: 0 !important;
-        align-items: center;
+        flex-wrap: nowrap !important;
     }
 
-    /* Shrink the logo dramatically for mobile */
-    .elementor-location-header .site-logo img,
-    .elementor-location-header .custom-logo,
-    .tg-site-header .site-logo img,
-    .tg-site-header .custom-logo {
+    .elementor-location-header .elementor-widget-wrap {
+        padding: 0 !important;
+        align-items: center !important;
+    }
+
+    /* Collapse any extra rows/columns in header that are empty on mobile */
+    .elementor-location-header .elementor-row,
+    .elementor-location-header .elementor-column {
+        min-height: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Hide empty header widgets that take up space */
+    .elementor-location-header .elementor-widget:empty,
+    .elementor-location-header .elementor-widget-container:empty {
+        display: none !important;
+    }
+
+    /* Collapse any header widgets that aren't logo or nav toggle */
+    .elementor-location-header .elementor-widget-text-editor,
+    .elementor-location-header .elementor-widget-button,
+    .elementor-location-header .elementor-widget-heading,
+    .elementor-location-header .elementor-widget-spacer,
+    .elementor-location-header .elementor-widget-divider,
+    .elementor-location-header .elementor-widget-search-form {
+        display: none !important;
+    }
+
+    /* Shrink the logo — target actual Elementor image widget */
+    .elementor-location-header .elementor-widget-image img,
+    .elementor-location-header img {
         max-height: 44px !important;
         width: auto !important;
+        height: auto !important;
+        border-radius: 50%;
     }
 
-    /* Kill the oversized white bubble around the logo */
-    .tg-site-header .custom-logo-link,
-    .elementor-location-header .custom-logo-link,
-    .tg-site-header .site-logo,
-    .tg-site-header .site-logo a,
-    .elementor-location-header .site-logo,
-    .elementor-location-header .site-logo a {
-        padding: 2px !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18) !important;
-        background: rgba(255, 255, 255, 0.92) !important;
+    .elementor-location-header .elementor-widget-image,
+    .elementor-location-header .elementor-widget-image .elementor-widget-container {
+        line-height: 0;
     }
 
+    /* Nav menu widget */
     .elementor-location-header .elementor-widget-nav-menu,
     .elementor-location-header .elementor-widget-nav-menu .elementor-widget-container {
         overflow: visible !important;
@@ -2357,6 +2356,43 @@ function mws_mobile_2026_redesign_css() {
 
     .elementor-location-header .elementor-nav-menu--main {
         display: none !important;
+    }
+
+    /* Mobile dropdown menu: dark background, visible links */
+    nav.elementor-nav-menu--dropdown {
+        background: #1a2035 !important;
+        border: 1px solid rgba(205, 163, 59, 0.25) !important;
+        border-radius: 12px !important;
+        padding: 8px !important;
+        box-shadow: 0 16px 44px rgba(0, 0, 0, 0.40) !important;
+    }
+
+    /* Nested sub-menus: no double boxing */
+    nav.elementor-nav-menu--dropdown ul.sub-menu {
+        border: 0 !important;
+        box-shadow: none !important;
+        padding: 0 0 0 12px !important;
+        background: transparent !important;
+    }
+
+    nav.elementor-nav-menu--dropdown a,
+    nav.elementor-nav-menu--dropdown .elementor-item,
+    nav.elementor-nav-menu--dropdown .elementor-sub-item {
+        color: #ffffff !important;
+        background: transparent !important;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+        padding: 12px 14px !important;
+        border-radius: 8px !important;
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    nav.elementor-nav-menu--dropdown a:hover,
+    nav.elementor-nav-menu--dropdown a:focus {
+        background: rgba(205, 163, 59, 0.15) !important;
+        color: #cda33b !important;
     }
 
     /* Shared mobile section rhythm */
@@ -2508,10 +2544,9 @@ function mws_mobile_2026_redesign_css() {
         grid-template-columns: 1fr 1fr;
         gap: 10px;
         padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
-        background: rgba(17, 25, 45, 0.95);
+        background: #11192d;
         border-top: 1px solid rgba(205, 163, 59, 0.4);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        will-change: transform;
     }
 
     .mws-mobile-cta-rail a {
@@ -2555,13 +2590,11 @@ function mws_mobile_2026_redesign_css() {
         .elementor-location-header,
         .tg-site-header,
         #masthead {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            background: rgba(10, 14, 26, 0.92) !important;
+            background: #0a0e1a !important;
         }
 
         .mws-mobile-cta-rail {
-            background: rgba(10, 14, 26, 0.97);
+            background: #0a0e1a;
         }
     }
 }
