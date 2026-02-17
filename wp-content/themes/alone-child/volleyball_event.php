@@ -18,6 +18,8 @@
         line-height: 1.6;
         color: #111827;
         -webkit-font-smoothing: antialiased;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     #mws-volleyball *,
@@ -48,13 +50,19 @@
        HERO BANNER
        ========================================== */
     #mws-volleyball .vb-hero {
-        background: linear-gradient(135deg, #1a1f34, var(--navy) 50%, #2a3052);
-        padding: 112px 20px 58px;
+        background:
+            linear-gradient(135deg, rgba(26, 31, 52, 0.48), rgba(35, 40, 66, 0.58) 50%, rgba(42, 48, 82, 0.48)),
+            var(--hero-image) center center / cover no-repeat;
+        min-height: clamp(300px, 46vw, 430px);
+        padding: 0;
         text-align: center;
         position: relative;
         overflow: hidden;
-        margin-bottom: 0;
+        margin: 0;
         border-radius: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
     }
 
     #mws-volleyball .vb-hero::after {
@@ -67,17 +75,16 @@
         background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
     }
 
-    #mws-volleyball .vb-hero img {
-        display: none;
-    }
-
     #mws-volleyball .vb-hero-overlay {
-        position: static;
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 0;
+        padding: clamp(34px, 5vw, 52px) 16px clamp(24px, 4vw, 38px);
+        width: min(1100px, 100%);
+        margin: 0 auto;
     }
 
     #mws-volleyball .vb-hero h1 {
@@ -113,7 +120,7 @@
     }
 
     @media (max-width: 768px) {
-        #mws-volleyball .vb-hero { padding: 92px 16px 50px; }
+        #mws-volleyball .vb-hero { min-height: 280px; }
         #mws-volleyball .vb-hero h1 { font-size: 32px; }
     }
 
@@ -1008,14 +1015,13 @@
 
 <div id="mws-volleyball">
     <!-- HERO BANNER with tournament image -->
-    <div class="vb-hero">
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/tournament.jpg" alt="Mikey's Beach Volleyball Tournament">
+    <div class="vb-hero" style="--hero-image: url('<?php echo esc_url(get_stylesheet_directory_uri() . '/images/tournament.jpg'); ?>');">
         <div class="vb-hero-overlay">
             <h1><span aria-hidden="true">&#127912;</span> <span>Mikey's</span> Beach Volleyball Tournament</h1>
             <div class="hero-meta">
                 <span><span aria-hidden="true">&#128197;</span> March 21, 2026</span>
                 <span><span aria-hidden="true">&#128205;</span> Great American Center, Aberdeen NJ</span>
-                <span><span aria-hidden="true">&#9200;</span> 12&ndash;4 PM</span>
+                <span><span aria-hidden="true">&#9200;</span> 12&ndash;3 PM</span>
             </div>
             <div class="hero-prices">
                 <div class="hero-price">
@@ -1035,7 +1041,7 @@
         <aside class="info-section">
             <div class="info-header">
                 <h2>Play Volleyball.<br>Support Scholarships.</h2>
-                <p>Join us for the 2nd Annual Michael Williams Scholarship Beach Volleyball Tournament. All proceeds fund scholarships for RFH students who share Mikey's creative spirit.</p>
+                <p>Join us for the Annual Michael Williams Scholarship Beach Volleyball Tournament. All proceeds fund scholarships for RFH students who share Mikey's creative spirit.</p>
             </div>
 
             <div class="info-grid">
@@ -1069,7 +1075,7 @@
                 </div>
                 <div class="info-row">
                     <span class="label">Time</span>
-                    <span class="value">12 PM &ndash; 4 PM</span>
+                    <span class="value">12 PM &ndash; 3 PM</span>
                 </div>
                 <div class="info-row">
                     <span class="label">Location</span>
@@ -1092,7 +1098,7 @@
             <div class="form-section active" id="stepChoose">
                 <div class="card-header">
                     <h2>Register Now</h2>
-                    <p>2nd Annual &mdash; All proceeds fund scholarships for RFH students</p>
+                    <p>Annual Event &mdash; All proceeds fund scholarships for RFH students</p>
                 </div>
                 <div class="card-body">
                     <div class="reg-types">
@@ -1504,7 +1510,7 @@
                 </div>
                 <div class="info-row">
                     <span class="label">Time</span>
-                    <span class="value">12 PM &ndash; 4 PM</span>
+                    <span class="value">12 PM &ndash; 3 PM</span>
                 </div>
                 <div class="info-row">
                     <span class="label">Location</span>
