@@ -1883,7 +1883,7 @@ html {
 
 @media (max-width: 767px) {
     html {
-        scroll-padding-top: 64px;
+        scroll-padding-top: calc(68px + env(safe-area-inset-top, 0px));
     }
 }
 
@@ -2144,6 +2144,7 @@ function mws_mobile_nav_accessibility_script() {
 ?>
 <script>
 (function() {
+    if (window.matchMedia('(max-width: 767px)').matches) return;
     var menuToggle = document.querySelector('.elementor-menu-toggle');
     var menu = document.querySelector('.elementor-nav-menu--dropdown');
     if (!menuToggle || !menu) return;
@@ -2269,144 +2270,9 @@ function mws_mobile_2026_redesign_css() {
         background: #f5f6fa;
     }
 
-    /* Header: compact, dense mobile bar — solid bg for scroll perf */
+    /* Header: replaced by custom mobile header */
     .elementor-location-header {
-        position: sticky !important;
-        top: 0 !important;
-        z-index: 11000 !important;
-        background: #11192d !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28) !important;
-        will-change: transform;
-    }
-
-    /* Hide ALL extra sections in header — only keep the first (logo+nav) */
-    .elementor-location-header .elementor-section ~ .elementor-section,
-    .elementor-location-header .elementor-section.elementor-hidden-mobile {
         display: none !important;
-    }
-
-    /* Flatten section wrappers so they don't generate extra boxes */
-    .elementor-location-header .elementor-section-wrap {
-        display: contents !important;
-    }
-
-    /* Override Elementor's absolute positioning on header section */
-    .elementor-location-header .elementor-section {
-        position: relative !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        min-height: 0 !important;
-        border: 0 !important;
-    }
-
-    /* Tighten header container */
-    .elementor-location-header .elementor-container {
-        padding: 8px 12px !important;
-        min-height: 0 !important;
-        flex-wrap: nowrap !important;
-        gap: 0 !important;
-    }
-
-    .elementor-location-header .elementor-widget-wrap {
-        padding: 0 !important;
-        align-items: center !important;
-    }
-
-    /* Collapse all rows/columns — zero out any gaps or padding */
-    .elementor-location-header .elementor-row,
-    .elementor-location-header .elementor-column {
-        min-height: 0 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-
-    .elementor-location-header .elementor-column-gap-default > .elementor-column > .elementor-element-populated {
-        padding: 0 !important;
-    }
-
-    /* Hide ALL widgets in header except logo image and nav menu */
-    .elementor-location-header .elementor-widget:not(.elementor-widget-image):not(.elementor-widget-nav-menu) {
-        display: none !important;
-    }
-
-    /* Hide empty header widgets that take up space */
-    .elementor-location-header .elementor-widget:empty,
-    .elementor-location-header .elementor-widget-container:empty {
-        display: none !important;
-    }
-
-    /* Shrink the logo — target actual Elementor image widget */
-    .elementor-location-header .elementor-widget-image img,
-    .elementor-location-header img {
-        max-height: 44px !important;
-        width: auto !important;
-        height: auto !important;
-        border-radius: 50%;
-    }
-
-    .elementor-location-header .elementor-widget-image,
-    .elementor-location-header .elementor-widget-image .elementor-widget-container {
-        line-height: 0;
-    }
-
-    /* Nav menu widget */
-    .elementor-location-header .elementor-widget-nav-menu,
-    .elementor-location-header .elementor-widget-nav-menu .elementor-widget-container {
-        overflow: visible !important;
-    }
-
-    .elementor-location-header .elementor-menu-toggle {
-        display: inline-flex !important;
-        align-items: center;
-        justify-content: center;
-        min-height: 44px;
-        min-width: 44px;
-        color: #ffffff !important;
-        border: 1px solid rgba(255,255,255,0.28);
-        border-radius: 10px;
-        padding: 6px 10px;
-        background: rgba(255,255,255,0.08);
-    }
-
-    .elementor-location-header .elementor-nav-menu--main {
-        display: none !important;
-    }
-
-    /* Mobile dropdown menu: dark background, visible links */
-    nav.elementor-nav-menu--dropdown {
-        background: #1a2035 !important;
-        border: 1px solid rgba(205, 163, 59, 0.25) !important;
-        border-radius: 12px !important;
-        padding: 8px !important;
-        box-shadow: 0 16px 44px rgba(0, 0, 0, 0.40) !important;
-    }
-
-    /* Nested sub-menus: no double boxing */
-    nav.elementor-nav-menu--dropdown ul.sub-menu {
-        border: 0 !important;
-        box-shadow: none !important;
-        padding: 0 0 0 12px !important;
-        background: transparent !important;
-    }
-
-    nav.elementor-nav-menu--dropdown a,
-    nav.elementor-nav-menu--dropdown .elementor-item,
-    nav.elementor-nav-menu--dropdown .elementor-sub-item {
-        color: #ffffff !important;
-        background: transparent !important;
-        font-size: 15px !important;
-        font-weight: 500 !important;
-        padding: 12px 14px !important;
-        border-radius: 8px !important;
-        min-height: 44px !important;
-        display: flex !important;
-        align-items: center !important;
-    }
-
-    nav.elementor-nav-menu--dropdown a:hover,
-    nav.elementor-nav-menu--dropdown a:focus {
-        background: rgba(205, 163, 59, 0.15) !important;
-        color: #cda33b !important;
     }
 
     /* Shared mobile section rhythm */
@@ -2601,12 +2467,6 @@ function mws_mobile_2026_redesign_css() {
             --mws-mobile-card-shadow: 0 10px 28px rgba(0, 0, 0, 0.30);
         }
 
-        .elementor-location-header,
-        .tg-site-header,
-        #masthead {
-            background: #0a0e1a !important;
-        }
-
         .mws-mobile-cta-rail {
             background: #0a0e1a;
         }
@@ -2616,6 +2476,353 @@ function mws_mobile_2026_redesign_css() {
 <?php
 }
 add_action('wp_head', 'mws_mobile_2026_redesign_css', 120);
+
+// ============================================
+// CUSTOM MOBILE HEADER — CSS
+// ============================================
+function mws_mobile_header_css() {
+    if (is_admin()) return;
+?>
+<style id="mws-mobile-header">
+/* Hidden on desktop */
+.mws-mobile-header,
+.mws-mobile-nav-overlay {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    /* Hide Elementor header on mobile */
+    .elementor-location-header {
+        display: none !important;
+    }
+
+    /* Fixed header bar */
+    .mws-mobile-header {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        padding: 0 14px;
+        padding-top: env(safe-area-inset-top, 0px);
+        background: #11192d;
+        z-index: 11500;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+    }
+
+    /* Logo */
+    .mws-mobile-header-logo img {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: block;
+    }
+
+    /* Hamburger button */
+    .mws-mobile-header-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 10px;
+        color: #ffffff;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .mws-mobile-header-toggle svg {
+        width: 24px;
+        height: 24px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+    .mws-mobile-header-toggle .mws-icon-close {
+        display: none;
+    }
+    .mws-mobile-header-toggle[aria-expanded="true"] .mws-icon-menu {
+        display: none;
+    }
+    .mws-mobile-header-toggle[aria-expanded="true"] .mws-icon-close {
+        display: block;
+    }
+
+    /* Full-screen overlay */
+    .mws-mobile-nav-overlay {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 11400;
+        background: #11192d;
+        padding-top: calc(60px + env(safe-area-inset-top, 0px));
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        transform: translateY(-100%);
+        visibility: hidden;
+        transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1),
+                    visibility 0s linear 0.38s;
+    }
+    .mws-mobile-nav-overlay.is-open {
+        transform: translateY(0);
+        visibility: visible;
+        transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1),
+                    visibility 0s linear 0s;
+    }
+
+    /* Nav list */
+    .mws-mobile-nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 16px 14px 0;
+    }
+
+    /* Nav links */
+    .mws-mobile-nav-list a {
+        display: flex;
+        align-items: center;
+        height: 52px;
+        padding: 0 16px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: background 0.15s ease, color 0.15s ease;
+    }
+    .mws-mobile-nav-list a:hover,
+    .mws-mobile-nav-list a:focus-visible {
+        background: rgba(205, 163, 59, 0.15);
+        color: #cda33b;
+        outline: none;
+    }
+    .mws-mobile-nav-list a[aria-current="page"] {
+        color: #cda33b;
+        background: rgba(205, 163, 59, 0.10);
+    }
+
+    /* Donate CTA at bottom */
+    .mws-mobile-nav-donate {
+        margin-top: auto;
+        padding: 20px 14px;
+    }
+    .mws-mobile-nav-donate a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 52px;
+        background: #cda33b;
+        color: #ffffff;
+        font-family: 'Poppins', sans-serif;
+        font-size: 17px;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: background 0.15s ease;
+    }
+    .mws-mobile-nav-donate a:hover,
+    .mws-mobile-nav-donate a:focus-visible {
+        background: #b8922e;
+        outline: none;
+    }
+
+    /* Scroll lock when menu open */
+    body.mws-nav-open {
+        overflow: hidden !important;
+        position: fixed;
+        width: 100%;
+        top: calc(-1 * var(--mws-scroll-y, 0px));
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+        .mws-mobile-header {
+            background: #0a0e1a;
+        }
+        .mws-mobile-nav-overlay {
+            background: #0a0e1a;
+        }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        .mws-mobile-nav-overlay {
+            transition: none;
+        }
+    }
+}
+</style>
+<?php
+}
+add_action('wp_head', 'mws_mobile_header_css', 121);
+
+// ============================================
+// CUSTOM MOBILE HEADER — MARKUP
+// ============================================
+function mws_mobile_header_markup() {
+    if (is_admin()) return;
+
+    $current_path = trailingslashit(wp_parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+    $nav_items = array(
+        array('url' => '/',                'label' => 'Home'),
+        array('url' => '/about-us/',       'label' => 'About Mikey'),
+        array('url' => '/our-team/',       'label' => 'Team'),
+        array('url' => '/scholarship/',    'label' => 'Scholarship Info'),
+        array('url' => '/past-winners/',   'label' => 'Past Winners'),
+        array('url' => '/gallery/',        'label' => 'Gallery'),
+        array('url' => '/qu-hockey-2026/', 'label' => 'QU Hockey 2026'),
+        array('url' => '/volleyball/',     'label' => 'Volleyball'),
+    );
+    ?>
+    <header class="mws-mobile-header" role="banner">
+        <a class="mws-mobile-header-logo" href="<?php echo esc_url(home_url('/')); ?>" aria-label="Home">
+            <img src="<?php echo esc_url(content_url('/uploads/2021/06/g852.png')); ?>" alt="Michael Williams Memorial Scholarship" width="44" height="44">
+        </a>
+        <button class="mws-mobile-header-toggle" aria-expanded="false" aria-controls="mws-mobile-nav" aria-label="Open menu">
+            <svg class="mws-icon-menu" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            <svg class="mws-icon-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </header>
+    <nav id="mws-mobile-nav" class="mws-mobile-nav-overlay" aria-hidden="true" aria-label="Mobile navigation">
+        <ul class="mws-mobile-nav-list">
+            <?php foreach ($nav_items as $item) :
+                $is_current = ($current_path === $item['url']) || ($item['url'] === '/' && ($current_path === '/' || $current_path === '/home/'));
+                $aria = $is_current ? ' aria-current="page"' : '';
+            ?>
+            <li><a href="<?php echo esc_url(home_url($item['url'])); ?>"<?php echo $aria; ?>><?php echo esc_html($item['label']); ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+        <div class="mws-mobile-nav-donate">
+            <a href="<?php echo esc_url(home_url('/donate/')); ?>">Donate Now</a>
+        </div>
+    </nav>
+    <?php
+}
+add_action('wp_footer', 'mws_mobile_header_markup', 993);
+
+// ============================================
+// CUSTOM MOBILE HEADER — JS
+// ============================================
+function mws_mobile_header_js() {
+    if (is_admin()) return;
+?>
+<script>
+(function() {
+    var toggle = document.querySelector('.mws-mobile-header-toggle');
+    var nav = document.getElementById('mws-mobile-nav');
+    if (!toggle || !nav) return;
+
+    var body = document.body;
+    var savedScrollY = 0;
+
+    function openMenu() {
+        savedScrollY = window.scrollY;
+        body.style.setProperty('--mws-scroll-y', savedScrollY + 'px');
+        body.classList.add('mws-nav-open');
+
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Close menu');
+        nav.classList.add('is-open');
+        nav.setAttribute('aria-hidden', 'false');
+
+        var firstLink = nav.querySelector('a');
+        if (firstLink) firstLink.focus();
+    }
+
+    function closeMenu() {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+        nav.classList.remove('is-open');
+        nav.setAttribute('aria-hidden', 'true');
+
+        body.classList.remove('mws-nav-open');
+        body.style.removeProperty('--mws-scroll-y');
+        body.style.top = '';
+        window.scrollTo(0, savedScrollY);
+
+        toggle.focus();
+    }
+
+    function isOpen() {
+        return nav.classList.contains('is-open');
+    }
+
+    // Toggle on click
+    toggle.addEventListener('click', function() {
+        if (isOpen()) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    // ESC key closes menu
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isOpen()) {
+            closeMenu();
+        }
+    });
+
+    // Focus trap within overlay
+    nav.addEventListener('keydown', function(e) {
+        if (e.key !== 'Tab') return;
+        var focusable = nav.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+        if (focusable.length === 0) return;
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+            if (document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            }
+        } else {
+            if (document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    });
+
+    // Close menu on link click
+    var links = nav.querySelectorAll('a');
+    for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener('click', function() {
+            closeMenu();
+        });
+    }
+
+    // Auto-close on resize past breakpoint
+    var mql = window.matchMedia('(max-width: 767px)');
+    function handleBreakpoint(e) {
+        if (!e.matches && isOpen()) {
+            closeMenu();
+        }
+    }
+    if (mql.addEventListener) {
+        mql.addEventListener('change', handleBreakpoint);
+    } else if (mql.addListener) {
+        mql.addListener(handleBreakpoint);
+    }
+})();
+</script>
+<?php
+}
+add_action('wp_footer', 'mws_mobile_header_js', 994);
 
 function mws_mobile_2026_redesign_cta_rail() {
     if (is_admin()) return;
