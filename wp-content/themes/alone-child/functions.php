@@ -2279,11 +2279,24 @@ function mws_mobile_2026_redesign_css() {
         will-change: transform;
     }
 
+    /* Hide ALL extra sections in header — only keep the first (logo+nav) */
+    .elementor-location-header .elementor-section ~ .elementor-section,
+    .elementor-location-header .elementor-section.elementor-hidden-mobile {
+        display: none !important;
+    }
+
+    /* Flatten section wrappers so they don't generate extra boxes */
+    .elementor-location-header .elementor-section-wrap {
+        display: contents !important;
+    }
+
     /* Override Elementor's absolute positioning on header section */
     .elementor-location-header .elementor-section {
         position: relative !important;
         padding: 0 !important;
+        margin: 0 !important;
         min-height: 0 !important;
+        border: 0 !important;
     }
 
     /* Tighten header container */
@@ -2291,6 +2304,7 @@ function mws_mobile_2026_redesign_css() {
         padding: 8px 12px !important;
         min-height: 0 !important;
         flex-wrap: nowrap !important;
+        gap: 0 !important;
     }
 
     .elementor-location-header .elementor-widget-wrap {
@@ -2298,26 +2312,26 @@ function mws_mobile_2026_redesign_css() {
         align-items: center !important;
     }
 
-    /* Collapse any extra rows/columns in header that are empty on mobile */
+    /* Collapse all rows/columns — zero out any gaps or padding */
     .elementor-location-header .elementor-row,
     .elementor-location-header .elementor-column {
         min-height: 0 !important;
         padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .elementor-location-header .elementor-column-gap-default > .elementor-column > .elementor-element-populated {
+        padding: 0 !important;
+    }
+
+    /* Hide ALL widgets in header except logo image and nav menu */
+    .elementor-location-header .elementor-widget:not(.elementor-widget-image):not(.elementor-widget-nav-menu) {
+        display: none !important;
     }
 
     /* Hide empty header widgets that take up space */
     .elementor-location-header .elementor-widget:empty,
     .elementor-location-header .elementor-widget-container:empty {
-        display: none !important;
-    }
-
-    /* Collapse any header widgets that aren't logo or nav toggle */
-    .elementor-location-header .elementor-widget-text-editor,
-    .elementor-location-header .elementor-widget-button,
-    .elementor-location-header .elementor-widget-heading,
-    .elementor-location-header .elementor-widget-spacer,
-    .elementor-location-header .elementor-widget-divider,
-    .elementor-location-header .elementor-widget-search-form {
         display: none !important;
     }
 
