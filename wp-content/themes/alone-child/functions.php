@@ -2634,6 +2634,54 @@ function mws_mobile_header_css() {
         background: rgba(205, 163, 59, 0.10);
     }
 
+    /* Submenu toggle button */
+    .mws-mobile-nav-sub-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 52px;
+        padding: 0 16px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffffff;
+        background: none;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: background 0.15s ease, color 0.15s ease;
+    }
+    .mws-mobile-nav-sub-toggle:hover,
+    .mws-mobile-nav-sub-toggle:focus-visible {
+        background: rgba(205, 163, 59, 0.15);
+        color: #cda33b;
+        outline: none;
+    }
+    .mws-mobile-nav-has-sub.is-active > .mws-mobile-nav-sub-toggle {
+        color: #cda33b;
+    }
+    .mws-sub-chevron {
+        transition: transform 0.25s ease;
+        flex-shrink: 0;
+    }
+    .mws-mobile-nav-sub-toggle[aria-expanded="true"] .mws-sub-chevron {
+        transform: rotate(180deg);
+    }
+
+    /* Submenu list */
+    .mws-mobile-nav-sub {
+        list-style: none;
+        margin: 0;
+        padding: 0 0 0 16px;
+    }
+    .mws-mobile-nav-sub a {
+        height: 46px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
     /* Donate CTA at bottom */
     .mws-mobile-nav-donate {
         margin-top: auto;
@@ -2704,10 +2752,20 @@ function mws_mobile_header_markup() {
         array('url' => '/our-team/',       'label' => 'Team'),
         array('url' => '/scholarship/',    'label' => 'Scholarship Info'),
         array('url' => '/past-winners/',   'label' => 'Past Winners'),
-        array('url' => '/mikeys-art-gallery/', 'label' => 'Gallery'),
         array('url' => '/qu-hockey-2026/', 'label' => 'QU Hockey 2026'),
         array('url' => '/volleyball/',     'label' => 'Volleyball'),
     );
+
+    $gallery_items = array(
+        array('url' => '/golf-outing-2025/',   'label' => 'Golf Outing 2025'),
+        array('url' => '/golf-outing-2024/',   'label' => 'Golf Outing 2024'),
+        array('url' => '/golf-outing-2023/',   'label' => 'Golf Outing 2023'),
+        array('url' => '/golf-outing-2022/',   'label' => 'Golf Outing 2022'),
+        array('url' => '/mikeys-art-gallery/', 'label' => 'Art Gallery'),
+    );
+
+    $gallery_slugs = array_column($gallery_items, 'url');
+    $gallery_is_current = in_array($current_path, $gallery_slugs);
     ?>
     <header class="mws-mobile-header" role="banner">
         <a class="mws-mobile-header-logo" href="<?php echo esc_url(home_url('/')); ?>" aria-label="Home">
@@ -2725,6 +2783,23 @@ function mws_mobile_header_markup() {
                 $aria = $is_current ? ' aria-current="page"' : '';
             ?>
             <li><a href="<?php echo esc_url(home_url($item['url'])); ?>"<?php echo $aria; ?>><?php echo esc_html($item['label']); ?></a></li>
+            <?php
+                // Insert Gallery submenu after Past Winners
+                if ($item['url'] === '/past-winners/') : ?>
+            <li class="mws-mobile-nav-has-sub<?php echo $gallery_is_current ? ' is-active' : ''; ?>">
+                <button class="mws-mobile-nav-sub-toggle" aria-expanded="<?php echo $gallery_is_current ? 'true' : 'false'; ?>">
+                    Gallery
+                    <svg class="mws-sub-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="mws-mobile-nav-sub"<?php echo $gallery_is_current ? '' : ' hidden'; ?>>
+                    <?php foreach ($gallery_items as $gi) :
+                        $gi_current = ($current_path === $gi['url']) ? ' aria-current="page"' : '';
+                    ?>
+                    <li><a href="<?php echo esc_url(home_url($gi['url'])); ?>"<?php echo $gi_current; ?>><?php echo esc_html($gi['label']); ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
+            <?php endif; ?>
             <?php endforeach; ?>
         </ul>
         <div class="mws-mobile-nav-donate">
@@ -2817,6 +2892,22 @@ function mws_mobile_header_js() {
             }
         }
     });
+
+    // Submenu toggles
+    var subToggles = nav.querySelectorAll('.mws-mobile-nav-sub-toggle');
+    for (var s = 0; s < subToggles.length; s++) {
+        subToggles[s].addEventListener('click', function() {
+            var sub = this.nextElementSibling;
+            var expanded = this.getAttribute('aria-expanded') === 'true';
+            if (expanded) {
+                sub.hidden = true;
+                this.setAttribute('aria-expanded', 'false');
+            } else {
+                sub.hidden = false;
+                this.setAttribute('aria-expanded', 'true');
+            }
+        });
+    }
 
     // Close menu on link click
     var links = nav.querySelectorAll('a');
