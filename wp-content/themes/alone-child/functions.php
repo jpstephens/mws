@@ -2270,6 +2270,26 @@ function mws_mobile_2026_redesign_css() {
         background: #f5f6fa;
     }
 
+    /* Prevent horizontal overflow on mobile */
+    html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw;
+    }
+
+    /* Clamp Elementor sections to viewport */
+    .elementor-section,
+    .elementor-container,
+    .elementor-widget-wrap,
+    .elementor-widget {
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .elementor-section.elementor-section-stretched {
+        max-width: 100vw !important;
+        overflow-x: hidden;
+    }
+
     /* Header: replaced by custom mobile header */
     .elementor-location-header {
         display: none !important;
@@ -2684,7 +2704,7 @@ function mws_mobile_header_markup() {
         array('url' => '/our-team/',       'label' => 'Team'),
         array('url' => '/scholarship/',    'label' => 'Scholarship Info'),
         array('url' => '/past-winners/',   'label' => 'Past Winners'),
-        array('url' => '/gallery/',        'label' => 'Gallery'),
+        array('url' => '/mikeys-art-gallery/', 'label' => 'Gallery'),
         array('url' => '/qu-hockey-2026/', 'label' => 'QU Hockey 2026'),
         array('url' => '/volleyball/',     'label' => 'Volleyball'),
     );
