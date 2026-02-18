@@ -301,6 +301,7 @@
     #mws-team .tm-photo img.tm-crop-jesse { object-position: center 22%; }
     #mws-team .tm-photo img.tm-crop-joe { object-position: center 30%; }
     #mws-team .tm-photo img.tm-crop-chris { object-position: center 24%; }
+    #mws-team .tm-photo img.tm-crop-corey { object-position: center 30%; }
 
     #mws-team .tm-photo img:hover {
         transform: scale(1.02);
@@ -545,6 +546,21 @@
                 <h3>Chris Goger</h3>
                 <p>Chris has been the Senior Director of Recycling at BlackBridge Investments for nine years and is the co-founder of BlackBridge Logistics. His close ties to the founding team make him a natural fit on the board.</p>
                 <p>He resides in Point Pleasant, NJ with his wife Megan, their children Thomas and Emma, and dog Jackson. Chris enjoys fitness, sports, and cooking &mdash; and brings the same energy and dedication to every foundation event.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Corey — photo right -->
+    <div class="tm-row tm-row-reverse">
+        <div class="tm-row-inner">
+            <div class="tm-photo">
+                <img class="tm-crop-corey" src="<?php echo get_stylesheet_directory_uri(); ?>/../../uploads/2026/02/corey.png" alt="Corey">
+            </div>
+            <div class="tm-text">
+                <h3>Corey</h3>
+                <p>As his step-brother, Corey had the privilege of growing up with Michael for much of his youth. He can attest that having Mike as an older brother was every bit as awesome as one might expect. Witnessing first-hand Michael&rsquo;s positive impact on so many in the community fuels Corey&rsquo;s dedication to the foundation.</p>
+                <p>A graduate of Georgian Court University, Corey owns and operates a marketing business along with adult recreational volleyball leagues that Mike once enthusiastically took part in. His experience in branding and community engagement strengthens the board&rsquo;s efforts to expand the foundation&rsquo;s reach and impact.</p>
+                <p>Corey lives in Vero Beach, Florida, with his wife Jen and their three children.</p>
             </div>
         </div>
     </div>
