@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mikey's Beach Volleyball Tournament | March 21, 2026</title>
-    <meta name="description" content="2nd Annual Michael Williams Scholarship Beach Volleyball Tournament. March 21 in Great American Center (Aberdeen, NJ).">
+    <meta name="description" content="Annual Michael Williams Scholarship Beach Volleyball Tournament. March 21 in Great American Center (Aberdeen, NJ).">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1045,6 +1045,45 @@
         }
 
         .hidden { display: none !important; }
+
+        /* Check Mailing Instructions Callout */
+        .check-instructions {
+            display: none;
+            background: var(--gold-bg);
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .check-instructions h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #92400e;
+            margin: 0 0 10px;
+        }
+
+        .check-instructions .address {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin: 0 0 8px;
+        }
+
+        .check-instructions .payable {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin: 0 0 8px;
+        }
+
+        .check-instructions .note {
+            font-size: 13px;
+            color: var(--gray-500);
+            font-style: italic;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -1053,7 +1092,7 @@
         <div class="header-meta">
             <span>📅 March 21, 2026</span>
             <span>📍 Great American Center (Aberdeen, NJ)</span>
-            <span>⏰ 12–4 PM</span>
+            <span>⏰ 12–3 PM</span>
         </div>
     </header>
 
@@ -1062,7 +1101,7 @@
         <aside class="info-section">
             <div class="info-header">
                 <h2>Play Volleyball.<br>Support Scholarships.</h2>
-                <p>Join us for the 2nd Annual Michael Williams Scholarship Beach Volleyball Tournament. All proceeds fund scholarships for RFH students who share Mikey's creative spirit.</p>
+                <p>Join us for the Annual Michael Williams Scholarship Beach Volleyball Tournament. All proceeds fund scholarships for RFH students who share Mikey's creative spirit.</p>
             </div>
 
             <div class="info-card" style="padding: 0; overflow: hidden;">
@@ -1100,7 +1139,7 @@
                 </div>
                 <div class="info-row">
                     <span class="label">Time</span>
-                    <span class="value">12 PM – 4 PM</span>
+                    <span class="value">12 PM – 3 PM</span>
                 </div>
                 <div class="info-row">
                     <span class="label">Location</span>
@@ -1284,6 +1323,13 @@
                                 <input type="text" id="teamLinkInput" readonly>
                                 <button type="button" class="copy-btn" onclick="copyLink()">Copy</button>
                             </div>
+                        </div>
+
+                        <div class="check-instructions" id="checkInstructionsCaptain">
+                            <h4>&#128236; Check Mailing Instructions</h4>
+                            <p class="address">PO Box 335<br>Huntington, NY 11743</p>
+                            <p class="payable">Make payable to: <strong>Michael Williams Memorial Scholarship</strong></p>
+                            <p class="note">Your registration will be confirmed once your check is received.</p>
                         </div>
 
                         <p style="font-size: 13px; color: var(--gray-500);">Check your email for confirmation and payment details.</p>
@@ -1499,6 +1545,14 @@
                         <div class="icon">🎉</div>
                         <h3>You're Registered!</h3>
                         <p>Check your email for confirmation and next steps. See you March 21, 2026!</p>
+
+                        <div class="check-instructions" id="checkInstructionsGeneric">
+                            <h4>&#128236; Check Mailing Instructions</h4>
+                            <p class="address">PO Box 335<br>Huntington, NY 11743</p>
+                            <p class="payable">Make payable to: <strong>Michael Williams Memorial Scholarship</strong></p>
+                            <p class="note">Your registration will be confirmed once your check is received.</p>
+                        </div>
+
                         <button type="button" class="btn btn-secondary" onclick="resetAll()">Register Someone Else</button>
                     </div>
                 </div>
@@ -1531,7 +1585,7 @@
                 </div>
                 <div class="info-row">
                     <span class="label">Time</span>
-                    <span class="value">12 PM – 4 PM</span>
+                    <span class="value">12 PM – 3 PM</span>
                 </div>
                 <div class="info-row">
                     <span class="label">Location</span>
@@ -1606,6 +1660,8 @@
                 <button type="button" class="roster-remove" onclick="removePaidRosterRow(this)">×</button>
             </div>`;
             updateCaptainTotal();
+            document.getElementById('checkInstructionsCaptain').style.display = 'none';
+            document.getElementById('checkInstructionsGeneric').style.display = 'none';
             showSection('stepChoose');
         }
 
@@ -1961,6 +2017,7 @@
                 const teamLink = `${baseUrl}?join=${teamCode}`;
                 document.getElementById('teamLinkInput').value = teamLink;
                 showSection('successCaptain');
+                document.getElementById('checkInstructionsCaptain').style.display = data.payment_method === 'check' ? 'block' : 'none';
 
             } catch (err) {
                 console.error(err);
@@ -1997,6 +2054,7 @@
                 }
 
                 showSection('successGeneric');
+                document.getElementById('checkInstructionsGeneric').style.display = data.payment_method === 'check' ? 'block' : 'none';
 
             } catch (err) {
                 console.error(err);
@@ -2032,6 +2090,7 @@
                 }
 
                 showSection('successGeneric');
+                document.getElementById('checkInstructionsGeneric').style.display = data.payment_method === 'check' ? 'block' : 'none';
 
             } catch (err) {
                 console.error(err);
@@ -2068,6 +2127,7 @@
                 }
 
                 showSection('successGeneric');
+                document.getElementById('checkInstructionsGeneric').style.display = data.payment_method === 'check' ? 'block' : 'none';
 
             } catch (err) {
                 console.error(err);

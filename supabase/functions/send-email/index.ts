@@ -112,7 +112,7 @@ function getConfirmationHtml(data: {
                                             </tr>
                                             <tr>
                                                 <td style="padding: 6px 0;">
-                                                    <span style="font-size: 15px; color: #111827;">⏰ <strong>12 PM – 4 PM</strong></span>
+                                                    <span style="font-size: 15px; color: #111827;">⏰ <strong>12 PM – 3 PM</strong></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -124,12 +124,32 @@ function getConfirmationHtml(data: {
                                     </td>
                                 </tr>
                             </table>
+                            ${data.paymentStatus === "check_pending" ? `
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #fef9e7; border: 2px solid #b8860b; border-radius: 12px; margin-bottom: 24px;">
+                                <tr>
+                                    <td style="padding: 24px; text-align: center;">
+                                        <h3 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 700; color: #92400e; text-transform: uppercase; letter-spacing: 0.05em;">
+                                            &#128236; Check Mailing Instructions
+                                        </h3>
+                                        <p style="margin: 0 0 8px 0; font-size: 17px; font-weight: 700; color: #111827;">
+                                            PO Box 335<br>Huntington, NY 11743
+                                        </p>
+                                        <p style="margin: 0 0 8px 0; font-size: 14px; color: #4b5563;">
+                                            Make payable to: <strong>Michael Williams Memorial Scholarship</strong>
+                                        </p>
+                                        <p style="margin: 0; font-size: 13px; color: #6b7280; font-style: italic;">
+                                            Your registration will be confirmed once your check is received.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            ` : ""}
                             <h3 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 700; color: #111827;">
                                 What's Next?
                             </h3>
                             <ul style="margin: 0 0 32px 0; padding-left: 20px; color: #4b5563; font-size: 15px; line-height: 1.8;">
                                 <li>Add the event to your calendar</li>
-                                <li>Complete payment if you haven't already</li>
+                                <li>${data.paymentStatus === "check_pending" ? "Mail your check to the address above" : "Complete payment if you haven't already"}</li>
                                 <li>We'll send a reminder as the event gets closer</li>
                             </ul>
                             <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
@@ -230,7 +250,7 @@ function getInviteHtml(data: {
                                             </tr>
                                             <tr>
                                                 <td style="padding: 6px 0;">
-                                                    <span style="font-size: 15px; color: #111827;">⏰ 12 PM – 4 PM</span>
+                                                    <span style="font-size: 15px; color: #111827;">⏰ 12 PM – 3 PM</span>
                                                 </td>
                                             </tr>
                                             <tr>

@@ -99,14 +99,35 @@
         #mws-volleyball .vb-hero h1 { font-size: 46px; }
     }
 
+    #mws-volleyball .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: min(760px, 100%);
+        margin: 0 auto;
+    }
+
     #mws-volleyball .hero-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
         font-size: 14px;
         font-weight: 600;
         color: #fff;
         background: rgba(255,255,255,0.12);
         padding: 6px 16px;
         border-radius: 20px;
-        white-space: nowrap;
+        white-space: normal;
+        line-height: 1.25;
+    }
+
+    #mws-volleyball .hero-prices {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+        gap: 12px;
+        width: min(420px, 100%);
+        margin: 14px auto 0;
     }
 
     #mws-volleyball .hero-price {
@@ -119,9 +140,35 @@
         color: var(--white);
     }
 
+    #mws-volleyball .hero-price .amount {
+        display: block;
+        font-size: clamp(30px, 4.2vw, 42px);
+        line-height: 1;
+        font-weight: 700;
+    }
+
+    #mws-volleyball .hero-price .label {
+        display: block;
+        margin-top: 3px;
+        font-size: 13px;
+        font-weight: 600;
+        opacity: 0.92;
+        letter-spacing: 0.02em;
+    }
+
     @media (max-width: 768px) {
         #mws-volleyball .vb-hero { min-height: 280px; }
         #mws-volleyball .vb-hero h1 { font-size: 32px; }
+        #mws-volleyball .hero-meta { gap: 8px; }
+        #mws-volleyball .hero-meta span { font-size: 13px; padding: 6px 12px; }
+        #mws-volleyball .hero-prices { width: min(360px, 100%); }
+    }
+
+    @media (max-width: 420px) {
+        #mws-volleyball .hero-prices {
+            grid-template-columns: 1fr;
+            width: min(280px, 100%);
+        }
     }
 
     /* ==========================================
@@ -130,7 +177,7 @@
     #mws-volleyball .vb-main {
         max-width: 1100px;
         margin: 0 auto;
-        padding: 24px 16px 40px;
+        padding: 34px 16px 40px;
     }
 
     @media (min-width: 768px) {
@@ -138,7 +185,7 @@
             display: grid;
             grid-template-columns: 1fr 420px;
             gap: 32px;
-            padding: 0 24px 48px;
+            padding: 28px 24px 48px;
             align-items: start;
         }
     }
@@ -147,7 +194,7 @@
         #mws-volleyball .vb-main {
             grid-template-columns: 1fr 480px;
             gap: 48px;
-            padding: 0 32px 64px;
+            padding: 32px 32px 64px;
         }
     }
 
@@ -974,6 +1021,45 @@
 
     #mws-volleyball .hidden { display: none !important; }
 
+    /* Check Mailing Instructions Callout */
+    #mws-volleyball .check-instructions {
+        display: none;
+        background: var(--gold-bg);
+        border: 2px solid var(--gold);
+        border-radius: 12px;
+        padding: 18px 20px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+
+    #mws-volleyball .check-instructions h4 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #92400e;
+        margin: 0 0 10px;
+    }
+
+    #mws-volleyball .check-instructions .address {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--gray-900);
+        margin: 0 0 8px;
+    }
+
+    #mws-volleyball .check-instructions .payable {
+        font-size: 14px;
+        color: var(--gray-600);
+        margin: 0 0 8px;
+    }
+
+    #mws-volleyball .check-instructions .note {
+        font-size: 13px;
+        color: var(--gray-500);
+        font-style: italic;
+        margin: 0;
+    }
+
     /* Policy / Trust Block */
     #mws-volleyball .policy-block {
         margin-top: 20px;
@@ -1260,6 +1346,13 @@
                             </div>
                         </div>
 
+                        <div class="check-instructions" id="checkInstructionsCaptain">
+                            <h4>&#128236; Check Mailing Instructions</h4>
+                            <p class="address">PO Box 335<br>Huntington, NY 11743</p>
+                            <p class="payable">Make payable to: <strong>Michael Williams Memorial Scholarship</strong></p>
+                            <p class="note">Your registration will be confirmed once your check is received.</p>
+                        </div>
+
                         <p style="font-size: 13px; color: var(--gray-500);">Check your email for confirmation and payment details.</p>
 
                         <button type="button" class="btn btn-secondary" onclick="resetAll()" style="margin-top: 16px;">Register Someone Else</button>
@@ -1473,6 +1566,14 @@
                         <div class="icon">&#127881;</div>
                         <h3>You're Registered!</h3>
                         <p>Check your email for confirmation and next steps. See you March 21, 2026!</p>
+
+                        <div class="check-instructions" id="checkInstructionsGeneric">
+                            <h4>&#128236; Check Mailing Instructions</h4>
+                            <p class="address">PO Box 335<br>Huntington, NY 11743</p>
+                            <p class="payable">Make payable to: <strong>Michael Williams Memorial Scholarship</strong></p>
+                            <p class="note">Your registration will be confirmed once your check is received.</p>
+                        </div>
+
                         <button type="button" class="btn btn-secondary" onclick="resetAll()">Register Someone Else</button>
                     </div>
                 </div>
@@ -1580,6 +1681,8 @@
             '<button type="button" class="roster-remove" onclick="removePaidRosterRow(this)">&times;</button>' +
             '</div>';
         updateCaptainTotal();
+        document.getElementById('checkInstructionsCaptain').style.display = 'none';
+        document.getElementById('checkInstructionsGeneric').style.display = 'none';
         showSection('stepChoose');
     }
 
@@ -1914,6 +2017,7 @@
             const teamLink = baseUrl + '?join=' + teamCode;
             document.getElementById('teamLinkInput').value = teamLink;
             showSection('successCaptain');
+            document.getElementById('checkInstructionsCaptain').style.display = data.payment_method === 'check' ? 'block' : 'none';
 
         } catch (err) {
             console.error(err);
@@ -1950,6 +2054,7 @@
             }
 
             showSection('successGeneric');
+            document.getElementById('checkInstructionsGeneric').style.display = data.payment_method === 'check' ? 'block' : 'none';
 
         } catch (err) {
             console.error(err);
@@ -1985,6 +2090,7 @@
             }
 
             showSection('successGeneric');
+            document.getElementById('checkInstructionsGeneric').style.display = data.payment_method === 'check' ? 'block' : 'none';
 
         } catch (err) {
             console.error(err);
@@ -2021,6 +2127,7 @@
             }
 
             showSection('successGeneric');
+            document.getElementById('checkInstructionsGeneric').style.display = data.payment_method === 'check' ? 'block' : 'none';
 
         } catch (err) {
             console.error(err);
